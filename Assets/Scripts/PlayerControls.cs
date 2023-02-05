@@ -44,6 +44,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""82c54116-4964-45be-bd67-fdc3b3a210ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,6 +176,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""331427c6-abf9-412d-a92e-b978f7bfcc44"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -189,6 +209,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground = asset.FindActionMap("Ground", throwIfNotFound: true);
         m_Ground_Movement = m_Ground.FindAction("Movement", throwIfNotFound: true);
         m_Ground_Jump = m_Ground.FindAction("Jump", throwIfNotFound: true);
+        m_Ground_Parry = m_Ground.FindAction("Parry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -250,12 +271,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IGroundActions m_GroundActionsCallbackInterface;
     private readonly InputAction m_Ground_Movement;
     private readonly InputAction m_Ground_Jump;
+    private readonly InputAction m_Ground_Parry;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
         public GroundActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Ground_Movement;
         public InputAction @Jump => m_Wrapper.m_Ground_Jump;
+        public InputAction @Parry => m_Wrapper.m_Ground_Parry;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +294,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnJump;
+                @Parry.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnParry;
+                @Parry.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnParry;
+                @Parry.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnParry;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -281,6 +307,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
             }
         }
     }
@@ -298,5 +327,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
     }
 }
