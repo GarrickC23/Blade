@@ -44,6 +44,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""68c268b9-6f37-4cb6-ba81-a04444a7a9dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,6 +176,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec546502-998f-4cf8-aba8-f30095dfde19"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -189,6 +209,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground = asset.FindActionMap("Ground", throwIfNotFound: true);
         m_Ground_Movement = m_Ground.FindAction("Movement", throwIfNotFound: true);
         m_Ground_Jump = m_Ground.FindAction("Jump", throwIfNotFound: true);
+        m_Ground_Attack = m_Ground.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -250,12 +271,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IGroundActions m_GroundActionsCallbackInterface;
     private readonly InputAction m_Ground_Movement;
     private readonly InputAction m_Ground_Jump;
+    private readonly InputAction m_Ground_Attack;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
         public GroundActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Ground_Movement;
         public InputAction @Jump => m_Wrapper.m_Ground_Jump;
+        public InputAction @Attack => m_Wrapper.m_Ground_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +294,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnJump;
+                @Attack.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -281,6 +307,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -298,5 +327,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
