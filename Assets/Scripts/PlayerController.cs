@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection = Vector2.zero;
     private InputAction move;
     private InputAction jump;
+    private InputAction parry;
 
     private void Awake()
     {
@@ -23,15 +24,24 @@ public class PlayerController : MonoBehaviour
     {
         move = playerControls.Ground.Movement;
         move.Enable();
+       
+
         jump = playerControls.Ground.Jump;
         jump.Enable();
         jump.performed += Jump;
+
+        parry = playerControls.Ground.Parry;
+        parry.Enable();
+        parry.performed += Parry;
+
+
     }
 
     private void onDisable()
     {
         move.Disable();
         jump.Disable();
+        parry.Disable();
     }
     // Start is called before the first frame update
     void Start()
@@ -55,8 +65,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("We jumped");
     }
 
-    private void Movement(InputAction.CallbackContext context)
+    private void Parry(InputAction.CallbackContext context)
     {
-        Debug.Log("We moved")
+        Debug.Log("We Parried");
     }
 }
