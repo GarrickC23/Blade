@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDirection = move.ReadValue<Vector2>();
+        /*moveDirection = move.ReadValue<Vector2>();*/
     }
 
     private void FixedUpdate()
@@ -53,5 +53,10 @@ public class PlayerController : MonoBehaviour
     private void Jump(InputAction.CallbackContext context)
     {
         Debug.Log("We jumped");
+    }
+
+    private void Movement(InputAction.CallbackContext context)
+    {
+        Debug.Log("We moved")
     }
 }
