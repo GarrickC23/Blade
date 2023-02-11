@@ -5,8 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    private PlayerControls playerControls;
+    [SerializeField]
+    private Rigidbody2D rb;
+    public float moveSpeed;
+    public float jumpForce;
 
+    private PlayerControls playerControls;
+    
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -31,6 +36,7 @@ public class Movement : MonoBehaviour
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
         Debug.Log(move); //Implement Movement
+        rb.velocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
     }
 
     //Jump Function. When you press "Space" you will jump
@@ -40,6 +46,7 @@ public class Movement : MonoBehaviour
         if ( context.performed )
         {
             Debug.Log("Jump!"); //Implement Jump 
+            rb.velocity += new Vector2(0, jumpForce);
         }
     }
 
@@ -50,5 +57,9 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("Parry!"); //Implement Parry Mechanic
         }
+    }
+    
+    public void OnMove() {
+        Debug.Log("Moved");
     }
 }
