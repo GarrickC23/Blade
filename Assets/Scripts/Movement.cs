@@ -58,8 +58,4 @@ public class Movement : MonoBehaviour
             Debug.Log("Parry!"); //Implement Parry Mechanic
         }
     }
-    
-    public void OnMove() {
-        Debug.Log("Moved");
-    }
 }
