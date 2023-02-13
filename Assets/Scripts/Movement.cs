@@ -7,16 +7,25 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
+
     public float moveSpeed;
-    public float jumpForce;
+    [Header("Jumping")]
+    private float jumpForce;                // How fast the player moves upwards initially
+    public float jumpHeight;                // How high the player jumps
+    public float jumpTime;                  // How long it takes the player to reach the height of their jump
+    public float downwardsForce;            // How much the player slows down at apex of jump
+    public float fastFallForce;
 
     private PlayerControls playerControls;
+    private bool canJump;
+    private bool canFastFall;
     
     private void Awake()
     {
         playerControls = new PlayerControls();
         playerControls.Ground.Jump.performed += Jump; 
         playerControls.Ground.Parry.performed += Parry;
+        playerControls.Ground.FastFall.performed += FastFall;
     }
 
     private void OnEnable(){
@@ -29,13 +38,22 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-
+        canJump = true;
+        canFastFall = false;
+        float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);
+        float gravityScale = gravityStrength / Physics2D.gravity.y;
+        rb.gravityScale = gravityScale;
+        jumpForce = Mathf.Abs(gravityStrength) * jumpTime;
     }
     
     private void Update() {
+        Move();
+    }
+
+    private void Move() {
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
-        Debug.Log(move); //Implement Movement
+        // Debug.Log(move); //Implement Movement
         rb.velocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
     }
 
@@ -45,9 +63,20 @@ public class Movement : MonoBehaviour
         //Debug.Log(context);
         if ( context.performed )
         {
-            Debug.Log("Jump!"); //Implement Jump 
-            rb.velocity += new Vector2(0, jumpForce);
+            if (canJump) {
+                Debug.Log("Jump!"); //Implement Jump 
+                canJump = false;
+                StartCoroutine(Jump());
+            }
         }
+    }
+
+    private IEnumerator Jump() {
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
+        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(jumpTime);
+        canFastFall = true;
+        rb.AddForce(new Vector2(0, -downwardsForce));
     }
 
     //Parry Function. When you press "R" you will parry
@@ -56,6 +85,22 @@ public class Movement : MonoBehaviour
         if ( context.performed )
         {
             Debug.Log("Parry!"); //Implement Parry Mechanic
+        }
+    }
+
+    private void FastFall(InputAction.CallbackContext context) {
+        if (context.performed) {
+            if (canFastFall) {
+                Debug.Log("Fastfalling");
+                rb.AddForce(new Vector2(0, -fastFallForce));
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D coll) {
+        if (coll.gameObject.tag == "Ground") {
+            canJump = true;
+            canFastFall = false;
         }
     }
 }
