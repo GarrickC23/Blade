@@ -9,12 +9,19 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
 
     public float moveSpeed;
-    [Header("Jumping")]
+
+    [Header("Jumping")] 
     private float jumpForce;                // How fast the player moves upwards initially
     public float jumpHeight;                // How high the player jumps
     public float jumpTime;                  // How long it takes the player to reach the height of their jump
     public float downwardsForce;            // How much the player slows down at apex of jump
     public float fastFallForce;
+
+    [Header("Running")]
+    public float acceleration; 
+    public float decceleration; 
+    public float minSpeed; 
+    public float maxSpeed; 
 
     private PlayerControls playerControls;
     private bool canJump;
@@ -55,6 +62,19 @@ public class Movement : MonoBehaviour
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
         // Debug.Log(move); //Implement Movement
         rb.velocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
+        if ( rb.velocity.x > 0 && moveSpeed < maxSpeed )
+        {
+            moveSpeed += acceleration * Time.deltaTime; 
+        }
+        else if ( rb.velocity.x < 0 && moveSpeed < maxSpeed )
+        {
+            moveSpeed += acceleration * Time.deltaTime; 
+        }
+
+        if ( move.x == 0 && moveSpeed > 5 )
+        {
+            moveSpeed -= decceleration * Time.deltaTime; 
+        }
     }
 
     //Jump Function. When you press "Space" you will jump
