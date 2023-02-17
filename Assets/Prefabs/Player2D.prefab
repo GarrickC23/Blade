@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 404671938}
   m_Layer: 0
   m_Name: Player2D
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,4 +324,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cf5fc8a26254a4097c4d8efbca7441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   isParrying: 0

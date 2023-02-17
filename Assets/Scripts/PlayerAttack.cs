@@ -39,7 +39,6 @@ public class PlayerAttack : MonoBehaviour
         if (context.performed && canAttack){
             attackTimer = 0;
             canAttack = false;
-            Debug.Log("Swing");
             Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, LayerMask.GetMask("Enemy"));
             foreach (Collider2D hit in Hits)
             {
@@ -49,8 +48,8 @@ public class PlayerAttack : MonoBehaviour
     }
 
      private void Swing(Collider2D hit){
-        Debug.Log(hit.gameObject);
-        if(hit.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
+        //Debug.Log(hit.gameObject);
+        if(hit.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy)){
             enemy.TakeDamage(swingAttackDamage);
         }
     }

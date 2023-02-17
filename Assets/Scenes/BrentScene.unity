@@ -123,23 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &404671928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-  m_PrefabInstance: {fileID: 1633325152}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &404671937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404671928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567a6e8a0ec749e4abb94c45b5803469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1242392295
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,22 +380,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 404671937}
-    - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_Name
       value: Player2D
@@ -570,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 303620086197657982, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
       propertyPath: m_Name
       value: Test Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922045137123935159, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
+      propertyPath: damage
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
