@@ -8,7 +8,14 @@ public class PlayerAttack : MonoBehaviour
     private PlayerControls playerControls;
     public float attackRadius;
     public Transform attackPosition;
-    private LayerMask enemyLayer = 3;
+
+    public float swingAttackDamage;
+
+    public float attackCoolDown;
+
+    float attackTimer = 0f;
+
+    bool canAttack = true;
 
     private void Awake() {
         playerControls = new PlayerControls();
@@ -20,24 +27,32 @@ public class PlayerAttack : MonoBehaviour
     private void OnDisable() {
         playerControls.Disable();
     }
-    void Start()
-    {
-        
+    private void Update() {
+        if (attackTimer > attackCoolDown && canAttack == false){
+            canAttack = true;
+        }
+        else attackTimer += Time.deltaTime;
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed){
-            Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, enemyLayer);
-            foreach (var hit in Hits)
+        if (context.performed && canAttack){
+            attackTimer = 0;
+            canAttack = false;
+            Debug.Log("Swing");
+            Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, LayerMask.GetMask("Enemy"));
+            foreach (Collider2D hit in Hits)
             {
-                Swing();
+                Swing(hit);
             }
         } 
     }
 
-     private void Swing(){
-        Debug.Log("swung");
+     private void Swing(Collider2D hit){
+        Debug.Log(hit.gameObject);
+        if(hit.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
+            enemy.TakeDamage(swingAttackDamage);
+        }
     }
 
     private void OnDrawGizmosSelected() {

@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour
     {
         playerControls = new PlayerControls();
         playerControls.Ground.Jump.performed += Jump; 
-        playerControls.Ground.Parry.performed += Parry;
         playerControls.Ground.FastFall.performed += FastFall;
     }
 
@@ -99,14 +98,6 @@ public class Movement : MonoBehaviour
         rb.AddForce(new Vector2(0, -downwardsForce));
     }
 
-    //Parry Function. When you press "R" you will parry
-    private void Parry(InputAction.CallbackContext context)
-    {
-        if ( context.performed )
-        {
-            Debug.Log("Parry!"); //Implement Parry Mechanic
-        }
-    }
 
     private void FastFall(InputAction.CallbackContext context) {
         if (context.performed) {
