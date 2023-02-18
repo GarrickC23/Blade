@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &706357237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+  m_PrefabInstance: {fileID: 1633325152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &706357238
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706357237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5464744b861549c4a297519a7182837, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1242392295
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,17 +361,25 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1030885288, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769586, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -379,6 +412,38 @@ PrefabInstance:
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769589, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769589, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3168358
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769589, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.09997529
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769589, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.70815784
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769591, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: maxSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769591, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769591, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: acceleration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769591, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: decceleration
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_Name

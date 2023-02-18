@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Parry : MonoBehaviour
 {
     private PlayerControls playerControls;
+    private Animator anim;
 
     public float parryDuration;
 
@@ -13,6 +14,7 @@ public class Parry : MonoBehaviour
 
     private void Awake()
     {
+        anim = gameObject.GetComponent<Animator>();
         playerControls = new PlayerControls();
         //playerControls.Ground.Parry.performed += ParryAttack;
     }
@@ -29,6 +31,7 @@ public class Parry : MonoBehaviour
     {
         if (context.performed && !isParrying)
         {
+            anim.Play("HeroKnight_Block");
             StartCoroutine("ParryCoroutine");
         }
     }
