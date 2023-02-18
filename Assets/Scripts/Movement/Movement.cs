@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
     {
         playerControls = new PlayerControls();
         playerControls.Ground.Jump.performed += Jump; 
+        playerControls.Ground.Jump.canceled += JumpRelease;
         playerControls.Ground.FastFall.performed += FastFall;
     }
 
@@ -98,6 +99,17 @@ public class Movement : MonoBehaviour
         rb.AddForce(new Vector2(0, -downwardsForce));
     }
 
+    private void JumpRelease(InputAction.CallbackContext context)
+    {
+        if ( context.canceled )
+        {
+            if (rb.velocity.y > 0) 
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+        }
+    }
+
 
     private void FastFall(InputAction.CallbackContext context) {
         if (context.performed) {
@@ -108,10 +120,8 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D coll) {
-        if (coll.gameObject.tag == "Ground") {
-            canJump = true;
-            canFastFall = false;
-        }
+    public void TouchedGround() {
+        canJump = true;
+        canFastFall = false;
     }
 }
