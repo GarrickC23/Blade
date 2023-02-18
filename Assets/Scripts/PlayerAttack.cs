@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     private PlayerControls playerControls;
+    private Animator anim;
     public float attackRadius;
     public Transform attackPosition;
 
@@ -18,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     bool canAttack = true;
 
     private void Awake() {
+        anim = gameObject.GetComponent<Animator>(); 
         playerControls = new PlayerControls();
     }
 
@@ -37,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed && canAttack){
+            Debug.Log("Attack");
+            anim.Play("HeroKnight_Attack2");
             attackTimer = 0;
             canAttack = false;
             Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, LayerMask.GetMask("Enemy"));

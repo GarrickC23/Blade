@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
-
+    private Animator anim;
     public float moveSpeed;
 
     [Header("Jumping")] 
@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     
     private void Awake()
     {
+        anim = gameObject.GetComponent<Animator>(); 
         playerControls = new PlayerControls();
         playerControls.Ground.Jump.performed += Jump; 
         playerControls.Ground.Jump.canceled += JumpRelease;
@@ -65,13 +66,17 @@ public class Movement : MonoBehaviour
         if ( rb.velocity.x > 0 && moveSpeed < maxSpeed )
         {
             moveSpeed += acceleration * Time.deltaTime; 
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            anim.Play("Run");
         }
         else if ( rb.velocity.x < 0 && moveSpeed < maxSpeed )
         {
             moveSpeed += acceleration * Time.deltaTime; 
+            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+            anim.Play("Run");
         }
 
-        if ( move.x == 0 && moveSpeed > 5 )
+        if ( move.x == 0 && moveSpeed > 4 )
         {
             moveSpeed -= decceleration * Time.deltaTime; 
         }
@@ -85,6 +90,7 @@ public class Movement : MonoBehaviour
         {
             if (canJump) {
                 Debug.Log("Jump!"); //Implement Jump 
+                anim.Play("HeroKnight_Jump");
                 canJump = false;
                 StartCoroutine(Jump());
             }
