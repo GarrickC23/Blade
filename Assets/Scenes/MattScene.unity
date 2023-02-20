@@ -680,6 +680,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2D
       objectReference: {fileID: 0}
+    - target: {fileID: 3203780925020639991, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.38825417
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203780925020639991, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.27299762
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203780925020639991, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.044754535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203780925020639991, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.043511033
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
