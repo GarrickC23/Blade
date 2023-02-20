@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     public float jumpTime;                  // How long it takes the player to reach the height of their jump
     public float downwardsForce;            // How much the player slows down at apex of jump
     public float fastFallForce;
+    public float coyoteTime;
+    private float coyoteTimer;
 
     [Header("Running")]
     public float acceleration; 
@@ -24,7 +26,6 @@ public class Movement : MonoBehaviour
     public float maxSpeed; 
 
     private PlayerControls playerControls;
-    private bool canJump;
     private bool canFastFall;
     
     private void Awake()
@@ -46,7 +47,6 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        canJump = true;
         canFastFall = false;
         float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);
         float gravityScale = gravityStrength / Physics2D.gravity.y;
@@ -56,6 +56,9 @@ public class Movement : MonoBehaviour
     
     private void Update() {
         Move();
+        if (coyoteTimer < coyoteTime) {
+            coyoteTimer += Time.deltaTime;
+        }
     }
 
     private void Move() {
@@ -88,16 +91,16 @@ public class Movement : MonoBehaviour
         //Debug.Log(context);
         if ( context.performed )
         {
-            if (canJump) {
+            if (coyoteTimer < coyoteTime) {
                 Debug.Log("Jump!"); //Implement Jump 
                 anim.Play("HeroKnight_Jump");
-                canJump = false;
                 StartCoroutine(Jump());
             }
         }
     }
 
     private IEnumerator Jump() {
+        coyoteTimer = coyoteTime;
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         yield return new WaitForSeconds(jumpTime);
@@ -126,8 +129,17 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void TouchedGround() {
-        canJump = true;
+    public void TouchGround() {
+        coyoteTimer = 0;
         canFastFall = false;
+    }
+
+    /// <summary>
+    /// If moving up, cancel coyote time
+    /// </summary>
+    public void LeaveGround() {
+        if (rb.velocity.y > 0) {
+            coyoteTimer = coyoteTime;
+        }
     }
 }

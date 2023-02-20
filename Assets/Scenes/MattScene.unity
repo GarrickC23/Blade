@@ -634,11 +634,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16485618
+      value: -0.144
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8031878
+      value: 0.795
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -676,6 +676,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1240750863}
+    - target: {fileID: 1219213532512769591, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: coyoteTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_Name
       value: Player2D

@@ -71,7 +71,7 @@ Transform:
   - {fileID: 1030885288}
   - {fileID: 5620893455870943593}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1219213532512769586
 SpriteRenderer:
@@ -180,6 +180,7 @@ MonoBehaviour:
   jumpTime: 0.5
   downwardsForce: 100
   fastFallForce: 200
+  coyoteTime: 0.3
   acceleration: 3
   decceleration: 3
   minSpeed: 0
@@ -368,7 +369,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.019610137, y: -0.9059682}
+  m_Offset: {x: -0.044754535, y: -0.043511033}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -379,7 +380,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26789016, y: 0.46438694}
+  m_Size: {x: 0.38825417, y: 0.27299762}
   m_EdgeRadius: 0
 --- !u!114 &2532585407705070118
 MonoBehaviour:

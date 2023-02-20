@@ -7,9 +7,15 @@ public class GroundCheck : MonoBehaviour
     [SerializeField]
     private Movement movementScript;
 
-    private void OnTriggerEnter2D(Collider2D coll) {
+    private void OnTriggerStay2D(Collider2D coll) {
         if (coll.gameObject.tag == "Ground") {
-            movementScript.TouchedGround();
+            movementScript.TouchGround();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D coll) {
+        if (coll.gameObject.tag == "Ground") {
+            movementScript.LeaveGround();
         }
     }
 }
