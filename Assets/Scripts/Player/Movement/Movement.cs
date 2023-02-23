@@ -20,10 +20,10 @@ public class Movement : MonoBehaviour
     private float coyoteTimer;
 
     [Header("Running")]
-    public float acceleration; 
-    public float decceleration; 
-    public float minSpeed; 
-    public float maxSpeed; 
+    public float acceleration;              // How fast the player accelerates starting from moveSpeed
+    public float decceleration;             // How fast the player decelerates when user is not inputting any button
+    public float minSpeed;                  
+    public float maxSpeed;                  // Max speed player can move
 
     private PlayerControls playerControls;
     private bool canFastFall;
@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour
     private void Move() {
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
-        // Debug.Log(move); //Implement Movement
+        // Debug.Log(move);
         rb.velocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
         if ( rb.velocity.x > 0 && moveSpeed < maxSpeed )
         {

@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Animator anim;
+
     public float attackRadius;
     public Transform attackPosition;
 
@@ -18,19 +19,26 @@ public class PlayerAttack : MonoBehaviour
 
     bool canAttack = true;
 
-    private void Awake() {
+    private void Awake() 
+    {
         anim = gameObject.GetComponent<Animator>(); 
         playerControls = new PlayerControls();
     }
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         playerControls.Enable();
     }
-    private void OnDisable() {
+
+    private void OnDisable() 
+    {
         playerControls.Disable();
     }
-    private void Update() {
-        if (attackTimer > attackCoolDown && canAttack == false){
+
+    private void Update() 
+    {
+        if (attackTimer > attackCoolDown && canAttack == false)
+        {
             canAttack = true;
         }
         else attackTimer += Time.deltaTime;
@@ -38,7 +46,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && canAttack){
+        if (context.performed && canAttack)
+        {
             Debug.Log("Attack");
             anim.Play("HeroKnight_Attack2");
             attackTimer = 0;
@@ -51,14 +60,17 @@ public class PlayerAttack : MonoBehaviour
         } 
     }
 
-     private void Swing(Collider2D hit){
+    private void Swing(Collider2D hit)
+    {
         //Debug.Log(hit.gameObject);
-        if(hit.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy)){
+        if(hit.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy))
+        {
             enemy.TakeDamage(swingAttackDamage);
         }
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected() 
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRadius);
     }

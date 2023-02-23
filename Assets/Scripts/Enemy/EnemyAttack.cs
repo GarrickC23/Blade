@@ -8,20 +8,25 @@ public class EnemyAttack : MonoBehaviour
     public Transform attackPosition;
     public float attackRadius;
     public float damage;
-    public GameObject hitBox; 
+
+    public GameObject hitBox;               //test GameObject hitBox
+
     // Update is called once per frame
     void Update()
     {
         if (!isAttacking) StartCoroutine("AttackCoroutine");
     }
 
-    private void Attack(){
+    private void Attack()
+    {
         Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius);
             foreach (Collider2D hit in Hits)
             {
                 //Debug.Log(hit.gameObject);
-                if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player)){
-                    if (!player.isParrying){
+                if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
+                {
+                    if (!player.isParrying)
+                    {
                         player.TakeDamage(damage);
                     }
                 }
@@ -31,7 +36,8 @@ public class EnemyAttack : MonoBehaviour
             }
     }
 
-    private IEnumerator AttackCoroutine(){
+    private IEnumerator AttackCoroutine()
+    {
         isAttacking = true;
         Attack();
         yield return new WaitForSeconds(1f);
@@ -42,7 +48,8 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = false;
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected() 
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRadius);
     }

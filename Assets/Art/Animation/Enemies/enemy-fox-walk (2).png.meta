@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cca383aa0f054e841b64cbeeba71e8ce
+guid: 9f5c113a53ad7184881858b8f8c19f5d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -130,11 +130,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy-fox-idle_0
+      name: enemy-fox-walk (2)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -144,18 +144,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8691a986824198249b9c82533ee20cd6
-      internalID: 14654438
+      spriteID: c477e19c6d97a5043a548a50fac8bc80
+      internalID: -686654334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy-fox-idle_1
+      name: enemy-fox-walk (2)_1
       rect:
         serializedVersion: 2
         x: 1000
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -165,18 +165,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ed802a9e3e52ec4fa77097736a35340
-      internalID: 76274677
+      spriteID: 393a39e61caf0704db0aa147e3011c43
+      internalID: 630291353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy-fox-idle_2
+      name: enemy-fox-walk (2)_2
       rect:
         serializedVersion: 2
         x: 2000
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -186,18 +186,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49547409f2faad84a959ae0b5cc8c7a9
-      internalID: 236112756
+      spriteID: 7114194705706484098c7c895cf92b4a
+      internalID: 533141670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy-fox-idle_3
+      name: enemy-fox-walk (2)_3
       rect:
         serializedVersion: 2
         x: 3000
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -207,18 +207,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2deb37e67272b3047ba0786583497d8b
-      internalID: -761942338
+      spriteID: 07b654bba455e7542acf981c99e55f3c
+      internalID: -2071047607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy-fox-idle_4
+      name: enemy-fox-walk (2)_4
       rect:
         serializedVersion: 2
         x: 4000
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -228,18 +228,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c17e11284f2f39f42a3187e0c7f36614
-      internalID: 1032866606
+      spriteID: 98e740bdde67aa5429121ea417fb9b5a
+      internalID: -762818477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy-fox-idle_5
+      name: enemy-fox-walk (2)_5
       rect:
         serializedVersion: 2
         x: 5000
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -249,18 +249,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfd172dd024e4754b8aad758a7153cc5
-      internalID: 1959442417
+      spriteID: 2cab5c6580785a54f90a184e84f40d8e
+      internalID: -898516103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy-fox-idle_6
+      name: enemy-fox-walk (2)_6
       rect:
         serializedVersion: 2
         x: 6000
-        y: 10
+        y: 0
         width: 1000
         height: 1000
       alignment: 0
@@ -270,8 +270,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c91a88bf736cb834b951a70ef44c9dc5
-      internalID: 99977339
+      spriteID: db146fc24f2f5a2408689c4a592f9609
+      internalID: 547262560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-fox-walk (2)_7
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca75639e8102d84792c2cf4b1a00163
+      internalID: 1202338497
       vertices: []
       indices: 
       edges: []
@@ -279,7 +300,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 12490d593f282044db0ba06712fc3089
+    spriteID: 530ba584d7e8cab449cf918a345b3786
     internalID: 0
     vertices: []
     indices: 
@@ -287,13 +308,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemy-fox-idle_2: 236112756
-      enemy-fox-idle_6: 99977339
-      enemy-fox-idle_4: 1032866606
-      enemy-fox-idle_1: 76274677
-      enemy-fox-idle_5: 1959442417
-      enemy-fox-idle_0: 14654438
-      enemy-fox-idle_3: -761942338
+      enemy-fox-walk (2)_6: 547262560
+      enemy-fox-walk (2)_3: -2071047607
+      enemy-fox-walk (2)_2: 533141670
+      enemy-fox-walk (2)_1: 630291353
+      enemy-fox-walk (2)_4: -762818477
+      enemy-fox-walk (2)_7: 1202338497
+      enemy-fox-walk (2)_0: -686654334
+      enemy-fox-walk (2)_5: -898516103
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

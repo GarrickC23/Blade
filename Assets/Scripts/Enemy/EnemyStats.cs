@@ -7,13 +7,16 @@ public class EnemyStats : MonoBehaviour
     public float maxHealth;
     float Health;
 
-    private void Start() {
+    private void Start() 
+    {
         Health = maxHealth;
     }
 
-    public void TakeDamage(float damage){
+    public void TakeDamage(float damage)
+    {
         Health -= damage;
-        if (Health <= 0){
+        if (Health <= 0)
+        {
             Destroy(gameObject);
         }
     }
