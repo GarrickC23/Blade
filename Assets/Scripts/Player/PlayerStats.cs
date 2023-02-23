@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-   [SerializeField]
-   private float maxHealth;
-   [SerializeField]
-   private float Health;
+   public float maxHealth;
+   public float Health;
    [HideInInspector]
    public bool isParrying = false;
 

@@ -8,6 +8,7 @@ public class EnemyAttack : MonoBehaviour
     public Transform attackPosition;
     public float attackRadius;
     public float damage;
+    public GameObject hitBox; 
     // Update is called once per frame
     void Update()
     {
@@ -24,17 +25,20 @@ public class EnemyAttack : MonoBehaviour
                         player.TakeDamage(damage);
                     }
                 }
+                Vector3 position = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
+                var temp = Instantiate(hitBox, position, transform.rotation);
+                Destroy(temp, 0.25f);
             }
     }
 
     private IEnumerator AttackCoroutine(){
         isAttacking = true;
         Attack();
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1f);
         Attack();
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1f);
         Attack();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         isAttacking = false;
     }
 
