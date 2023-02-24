@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     public float fastFallForce;
     public float coyoteTime;
     private float coyoteTimer;
+    private bool inAir;                     // Check if player is in the air
 
     [Header("Running")]
     public float acceleration;              // How fast the player accelerates starting from moveSpeed
@@ -52,6 +53,7 @@ public class Movement : MonoBehaviour
         float gravityScale = gravityStrength / Physics2D.gravity.y;
         rb.gravityScale = gravityScale;
         jumpForce = Mathf.Abs(gravityStrength) * jumpTime;
+        coyoteTimer = 0;
     }
     
     private void Update() {
@@ -70,18 +72,27 @@ public class Movement : MonoBehaviour
         {
             moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            anim.Play("Run");
+            anim.SetBool("Run", true);
+            anim.SetBool("Idle", false);
         }
         else if ( rb.velocity.x < 0 && moveSpeed < maxSpeed )
         {
             moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-            anim.Play("Run");
+            anim.SetBool("Run", true);
+            anim.SetBool("Idle", false);
+        }
+        else if ( moveSpeed > maxSpeed )
+        {
+            anim.SetBool("Run", true);
+            anim.SetBool("Idle", false);
         }
 
-        if ( move.x == 0 && moveSpeed > 4 )
+        if ( move.x == 0 && moveSpeed > minSpeed )
         {
             moveSpeed -= decceleration * Time.deltaTime; 
+            anim.SetBool("Idle", true);
+            anim.SetBool("Run", false);
         }
     }
 
@@ -93,7 +104,12 @@ public class Movement : MonoBehaviour
         {
             if (coyoteTimer < coyoteTime) {
                 Debug.Log("Jump!"); //Implement Jump 
-                anim.Play("HeroKnight_Jump");
+                inAir = true;
+
+                anim.SetBool("Idle", false);
+                anim.SetBool("Run", false);
+                anim.SetBool("HeroKnight_Jump", true);
+
                 StartCoroutine(Jump());
             }
         }
@@ -106,6 +122,7 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(jumpTime);
         canFastFall = true;
         rb.AddForce(new Vector2(0, -downwardsForce));
+        anim.Play("HeroKnight_Fall");
     }
 
     private void JumpRelease(InputAction.CallbackContext context)
@@ -132,6 +149,9 @@ public class Movement : MonoBehaviour
     public void TouchGround() {
         coyoteTimer = 0;
         canFastFall = false;
+
+        anim.SetBool("Idle", true);
+        anim.SetBool("HeroKnight_Jump", false);
     }
 
     /// <summary>

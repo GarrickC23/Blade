@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
    public float maxHealth;
-   public float Health;
+   public float health;
    [HideInInspector]
    public bool isParrying = false;
 
@@ -14,16 +14,27 @@ public class PlayerStats : MonoBehaviour
    public Sprite fullHeart;
    public Sprite emptyHeart; 
 
-   private void Start() {
-      Health = maxHealth;
+   private void Start() 
+   {
+      health = maxHealth;
    }
 
    public void TakeDamage(float damage)
    {
-      Health -= damage;
+      health -= damage;
+      HeartUpdate();
+
+      if (health <= 0)
+      {
+         Destroy(gameObject);
+      }
+   }
+
+   public void HeartUpdate()
+   {
       for ( int i = 0; i < hearts.Length; i++ )
       {
-         if ( i < Health )
+         if ( i < health )
          {
             hearts[i].sprite = fullHeart;
          }
@@ -31,13 +42,6 @@ public class PlayerStats : MonoBehaviour
          {
             hearts[i].sprite = emptyHeart; 
          }
-         if (Health <= 0){
-            Destroy(gameObject);
-         }
-      }
-      if (Health <= 0)
-      {
-         Destroy(gameObject);
       }
    }
 }

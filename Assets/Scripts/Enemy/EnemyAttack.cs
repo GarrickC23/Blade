@@ -10,6 +10,12 @@ public class EnemyAttack : MonoBehaviour
     public float damage;
 
     public GameObject hitBox;               //test GameObject hitBox
+    private Animator anim;
+
+    void Start() 
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,6 +35,10 @@ public class EnemyAttack : MonoBehaviour
                     {
                         player.TakeDamage(damage);
                     }
+                    else if (player.isParrying)
+                    {
+                        anim.Play("BlockFlash");
+                    }
                 }
                 Vector3 position = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
                 var temp = Instantiate(hitBox, position, transform.rotation);
@@ -44,7 +54,7 @@ public class EnemyAttack : MonoBehaviour
         Attack();
         yield return new WaitForSeconds(1f);
         Attack();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
     }
 

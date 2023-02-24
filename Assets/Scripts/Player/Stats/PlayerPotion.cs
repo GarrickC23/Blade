@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerPotion : MonoBehaviour
 {
     private PlayerControls playerControls;
-    private PlayerStats stats; 
+    public PlayerStats stats; 
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -18,7 +19,7 @@ public class PlayerPotion : MonoBehaviour
         playerControls.Enable();
     }
 
-    private void onDisable()
+    private void OnDisable()
     {
         playerControls.Disable(); 
     }
@@ -27,11 +28,12 @@ public class PlayerPotion : MonoBehaviour
     {
         if ( context.performed )
         {
-            Debug.Log("Heal");
-            if ( stats.Health <= stats.maxHealth )
+            if ( stats.health <= stats.maxHealth )
             {
-                stats.Health += 1; 
+                Debug.Log(stats.health);
+                stats.health += 1;
             }
+            stats.HeartUpdate();
         }
     }
 }
