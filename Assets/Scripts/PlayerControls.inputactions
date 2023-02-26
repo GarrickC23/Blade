@@ -26,7 +26,25 @@
                 {
                     "name": "Parry",
                     "type": "Button",
-                    "id": "05b71fcb-20de-4d7f-8ed4-62566b14fcd5",
+                    "id": "82c54116-4964-45be-bd67-fdc3b3a210ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "6ae11867-ea04-462c-b8b5-6c4a84a72536",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FastFall",
+                    "type": "Button",
+                    "id": "8c4d5455-f6c0-47af-86ff-9c3ed3f293ea",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -157,12 +175,34 @@
                 },
                 {
                     "name": "",
-                    "id": "df730905-8dc7-492d-a56c-4c2a46744188",
+                    "id": "331427c6-abf9-412d-a92e-b978f7bfcc44",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Desktop",
                     "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d10b094e-22e3-4b02-956d-e109ff142c0a",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Desktop",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8cc5d1b-3c48-44f3-8c8d-685623201171",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Desktop",
+                    "action": "FastFall",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
