@@ -71,6 +71,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""0280a77b-45d2-4331-bb2d-6fd818b07bec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""FastFall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6c27cac-dae4-4507-a4ed-ef060ebf8cb9"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -252,6 +272,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground_Parry = m_Ground.FindAction("Parry", throwIfNotFound: true);
         m_Ground_Attack = m_Ground.FindAction("Attack", throwIfNotFound: true);
         m_Ground_FastFall = m_Ground.FindAction("FastFall", throwIfNotFound: true);
+        m_Ground_Dash = m_Ground.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,6 +337,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Parry;
     private readonly InputAction m_Ground_Attack;
     private readonly InputAction m_Ground_FastFall;
+    private readonly InputAction m_Ground_Dash;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -325,6 +347,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Parry => m_Wrapper.m_Ground_Parry;
         public InputAction @Attack => m_Wrapper.m_Ground_Attack;
         public InputAction @FastFall => m_Wrapper.m_Ground_FastFall;
+        public InputAction @Dash => m_Wrapper.m_Ground_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -349,6 +372,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @FastFall.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnFastFall;
                 @FastFall.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnFastFall;
                 @FastFall.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnFastFall;
+                @Dash.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -368,6 +394,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @FastFall.started += instance.OnFastFall;
                 @FastFall.performed += instance.OnFastFall;
                 @FastFall.canceled += instance.OnFastFall;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -388,5 +417,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnParry(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnFastFall(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
