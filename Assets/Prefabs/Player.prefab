@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 7782314356096364204}
   - component: {fileID: 7782314356096364209}
   - component: {fileID: 7782314356096364214}
+  - component: {fileID: 2059238780}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7782314356096364211
 Transform:
   m_ObjectHideFlags: 0
@@ -135,6 +136,10 @@ MonoBehaviour:
     m_ActionId: c1758c3f-a733-4a12-9c30-ed2867ff99ef
     m_ActionName: Ground/Jump[/Keyboard/space]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82c54116-4964-45be-bd67-fdc3b3a210ef
+    m_ActionName: Ground/Parry[/Keyboard/r]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7782314356096364214}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
@@ -148,8 +153,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 68c268b9-6f37-4cb6-ba81-a04444a7a9dc
+    m_ActionId: 6ae11867-ea04-462c-b8b5-6c4a84a72536
     m_ActionName: Ground/Attack[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c4d5455-f6c0-47af-86ff-9c3ed3f293ea
+    m_ActionName: Ground/FastFall[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Desktop
   m_DefaultActionMap: Ground
@@ -169,6 +178,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRadius: 0.7
   attackPosition: {fileID: 7782314356121071654}
+--- !u!114 &2059238780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782314356096364201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652a6afb6f1aa4081a53ee2e25c8e259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  moveSpeed: 0
+  jumpHeight: 0
+  jumpTime: 0
+  downwardsForce: 0
+  fastFallForce: 0
+  acceleration: 0
+  decceleration: 0
+  minSpeed: 0
+  maxSpeed: 0
 --- !u!1 &7782314356121071649
 GameObject:
   m_ObjectHideFlags: 0
