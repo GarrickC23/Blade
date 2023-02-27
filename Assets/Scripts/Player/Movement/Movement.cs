@@ -20,6 +20,10 @@ public class Movement : MonoBehaviour
     private float coyoteTimer;
     private bool inAir;                     // Check if player is in the air
 
+    [Header("WallJump")]
+    [HideInInspector] public bool canWallJump;
+    public float horizontalWallJumpForce;
+
     [Header("Running")]
     public float acceleration;              // How fast the player accelerates starting from moveSpeed
     public float decceleration;             // How fast the player decelerates when user is not inputting any button
@@ -49,6 +53,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         canFastFall = false;
+        canWallJump = false;
         float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);
         float gravityScale = gravityStrength / Physics2D.gravity.y;
         rb.gravityScale = gravityScale;
@@ -112,17 +117,44 @@ public class Movement : MonoBehaviour
 
                 StartCoroutine(Jump());
             }
+            else if (canWallJump) {
+                Debug.Log("Wall Jump");
+                inAir = true;
+
+                anim.SetBool("Idle", false);
+                anim.SetBool("Run", false);
+                anim.SetBool("HeroKnight_Jump", true);
+                StartCoroutine(WallJump());
+            }
         }
     }
 
-    private IEnumerator Jump() {
+    private IEnumerator Jump()
+    {
         coyoteTimer = coyoteTime;
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
         yield return new WaitForSeconds(jumpTime);
+        
         canFastFall = true;
         rb.AddForce(new Vector2(0, -downwardsForce));
         anim.Play("HeroKnight_Fall");
+    }
+
+    private IEnumerator WallJump()
+    {
+        canWallJump = false;
+        int direction = -GetDirection();    // Move the player away from the wall
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
+        rb.AddForce(new Vector2(direction * horizontalWallJumpForce, jumpForce), ForceMode2D.Impulse);
+        rb.velocity = new Vector2(direction * horizontalWallJumpForce, rb.velocity.y);
+
+        yield return new WaitForSeconds(jumpTime);
+        canFastFall = true;
+
+        // rb.AddForce(new Vector2(0, -downwardsForce));
+        // anim.Play("HeroKnight_Fall");
     }
 
     private void JumpRelease(InputAction.CallbackContext context)
@@ -143,6 +175,21 @@ public class Movement : MonoBehaviour
                 Debug.Log("Fastfalling");
                 rb.AddForce(new Vector2(0, -fastFallForce));
             }
+        }
+    }
+
+    /// <summary>
+    /// Returns the direction the player is facing
+    /// 1 for right, -1 for left
+    /// </summary>
+    /// <returns></returns>
+    private int GetDirection()
+    {
+        if (this.transform.rotation.y < 0) {
+            return -1;
+        }
+        else {
+            return 1;
         }
     }
 
