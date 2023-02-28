@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e53c036-2647-44e8-9c5e-402d12907359"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31331517-d80d-4be0-8ef6-2968383c2c7b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +293,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground_Attack = m_Ground.FindAction("Attack", throwIfNotFound: true);
         m_Ground_FastFall = m_Ground.FindAction("FastFall", throwIfNotFound: true);
         m_Ground_Heal = m_Ground.FindAction("Heal", throwIfNotFound: true);
+        m_Ground_Dash = m_Ground.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,6 +359,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Attack;
     private readonly InputAction m_Ground_FastFall;
     private readonly InputAction m_Ground_Heal;
+    private readonly InputAction m_Ground_Dash;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Ground_Attack;
         public InputAction @FastFall => m_Wrapper.m_Ground_FastFall;
         public InputAction @Heal => m_Wrapper.m_Ground_Heal;
+        public InputAction @Dash => m_Wrapper.m_Ground_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +398,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
+                @Dash.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -397,6 +423,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -418,5 +447,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnFastFall(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
