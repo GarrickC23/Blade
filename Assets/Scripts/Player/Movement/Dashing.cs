@@ -22,6 +22,7 @@ public class Dashing : MonoBehaviour
     {
         playerControls = new PlayerControls();
         playerControls.Ground.Dash.performed += Dash;
+        playerControls.Ground.Dash.canceled += DashRelease;
     }
 
     private void OnEnable()
@@ -75,7 +76,22 @@ public class Dashing : MonoBehaviour
             yield return null;
             rb.velocity = new Vector2(dashSpeed * rb.velocity.x,rb.velocity.y);
             currentDashTime -= Time.deltaTime;
+            if (!playerControls.Ground.Dash.ReadValue<float>().Equals(1f)) // dash button is not held down
+            {
+                isDashing = false;
+                break;
+            }
         }
         rb.gravityScale = originalGravityScale;
     }
+
+    private void DashRelease(InputAction.CallbackContext context)
+    {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+    }
+
 }
+
+
+
+
