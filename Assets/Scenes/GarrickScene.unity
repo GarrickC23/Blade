@@ -246,8 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 251192681}
-  dashTime: 0.2
-  dashSpeed: 5
+  dashTime: 0.5
+  dashSpeed: 3
   dashCooldown: 1
 --- !u!1 &471991515 stripped
 GameObject:

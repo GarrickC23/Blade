@@ -17,6 +17,8 @@ public class Dashing : MonoBehaviour
     private bool isGrounded = true; // assume player starts on the ground
     private float currentDashTime = 0f;
     private float currentDashCooldown = 0f;
+    public float dashDeceleration;
+
 
     private void Awake()
     {
@@ -56,13 +58,16 @@ public class Dashing : MonoBehaviour
 
     private void Dash(InputAction.CallbackContext context)
     {
-        
         if (context.performed && !isDashing && currentDashCooldown <= 0f)
         {
             Debug.Log("Dash!");
             isDashing = true;
             currentDashTime = dashTime;
             Debug.Log(currentDashTime);
+
+            // Calculate deceleration rate based on remaining dash time
+            dashDeceleration = dashSpeed / currentDashTime;
+
             StartCoroutine(Dash());
         }
     }
@@ -71,17 +76,25 @@ public class Dashing : MonoBehaviour
     {
         float originalGravityScale = rb.gravityScale;
         rb.gravityScale = 0f;
+
         while (currentDashTime > 0f)
         {
             yield return null;
-            rb.velocity = new Vector2(dashSpeed * rb.velocity.x,rb.velocity.y);
+
+            // Calculate new velocity based on dash speed and deceleration
+            float deceleration = dashDeceleration * Time.deltaTime;
+            float speed = Mathf.Max(0f, dashSpeed - deceleration);
+            rb.velocity = new Vector2(speed * rb.velocity.x, rb.velocity.y);
+
             currentDashTime -= Time.deltaTime;
+
             if (!playerControls.Ground.Dash.ReadValue<float>().Equals(1f)) // dash button is not held down
             {
                 isDashing = false;
                 break;
             }
         }
+
         rb.gravityScale = originalGravityScale;
     }
 
