@@ -251,10 +251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 251192682}
-  dashTime: 0.5
-  dashSpeed: 10
-  dashCooldown: 0
-  dashDeceleration: 5
+  dashTime: 0.25
+  dashSpeed: 50
+  dashCooldown: 1
 --- !u!1 &471991515 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 303620086197657982, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
