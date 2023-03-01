@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,6 +228,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cf5fc8a26254a4097c4d8efbca7441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &251192682 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1219213532512769588, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+  m_PrefabInstance: {fileID: 1608401931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &251192685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+  m_PrefabInstance: {fileID: 1608401931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &251192686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251192662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f937393f69701f143b53b96d29d05201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 251192682}
+  dashTime: 0.5
+  dashSpeed: 10
+  dashCooldown: 0
+  dashDeceleration: 5
 --- !u!1 &471991515 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 303620086197657982, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
@@ -974,6 +1001,7 @@ GameObject:
   - component: {fileID: 1446914532}
   - component: {fileID: 1446914530}
   - component: {fileID: 1446914531}
+  - component: {fileID: 1446914533}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1047,6 +1075,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446914533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446914529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1909e234acc114b95ced44af78a146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowSpeed: 2
+  yOffset: 1
+  target: {fileID: 251192685}
 --- !u!1001 &1608401931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1155,21 +1198,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769588, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 777919698}
     - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_ActionId
       value: 8fb130e3-f7fa-4515-a7ca-cc982f03f4aa
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 9e53c036-2647-44e8-9c5e-402d12907359
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_ActionName
       value: Ground/Heal[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219213532512769590, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: Ground/Dash[/Keyboard/q]
       objectReference: {fileID: 0}
     - target: {fileID: 1219213532512769591, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: jumpTime
