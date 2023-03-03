@@ -49,6 +49,8 @@ GameObject:
   - component: {fileID: 404671937}
   - component: {fileID: 404671938}
   - component: {fileID: 706357238}
+  - component: {fileID: 251192673}
+  - component: {fileID: 251192685}
   m_Layer: 0
   m_Name: Player2D
   m_TagString: Player
@@ -65,13 +67,13 @@ Transform:
   m_GameObject: {fileID: 1219213532512769593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16485618, y: 2.8031878, z: 0.026077747}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1030885288}
   - {fileID: 5620893455870943593}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1219213532512769586
 SpriteRenderer:
@@ -175,16 +177,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1219213532512769588}
-  moveSpeed: 2
-  jumpHeight: 3
-  jumpTime: 0.5
+  moveSpeed: 8
+  jumpHeight: 10
+  jumpTime: 0.7
   downwardsForce: 100
   fastFallForce: 200
-  coyoteTime: 0.3
+  coyoteTime: 0.1
   acceleration: 3
   decceleration: 3
-  minSpeed: 0
-  maxSpeed: 4
+  minSpeed: 8
+  maxSpeed: 10
 --- !u!114 &1219213532512769590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +256,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8c4d5455-f6c0-47af-86ff-9c3ed3f293ea
     m_ActionName: Ground/FastFall[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8fb130e3-f7fa-4515-a7ca-cc982f03f4aa
+    m_ActionName: Ground/Heal[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Desktop
   m_DefaultActionMap: Ground
@@ -287,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567a6e8a0ec749e4abb94c45b5803469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parryDuration: 2
+  parryDuration: 0.5
 --- !u!114 &404671938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,9 +306,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cf5fc8a26254a4097c4d8efbca7441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  Health: 0
+  maxHealth: 5
+  health: 0
   isParrying: 0
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 21300000, guid: 432e48af0c833ad4587d222b812b844f, type: 3}
+  emptyHeart: {fileID: 21300050, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
 --- !u!95 &706357238
 Animator:
   serializedVersion: 4
@@ -323,6 +337,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &251192673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219213532512769593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36f175c9f1554745a6963757f2fcd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 404671938}
+--- !u!114 &251192685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219213532512769593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41d1c769d1901046becd43da7199169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6993541577699742110
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +408,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.044754535, y: -0.043511033}
+  m_Offset: {x: -0.044754535, y: 0.043333888}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -380,7 +419,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.38825417, y: 0.27299762}
+  m_Size: {x: 0.38825417, y: 0.099307775}
   m_EdgeRadius: 0
 --- !u!114 &2532585407705070118
 MonoBehaviour:

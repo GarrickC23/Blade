@@ -9,6 +9,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D coll) {
         if (coll.gameObject.tag == "Ground") {
+            movementScript.enabled = true; //hotfix so that move does not interfere with knockback.
             movementScript.TouchGround();
         }
     }

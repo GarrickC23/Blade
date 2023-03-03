@@ -64,6 +64,8 @@ public class Movement : MonoBehaviour
     }
 
     private void Move() {
+
+        if (GetComponent<PlayerStats>().isStunned) return; // //hotfix so that move does not interfere with stun.
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
         // Debug.Log(move);
