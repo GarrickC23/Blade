@@ -21,14 +21,19 @@ public class Movement : MonoBehaviour
     private bool inAir;                     // Check if player is in the air
 
     [Header("WallJump")]
-    [HideInInspector] public bool canWallJump;
-    public float horizontalWallJumpForce;
+    [SerializeField]
+    private WallJumpCheck wallJumpCheck;
+    [HideInInspector] public bool canWallJump;  // Checks to see if the player is within a wall
+    public float horizontalWallJumpForce;       // How far off the wall player is sent
+    private GameObject lastTouchedWall;         // Wall that was last jumped off of, gets set to null after touching ground
 
     [Header("Running")]
     public float acceleration;              // How fast the player accelerates starting from moveSpeed
     public float decceleration;             // How fast the player decelerates when user is not inputting any button
     public float minSpeed;                  
     public float maxSpeed;                  // Max speed player can move
+    private Vector2 m_Velocity = Vector2.zero;
+    private float velocityTolerance = 1f;
 
     private PlayerControls playerControls;
     private bool canFastFall;
@@ -74,17 +79,18 @@ public class Movement : MonoBehaviour
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
         // Debug.Log(move);
-        rb.velocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
-        if ( rb.velocity.x > 0 && moveSpeed < maxSpeed )
+        Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity, 0.05f);
+        if ( rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
-            moveSpeed += acceleration * Time.deltaTime; 
+            // moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
         }
-        else if ( rb.velocity.x < 0 && moveSpeed < maxSpeed )
+        else if ( rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
-            moveSpeed += acceleration * Time.deltaTime; 
+            // moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
@@ -97,7 +103,7 @@ public class Movement : MonoBehaviour
 
         if ( move.x == 0 && moveSpeed > minSpeed )
         {
-            moveSpeed -= decceleration * Time.deltaTime; 
+            // moveSpeed -= decceleration * Time.deltaTime; 
             anim.SetBool("Idle", true);
             anim.SetBool("Run", false);
         }
@@ -119,7 +125,7 @@ public class Movement : MonoBehaviour
 
                 StartCoroutine(Jump());
             }
-            else if (canWallJump) {
+            else if (canWallJump && wallJumpCheck.attachedWall != lastTouchedWall) {
                 Debug.Log("Wall Jump");
                 inAir = true;
 
@@ -146,7 +152,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator WallJump()
     {
-        canWallJump = false;
+        lastTouchedWall = wallJumpCheck.attachedWall;
         int direction = -GetDirection();    // Move the player away from the wall
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
         rb.AddForce(new Vector2(direction * horizontalWallJumpForce, jumpForce), ForceMode2D.Impulse);
@@ -195,9 +201,13 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When the player touches ground, reset the jump and wall jump
+    /// </summary>
     public void TouchGround() {
         coyoteTimer = 0;
         canFastFall = false;
+        lastTouchedWall = null;
 
         anim.SetBool("Idle", true);
         anim.SetBool("HeroKnight_Jump", false);
