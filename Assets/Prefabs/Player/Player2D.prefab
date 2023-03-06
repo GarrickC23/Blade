@@ -186,7 +186,8 @@ MonoBehaviour:
   coyoteTime: 0.1
   wallJumpCheck: {fileID: 2530085376122507938}
   canWallJump: 0
-  horizontalWallJumpForce: 50
+  horizontalWallJumpForce: 10
+  wallJumpFrozenTime: 0.5
   acceleration: 3
   decceleration: 3
   minSpeed: 8

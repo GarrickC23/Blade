@@ -19,12 +19,14 @@ public class Movement : MonoBehaviour
     public float coyoteTime;
     private float coyoteTimer;
     private bool inAir;                     // Check if player is in the air
+    private bool canFastFall;
 
     [Header("WallJump")]
     [SerializeField]
     private WallJumpCheck wallJumpCheck;
     [HideInInspector] public bool canWallJump;  // Checks to see if the player is within a wall
     public float horizontalWallJumpForce;       // How far off the wall player is sent
+    public float wallJumpFrozenTime;                    // How long the player can't move after wall jumping
     private GameObject lastTouchedWall;         // Wall that was last jumped off of, gets set to null after touching ground
 
     [Header("Running")]
@@ -36,7 +38,7 @@ public class Movement : MonoBehaviour
     private float velocityTolerance = 1f;
 
     private PlayerControls playerControls;
-    private bool canFastFall;
+    private float freezeTimer;
     
     private void Awake()
     {
@@ -64,6 +66,7 @@ public class Movement : MonoBehaviour
         rb.gravityScale = gravityScale;
         jumpForce = Mathf.Abs(gravityStrength) * jumpTime;
         coyoteTimer = 0;
+        freezeTimer = 0;
     }
     
     private void Update() {
@@ -71,16 +74,12 @@ public class Movement : MonoBehaviour
         if (coyoteTimer < coyoteTime) {
             coyoteTimer += Time.deltaTime;
         }
+        if (freezeTimer > 0) {
+            freezeTimer -= Time.deltaTime;
+        }
     }
 
     private void Move() {
-
-        if (GetComponent<PlayerStats>().isStunned) return; // //hotfix so that move does not interfere with stun.
-        //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
-        Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
-        // Debug.Log(move);
-        Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity, 0.05f);
         if ( rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
             // moveSpeed += acceleration * Time.deltaTime; 
@@ -101,6 +100,15 @@ public class Movement : MonoBehaviour
             anim.SetBool("Idle", false);
         }
 
+        if (GetComponent<PlayerStats>().isStunned || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
+        //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
+        Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
+        // Debug.Log(move);
+        Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
+        Vector2 m_Velocity2 = new Vector2(0, rb.velocity.y);
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, 0.05f);
+
+
         if ( move.x == 0 && moveSpeed > minSpeed )
         {
             // moveSpeed -= decceleration * Time.deltaTime; 
@@ -113,7 +121,7 @@ public class Movement : MonoBehaviour
     private void Jump(InputAction.CallbackContext context)
     {
         //Debug.Log(context);
-        if ( context.performed )
+        if ( context.performed  && freezeTimer <= 0)
         {
             if (coyoteTimer < coyoteTime) {
                 Debug.Log("Jump!"); //Implement Jump 
@@ -157,7 +165,7 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
         rb.AddForce(new Vector2(direction * horizontalWallJumpForce, jumpForce), ForceMode2D.Impulse);
         rb.velocity = new Vector2(direction * horizontalWallJumpForce, rb.velocity.y);
-
+        FreezeMovement(wallJumpFrozenTime);
         yield return new WaitForSeconds(jumpTime);
         canFastFall = true;
 
@@ -178,7 +186,7 @@ public class Movement : MonoBehaviour
 
 
     private void FastFall(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && freezeTimer <= 0) {
             if (canFastFall) {
                 Debug.Log("Fastfalling");
                 rb.AddForce(new Vector2(0, -fastFallForce));
@@ -220,5 +228,14 @@ public class Movement : MonoBehaviour
         if (rb.velocity.y > 0) {
             coyoteTimer = coyoteTime;
         }
+    }
+
+    /// <summary>
+    /// Prevents the player from moving for a certain amount of time
+    /// </summary>
+    /// <param name="frozenTime"></param>
+    public void FreezeMovement(float frozenTime)
+    {
+        freezeTimer = frozenTime;
     }
 }
