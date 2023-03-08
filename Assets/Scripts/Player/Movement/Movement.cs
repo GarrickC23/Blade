@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
 
     [Header("Jumping")] 
     private float jumpForce;                // How fast the player moves upwards initially
+    private float initialVelocity;          // Same as jumpForce but different formula (testing)
     public float jumpHeight;                // How high the player jumps
     public float jumpTime;                  // How long it takes the player to reach the height of their jump
     public float downwardsForce;            // How much the player slows down at apex of jump
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
     public float decceleration;             // How fast the player decelerates when user is not inputting any button
     public float minSpeed;                  
     public float maxSpeed;                  // Max speed player can move
+    public float smoothTime;                //Approximately the time it will t ake to reach the target. Smaller value will reach the target faster.
     private Vector2 m_Velocity = Vector2.zero;
     private float velocityTolerance = 1f;
 
@@ -61,6 +63,7 @@ public class Movement : MonoBehaviour
     {
         canFastFall = false;
         canWallJump = false;
+        initialVelocity = (2 * jumpHeight) / jumpTime; 
         float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);
         float gravityScale = gravityStrength / Physics2D.gravity.y;
         rb.gravityScale = gravityScale;
@@ -106,8 +109,7 @@ public class Movement : MonoBehaviour
         // Debug.Log(move);
         Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
         Vector2 m_Velocity2 = new Vector2(0, rb.velocity.y);
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, 0.05f);
-
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
 
         if ( move.x == 0 && moveSpeed > minSpeed )
         {
@@ -149,7 +151,7 @@ public class Movement : MonoBehaviour
     {
         coyoteTimer = coyoteTime;
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
-        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0, initialVelocity), ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(jumpTime);
         

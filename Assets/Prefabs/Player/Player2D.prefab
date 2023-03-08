@@ -179,9 +179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1219213532512769588}
   moveSpeed: 8
-  jumpHeight: 10
-  jumpTime: 0.7
-  downwardsForce: 100
+  jumpHeight: 6
+  jumpTime: 0.6
+  downwardsForce: 130
   fastFallForce: 200
   coyoteTime: 0.1
   wallJumpCheck: {fileID: 2530085376122507938}
@@ -192,6 +192,7 @@ MonoBehaviour:
   decceleration: 3
   minSpeed: 8
   maxSpeed: 10
+  smoothTime: 0.01
 --- !u!114 &1219213532512769590
 MonoBehaviour:
   m_ObjectHideFlags: 0
