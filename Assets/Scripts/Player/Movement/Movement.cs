@@ -103,14 +103,15 @@ public class Movement : MonoBehaviour
             anim.SetBool("Idle", false);
         }
 
-        if (GetComponent<PlayerStats>().isStunned || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
+        
+        if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
         // Debug.Log(move);
         Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
         Vector2 m_Velocity2 = new Vector2(0, rb.velocity.y);
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
-
+        
         if ( move.x == 0 && moveSpeed > minSpeed )
         {
             // moveSpeed -= decceleration * Time.deltaTime; 

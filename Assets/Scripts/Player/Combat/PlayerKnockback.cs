@@ -25,12 +25,10 @@ public class PlayerKnockback : MonoBehaviour
         }
         else 
         Xdifference = 1;
-        gameObject.GetComponent<Movement>().enabled = false;
         GetComponent<PlayerStats>().isStunned = true;
-        print("is stunned");
         yield return new WaitForSeconds(stunDuration);
         GetComponent<PlayerStats>().isStunned = false;
-        print("not stunned");
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(dir*Xdifference*strength*Mathf.Cos(Mathf.Deg2Rad*angle),strength*Mathf.Sin(Mathf.Deg2Rad*angle)), ForceMode2D.Impulse);
+        GetComponent<PlayerStats>().isKnockedBack = true;
     }
 }

@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
    [HideInInspector]
    public bool isStunned = false;
 
+   [HideInInspector]
+   public bool isKnockedBack = false;
+
    public Image[] hearts; 
    public Sprite fullHeart;
    public Sprite emptyHeart; 
@@ -24,11 +27,11 @@ public class PlayerStats : MonoBehaviour
       health = maxHealth;
       anim = gameObject.GetComponent<Animator>();
    }
-   public void Attacked(float damage){
+   public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction){
       if (!isParrying && !isStunned)
          {
             TakeDamage(damage);
-            GetComponent<PlayerKnockback>().PlayerKnockbackFunction(30, 80, Direction.AWAY, this.transform, 0.4f);
+            GetComponent<PlayerKnockback>().PlayerKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
          }
          else if (isParrying)
             {

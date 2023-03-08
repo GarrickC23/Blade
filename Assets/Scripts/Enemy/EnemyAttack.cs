@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerKnockback;
 
 public class EnemyAttack : MonoBehaviour
 {
     private bool isAttacking = false;
     public Transform attackPosition;
     public float attackRadius;
-    public float damage;
+    public float damage, angle, knockbackPower, stunDuration;
+    public Direction direction;
 
     public GameObject hitBox;               //test GameObject hitBox
 
@@ -25,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
                 //Debug.Log(hit.gameObject);
                 if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
                 {
-                    player.Attacked(damage);
+                    player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
                 }
                 Vector3 position = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
                 var temp = Instantiate(hitBox, position, transform.rotation);
