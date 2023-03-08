@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && canAttack)
+        if (context.performed && canAttack && !GetComponent<PlayerStats>().isKnockedBack && !GetComponent<PlayerStats>().isStunned)
         {
             Debug.Log("Attack");
             anim.Play("HeroKnight_Attack2");
