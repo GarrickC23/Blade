@@ -9,7 +9,7 @@ public class Parry : MonoBehaviour
     private Animator anim;
 
     public float parryDuration;
-    private bool isParrying = false;
+    public bool isParrying = false;
 
     private void Awake()
     {

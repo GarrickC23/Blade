@@ -11,36 +11,33 @@ public class Movement : MonoBehaviour
     public float moveSpeed;
 
     [Header("Jumping")] 
-    private float jumpForce;                // How fast the player moves upwards initially
-    private float initialVelocity;          // Same as jumpForce but different formula (testing)
-    public float jumpHeight;                // How high the player jumps
-    public float jumpTime;                  // How long it takes the player to reach the height of their jump
-    public float downwardsForce;            // How much the player slows down at apex of jump
+    private float jumpForce;                            // How fast the player moves upwards initially
+    private float initialVelocity;                      // Same as jumpForce but different formula (testing)
+    public float jumpHeight;                            // How high the player jumps
+    public float jumpTime;                              // How long it takes the player to reach the height of their jump
+    public float downwardsForce;                        // How much the player slows down at apex of jump
     public float fastFallForce;
-    public float coyoteTime;
-    private float coyoteTimer;
-    private bool inAir;                     // Check if player is in the air
+    public float coyoteTime;                            // Time window player is allowed to execute an action
+    private float coyoteTimer;                          // Base timer set to 0.
     private bool canFastFall;
 
     [Header("WallJump")]
     [SerializeField]
     private WallJumpCheck wallJumpCheck;
-    [HideInInspector] public bool canWallJump;  // Checks to see if the player is within a wall
-    public float horizontalWallJumpForce;       // How far off the wall player is sent
+    [HideInInspector] public bool canWallJump;          // Checks to see if the player is within a wall
+    public float horizontalWallJumpForce;               // How far off the wall player is sent
     public float wallJumpFrozenTime;                    // How long the player can't move after wall jumping
-    private GameObject lastTouchedWall;         // Wall that was last jumped off of, gets set to null after touching ground
+    private GameObject lastTouchedWall;                 // Wall that was last jumped off of, gets set to null after touching ground
 
     [Header("Running")]
-    public float acceleration;              // How fast the player accelerates starting from moveSpeed
-    public float decceleration;             // How fast the player decelerates when user is not inputting any button
     public float minSpeed;                  
-    public float maxSpeed;                  // Max speed player can move
-    public float smoothTime;                //Approximately the time it will t ake to reach the target. Smaller value will reach the target faster.
-    private Vector2 m_Velocity = Vector2.zero;
-    private float velocityTolerance = 1f;
+    public float maxSpeed;                              // Max speed player can move
+    public float smoothTime;                            //Approximately the time it will t ake to reach the target. Smaller value will reach the target faster.
+    private Vector2 m_Velocity = Vector2.zero;          //
+    private float velocityTolerance = 1f;               //
 
-    private PlayerControls playerControls;
-    private float freezeTimer;
+    private PlayerControls playerControls;              //Input System variable
+    private float freezeTimer;                          //Freeze movement
     
     private void Awake()
     {
@@ -51,11 +48,13 @@ public class Movement : MonoBehaviour
         playerControls.Ground.FastFall.performed += FastFall;
     }
 
-    private void OnEnable(){
+    private void OnEnable()
+    {
         playerControls.Enable();
     }
 
-    private void onDisable(){
+    private void onDisable()
+    {
         playerControls.Disable(); 
     }
 
@@ -63,63 +62,70 @@ public class Movement : MonoBehaviour
     {
         canFastFall = false;
         canWallJump = false;
-        initialVelocity = (2 * jumpHeight) / jumpTime; 
-        float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);
+
+        initialVelocity = (2 * jumpHeight) / jumpTime;                              //Initial velocity formula  
+        float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);          //Gravity formula
         float gravityScale = gravityStrength / Physics2D.gravity.y;
         rb.gravityScale = gravityScale;
-        jumpForce = Mathf.Abs(gravityStrength) * jumpTime;
+        jumpForce = Mathf.Abs(gravityStrength) * jumpTime;                          //Same as initial velocity (different formula)
+
         coyoteTimer = 0;
         freezeTimer = 0;
     }
     
-    private void Update() {
+    private void Update() 
+    {
         Move();
-        if (coyoteTimer < coyoteTime) {
+        
+        //Brief time for players to have extra time to jump or any other action. (Timer)
+        if (coyoteTimer < coyoteTime) 
+        {
             coyoteTimer += Time.deltaTime;
         }
-        if (freezeTimer > 0) {
+
+        //Briefly stops player from moving. (Timer)
+        if (freezeTimer > 0) 
+        {
             freezeTimer -= Time.deltaTime;
         }
     }
 
-    private void Move() {
-
-
+    private void Move() 
+    {
         if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
 
-
-
-        
-        if ( rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
+        //Moves character left and right.
+        if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
             // moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
         }
-        else if ( rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
+        else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
             // moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
         }
-        else if ( moveSpeed > maxSpeed )
+        else if (moveSpeed > maxSpeed)
         {
             anim.SetBool("Run", true);
             anim.SetBool("Idle", false);
         }
 
-        
-        
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
-        // Debug.Log(move);
+        
+        //Acceleration and Deceleration for player. 
+        //SmoothDamp(current position, target position, current velocity, time to reach to target)
         Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
         Vector2 m_Velocity2 = new Vector2(0, rb.velocity.y);
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
         
-        if ( move.x == 0 && moveSpeed > minSpeed )
+        //Check to see if player is not moving to play idle animation
+        if (move.x == 0 && moveSpeed > minSpeed)
         {
             // moveSpeed -= decceleration * Time.deltaTime; 
             anim.SetBool("Idle", true);
@@ -127,26 +133,25 @@ public class Movement : MonoBehaviour
         }
     }
 
-    //Jump Function. When you press "Space" you will jump
+    /// <summary>
+    /// Jump Function. If player is within jump window, jump. Else if player is attatched to wall, wall jump. 
+    /// </summary>
+    /// <returns></returns>
     private void Jump(InputAction.CallbackContext context)
     {
         //Debug.Log(context);
-        if ( context.performed  && freezeTimer <= 0)
+        if (context.performed && freezeTimer <= 0)
         {
-            if (coyoteTimer < coyoteTime) {
-                Debug.Log("Jump!"); //Implement Jump 
-                inAir = true;
-
+            //If player is within jump window, jump. Else if player is attatched to wall, wall jump. 
+            if (coyoteTimer < coyoteTime) 
+            {
                 anim.SetBool("Idle", false);
                 anim.SetBool("Run", false);
                 anim.SetBool("HeroKnight_Jump", true);
-
                 StartCoroutine(Jump());
             }
-            else if (canWallJump && wallJumpCheck.attachedWall != lastTouchedWall) {
-                Debug.Log("Wall Jump");
-                inAir = true;
-
+            else if (canWallJump && wallJumpCheck.attachedWall != lastTouchedWall) 
+            {
                 anim.SetBool("Idle", false);
                 anim.SetBool("Run", false);
                 anim.SetBool("HeroKnight_Jump", true);
@@ -155,6 +160,11 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    //Jump Coroutine. Add force of initialVelocity, wait jumpTime seconds until player falls back down.
+    //Use AddForce when falling down adding a downwardsForce value 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Jump()
     {
         coyoteTimer = coyoteTime;
@@ -168,21 +178,29 @@ public class Movement : MonoBehaviour
         anim.Play("HeroKnight_Fall");
     }
 
+    /// <summary>
+    /// Wall Jump Coroutine. Applies horizontal force to move player right or left. 
+    /// Freeze Movement function to stop player from moving during wall jump. Wait until jumpTime. 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator WallJump()
     {
         lastTouchedWall = wallJumpCheck.attachedWall;
         int direction = -GetDirection();    // Move the player away from the wall
+
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
         rb.AddForce(new Vector2(direction * horizontalWallJumpForce, jumpForce), ForceMode2D.Impulse);
         rb.velocity = new Vector2(direction * horizontalWallJumpForce, rb.velocity.y);
+
         FreezeMovement(wallJumpFrozenTime);
         yield return new WaitForSeconds(jumpTime);
         canFastFall = true;
-
-        // rb.AddForce(new Vector2(0, -downwardsForce));
-        // anim.Play("HeroKnight_Fall");
     }
 
+    /// <summary>
+    /// If button is released, if player in air, y velocity set to 0 to fall down.
+    /// </summary>
+    /// <returns></returns>
     private void JumpRelease(InputAction.CallbackContext context)
     {
         if ( context.canceled )
@@ -194,11 +212,13 @@ public class Movement : MonoBehaviour
         }
     }
 
-
-    private void FastFall(InputAction.CallbackContext context) {
-        if (context.performed && freezeTimer <= 0) {
-            if (canFastFall) {
-                Debug.Log("Fastfalling");
+    //FastFall function
+    private void FastFall(InputAction.CallbackContext context) 
+    {
+        if (context.performed && freezeTimer <= 0) 
+        {
+            if (canFastFall) 
+            {
                 rb.AddForce(new Vector2(0, -fastFallForce));
             }
         }
@@ -222,7 +242,8 @@ public class Movement : MonoBehaviour
     /// <summary>
     /// When the player touches ground, reset the jump and wall jump
     /// </summary>
-    public void TouchGround() {
+    public void TouchGround() 
+    {
         coyoteTimer = 0;
         canFastFall = false;
         lastTouchedWall = null;
@@ -234,8 +255,10 @@ public class Movement : MonoBehaviour
     /// <summary>
     /// If moving up, cancel coyote time
     /// </summary>
-    public void LeaveGround() {
-        if (rb.velocity.y > 0) {
+    public void LeaveGround() 
+    {
+        if (rb.velocity.y > 0) 
+        {
             coyoteTimer = coyoteTime;
         }
     }

@@ -9,9 +9,15 @@ public class EnemyAttack : MonoBehaviour
     public Transform attackPosition;
     public float attackRadius;
     public float damage, angle, knockbackPower, stunDuration;
-    public Direction direction;
+    public Direction direction; 
+    private Animator anim;
 
     public GameObject hitBox;               //test GameObject hitBox
+
+    void Start()
+    {
+        anim = hitBox.GetComponent<Animator>(); 
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,9 +35,10 @@ public class EnemyAttack : MonoBehaviour
                 {
                     player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
                 }
-                Vector3 position = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
+                Vector3 position = new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z);
+                anim.Play("DummyAttack");
                 var temp = Instantiate(hitBox, position, transform.rotation);
-                Destroy(temp, 0.25f);
+                Destroy(temp, 1f);
             }
     }
 
