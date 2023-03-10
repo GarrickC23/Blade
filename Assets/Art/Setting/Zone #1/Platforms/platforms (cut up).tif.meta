@@ -1,0 +1,1313 @@
+fileFormatVersion: 2
+guid: 5ca46ff5a272f764f8e32892f3cb0f91
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7290464525152887126
+    second: platforms (cut up)_0
+  - first:
+      213: -6401346869294829372
+    second: platforms (cut up)_1
+  - first:
+      213: -8923248043234963194
+    second: platforms (cut up)_2
+  - first:
+      213: -8692737639707739231
+    second: platforms (cut up)_3
+  - first:
+      213: -3881593480861813250
+    second: platforms (cut up)_4
+  - first:
+      213: 7327598035531352327
+    second: platforms (cut up)_5
+  - first:
+      213: -669787424541991966
+    second: platforms (cut up)_6
+  - first:
+      213: -4339367660194217493
+    second: platforms (cut up)_7
+  - first:
+      213: 1395447163457597585
+    second: platforms (cut up)_8
+  - first:
+      213: -466454191369067248
+    second: platforms (cut up)_9
+  - first:
+      213: 6310792694727274192
+    second: platforms (cut up)_10
+  - first:
+      213: -4157357163923271873
+    second: platforms (cut up)_11
+  - first:
+      213: 1151015535352005496
+    second: platforms (cut up)_12
+  - first:
+      213: 6599691466451720731
+    second: platforms (cut up)_13
+  - first:
+      213: -2783852068545720745
+    second: platforms (cut up)_14
+  - first:
+      213: 2385376981041136878
+    second: platforms (cut up)_15
+  - first:
+      213: 5558663912154169875
+    second: platforms (cut up)_16
+  - first:
+      213: -1976866812379466719
+    second: platforms (cut up)_17
+  - first:
+      213: -3644059290418182642
+    second: platforms (cut up)_18
+  - first:
+      213: 8332138703473532629
+    second: platforms (cut up)_19
+  - first:
+      213: -4925334370605048904
+    second: platforms (cut up)_20
+  - first:
+      213: -1925673583122721716
+    second: platforms (cut up)_21
+  - first:
+      213: 3435702137260668619
+    second: platforms (cut up)_22
+  - first:
+      213: -6173378207081293006
+    second: platforms (cut up)_23
+  - first:
+      213: -2378544948507515960
+    second: platforms (cut up)_24
+  - first:
+      213: -2588344204322456518
+    second: platforms (cut up)_25
+  - first:
+      213: -6295849026187965494
+    second: platforms (cut up)_26
+  - first:
+      213: -4073620991484974855
+    second: platforms (cut up)_27
+  - first:
+      213: 7689169938096405121
+    second: platforms (cut up)_28
+  - first:
+      213: 6538126852043638857
+    second: platforms (cut up)_29
+  - first:
+      213: 4304790228622658460
+    second: platforms (cut up)_30
+  - first:
+      213: 8054029387928639156
+    second: platforms (cut up)_31
+  - first:
+      213: -3399862653760769500
+    second: platforms (cut up)_32
+  - first:
+      213: 1190830290159657284
+    second: platforms (cut up)_33
+  - first:
+      213: -7149473689503498643
+    second: platforms (cut up)_34
+  - first:
+      213: -5380779559856859429
+    second: platforms (cut up)_35
+  - first:
+      213: -123322878126371067
+    second: platforms (cut up)_36
+  - first:
+      213: -3471679566558795497
+    second: platforms (cut up)_37
+  - first:
+      213: -6748223624589704242
+    second: platforms (cut up)_38
+  - first:
+      213: 3579900269463068686
+    second: platforms (cut up)_39
+  - first:
+      213: 5862091522150876000
+    second: platforms (cut up)_40
+  - first:
+      213: 8478110466474711079
+    second: platforms (cut up)_41
+  - first:
+      213: -7787789388923452136
+    second: platforms (cut up)_42
+  - first:
+      213: -4945369252715796864
+    second: platforms (cut up)_43
+  - first:
+      213: 8886320211505376506
+    second: platforms (cut up)_44
+  - first:
+      213: 1028135684587317895
+    second: platforms (cut up)_45
+  - first:
+      213: 6240321886770976873
+    second: platforms (cut up)_46
+  - first:
+      213: -4453564237190653003
+    second: platforms (cut up)_47
+  - first:
+      213: 7218162273122632182
+    second: platforms (cut up)_48
+  - first:
+      213: 2944120999244449954
+    second: platforms (cut up)_49
+  - first:
+      213: -2071278794751932815
+    second: platforms (cut up)_50
+  - first:
+      213: -1781471023422976631
+    second: platforms (cut up)_51
+  - first:
+      213: 2568192007473721505
+    second: platforms (cut up)_52
+  - first:
+      213: 8354484404759334889
+    second: platforms (cut up)_53
+  - first:
+      213: -2287029158257683567
+    second: platforms (cut up)_54
+  - first:
+      213: 8979251587869116762
+    second: platforms (cut up)_55
+  - first:
+      213: 2555817958756178374
+    second: platforms (cut up)_56
+  - first:
+      213: 602064604814218976
+    second: platforms (cut up)_57
+  - first:
+      213: -7909341593833982886
+    second: platforms (cut up)_58
+  - first:
+      213: -6497661461526894337
+    second: platforms (cut up)_59
+  - first:
+      213: 317196320383489284
+    second: platforms (cut up)_60
+  - first:
+      213: 504934612602347372
+    second: platforms (cut up)_61
+  - first:
+      213: -6961189785434722163
+    second: platforms (cut up)_62
+  - first:
+      213: -5267495238629896492
+    second: platforms (cut up)_63
+  - first:
+      213: -4932602365152036524
+    second: platforms (cut up)_64
+  - first:
+      213: 3950972561091564965
+    second: platforms (cut up)_65
+  - first:
+      213: -5237446573799028428
+    second: platforms (cut up)_66
+  - first:
+      213: 8516033971884951149
+    second: platforms (cut up)_67
+  - first:
+      213: 1185786652608662100
+    second: platforms (cut up)_68
+  - first:
+      213: -8526155585430020412
+    second: platforms (cut up)_69
+  - first:
+      213: 2228192723464413444
+    second: platforms (cut up)_70
+  - first:
+      213: 8222575258666539225
+    second: platforms (cut up)_71
+  - first:
+      213: -1920153460024361730
+    second: platforms (cut up)_72
+  - first:
+      213: 7921184083412793806
+    second: platforms (cut up)_73
+  - first:
+      213: -8615819160809490779
+    second: platforms (cut up)_74
+  - first:
+      213: 7953666959404779003
+    second: platforms (cut up)_75
+  - first:
+      213: 3024500633579269286
+    second: platforms (cut up)_76
+  - first:
+      213: -1234269832393024259
+    second: platforms (cut up)_77
+  - first:
+      213: 6538126041051515448
+    second: platforms (cut up)_78
+  - first:
+      213: -5504641467603214682
+    second: platforms (cut up)_79
+  - first:
+      213: -134980261235199045
+    second: platforms (cut up)_80
+  - first:
+      213: 8915929206560284355
+    second: platforms (cut up)_81
+  - first:
+      213: 7289526973759994421
+    second: platforms (cut up)_82
+  - first:
+      213: 8774051760576264430
+    second: platforms (cut up)_83
+  - first:
+      213: -1491038767064244824
+    second: platforms (cut up)_84
+  - first:
+      213: 6973550227097624787
+    second: platforms (cut up)_85
+  - first:
+      213: -7697833269834742176
+    second: platforms (cut up)_86
+  - first:
+      213: 1509927779009162290
+    second: platforms (cut up)_87
+  - first:
+      213: -6965689707667347710
+    second: platforms (cut up)_88
+  - first:
+      213: 5969677612262494971
+    second: platforms (cut up)_89
+  - first:
+      213: 1416116526903849696
+    second: platforms (cut up)_90
+  - first:
+      213: 5287448332026691072
+    second: platforms (cut up)_91
+  - first:
+      213: 4273023038023723
+    second: platforms (cut up)_92
+  - first:
+      213: 5897386092299435341
+    second: platforms (cut up)_93
+  - first:
+      213: 1791914079152795481
+    second: platforms (cut up)_94
+  - first:
+      213: -5065725417954331331
+    second: platforms (cut up)_95
+  - first:
+      213: -5498364964121779099
+    second: platforms (cut up)_96
+  - first:
+      213: 6000262803665194014
+    second: platforms (cut up)_97
+  - first:
+      213: -623805037608525136
+    second: platforms (cut up)_98
+  - first:
+      213: 1883229720741606655
+    second: platforms (cut up)_99
+  - first:
+      213: -2518623768241143165
+    second: platforms (cut up)_100
+  - first:
+      213: 744653216505049232
+    second: platforms (cut up)_101
+  - first:
+      213: -4779695845001998450
+    second: platforms (cut up)_102
+  - first:
+      213: -6429933919649125432
+    second: platforms (cut up)_103
+  - first:
+      213: -989509983757693371
+    second: platforms (cut up)_104
+  - first:
+      213: 1333198476265626072
+    second: platforms (cut up)_105
+  - first:
+      213: -4121357349823940636
+    second: platforms (cut up)_106
+  - first:
+      213: 6221905625302831499
+    second: platforms (cut up)_107
+  - first:
+      213: 6087111746448648653
+    second: platforms (cut up)_108
+  - first:
+      213: -4593794477731970974
+    second: platforms (cut up)_109
+  - first:
+      213: -881199146354867895
+    second: platforms (cut up)_110
+  - first:
+      213: -5811597478405474462
+    second: platforms (cut up)_111
+  - first:
+      213: 3741967228024947162
+    second: platforms (cut up)_112
+  - first:
+      213: -1528596759175415474
+    second: platforms (cut up)_113
+  - first:
+      213: 5670372275606198525
+    second: platforms (cut up)_114
+  - first:
+      213: 8228588720269209322
+    second: platforms (cut up)_115
+  - first:
+      213: 2345804334130007558
+    second: platforms (cut up)_116
+  - first:
+      213: 7931345639605317033
+    second: platforms (cut up)_117
+  - first:
+      213: -6803627756104256653
+    second: platforms (cut up)_118
+  - first:
+      213: 1651022801169599869
+    second: platforms (cut up)_119
+  - first:
+      213: -2682664560977486697
+    second: platforms (cut up)_120
+  - first:
+      213: 7824722112863399142
+    second: platforms (cut up)_121
+  - first:
+      213: -7817144742459908629
+    second: platforms (cut up)_122
+  - first:
+      213: 6703725126468660748
+    second: platforms (cut up)_123
+  - first:
+      213: -6199061476546348262
+    second: platforms (cut up)_124
+  - first:
+      213: 3898591092555530115
+    second: platforms (cut up)_125
+  - first:
+      213: -7248422730866851893
+    second: platforms (cut up)_126
+  - first:
+      213: 6810796704758924116
+    second: platforms (cut up)_127
+  - first:
+      213: 930188024989414543
+    second: platforms (cut up)_128
+  - first:
+      213: 1169785638505394743
+    second: platforms (cut up)_129
+  - first:
+      213: -4943789433468148838
+    second: platforms (cut up)_130
+  - first:
+      213: -4710861472596798692
+    second: platforms (cut up)_131
+  - first:
+      213: 2008778421581911678
+    second: platforms (cut up)_132
+  - first:
+      213: 2945836586228332201
+    second: platforms (cut up)_133
+  - first:
+      213: -3403835356851254802
+    second: platforms (cut up)_134
+  - first:
+      213: 8520351223237201463
+    second: platforms (cut up)_135
+  - first:
+      213: -3899177780675731867
+    second: platforms (cut up)_136
+  - first:
+      213: 1963723651920020583
+    second: platforms (cut up)_137
+  - first:
+      213: 2516285972543457830
+    second: platforms (cut up)_138
+  - first:
+      213: -184286978462101747
+    second: platforms (cut up)_139
+  - first:
+      213: -9037969779535198791
+    second: platforms (cut up)_140
+  - first:
+      213: -7980295489627805892
+    second: platforms (cut up)_141
+  - first:
+      213: -2542048103872690236
+    second: platforms (cut up)_142
+  - first:
+      213: 7237247850026862147
+    second: platforms (cut up)_143
+  - first:
+      213: -5151522426228816378
+    second: platforms (cut up)_144
+  - first:
+      213: 5229055230951630306
+    second: platforms (cut up)_145
+  - first:
+      213: 3535990425469702626
+    second: platforms (cut up)_146
+  - first:
+      213: -6163915211567464665
+    second: platforms (cut up)_147
+  - first:
+      213: -1203917041040955107
+    second: platforms (cut up)_148
+  - first:
+      213: -3076520488453143225
+    second: platforms (cut up)_149
+  - first:
+      213: 5771388337369614964
+    second: platforms (cut up)_150
+  - first:
+      213: -7977970782237631433
+    second: platforms (cut up)_151
+  - first:
+      213: 4934126105479979245
+    second: platforms (cut up)_152
+  - first:
+      213: -7088981529982432425
+    second: platforms (cut up)_153
+  - first:
+      213: -8759883041265438125
+    second: platforms (cut up)_154
+  - first:
+      213: -1194840421438978461
+    second: platforms (cut up)_155
+  - first:
+      213: 6480622126509263087
+    second: platforms (cut up)_156
+  - first:
+      213: 4665854744489385891
+    second: platforms (cut up)_157
+  - first:
+      213: -5671252989872784704
+    second: platforms (cut up)_158
+  - first:
+      213: -4609841420309224130
+    second: platforms (cut up)_159
+  - first:
+      213: 4494444666863667284
+    second: platforms (cut up)_160
+  - first:
+      213: 8801632193155818176
+    second: platforms (cut up)_161
+  - first:
+      213: 7185863897462511952
+    second: platforms (cut up)_162
+  - first:
+      213: -7370207283234516816
+    second: platforms (cut up)_163
+  - first:
+      213: 6936338309383883082
+    second: platforms (cut up)_164
+  - first:
+      213: -4761016078417151971
+    second: platforms (cut up)_165
+  - first:
+      213: 4179102010449769293
+    second: platforms (cut up)_166
+  - first:
+      213: 2793654013101604082
+    second: platforms (cut up)_167
+  - first:
+      213: 3668425862594003325
+    second: platforms (cut up)_168
+  - first:
+      213: -1741694766295292304
+    second: platforms (cut up)_169
+  - first:
+      213: -9035195264344666983
+    second: platforms (cut up)_170
+  - first:
+      213: -470265574045136896
+    second: platforms (cut up)_171
+  - first:
+      213: -839312472315826623
+    second: platforms (cut up)_172
+  - first:
+      213: 2943004634845218892
+    second: platforms (cut up)_173
+  - first:
+      213: 5203763013035819070
+    second: platforms (cut up)_174
+  - first:
+      213: -193525181936407268
+    second: platforms (cut up)_175
+  - first:
+      213: -532470953325636950
+    second: platforms (cut up)_176
+  - first:
+      213: 2148745182054184585
+    second: platforms (cut up)_177
+  - first:
+      213: 5629714633176612573
+    second: platforms (cut up)_178
+  - first:
+      213: 954723099356220953
+    second: platforms (cut up)_179
+  - first:
+      213: -6422823461642473140
+    second: platforms (cut up)_180
+  - first:
+      213: -2678884835684578260
+    second: platforms (cut up)_181
+  - first:
+      213: 1735212209418227385
+    second: platforms (cut up)_182
+  - first:
+      213: -1329152949231699735
+    second: platforms (cut up)_183
+  - first:
+      213: -846154783237494910
+    second: platforms (cut up)_184
+  - first:
+      213: 1492612152512517955
+    second: platforms (cut up)_185
+  - first:
+      213: -3994731134228810870
+    second: platforms (cut up)_186
+  - first:
+      213: -1949446779246274826
+    second: platforms (cut up)_187
+  - first:
+      213: 3764270032221475414
+    second: platforms (cut up)_188
+  - first:
+      213: 3830957072008498324
+    second: platforms (cut up)_189
+  - first:
+      213: 5920683431770679260
+    second: platforms (cut up)_190
+  - first:
+      213: 6921499936852963443
+    second: platforms (cut up)_191
+  - first:
+      213: -3393471201477145154
+    second: platforms (cut up)_192
+  - first:
+      213: -4574206766846324075
+    second: platforms (cut up)_193
+  - first:
+      213: -6924955038662072502
+    second: platforms (cut up)_194
+  - first:
+      213: -5497358150880811446
+    second: platforms (cut up)_195
+  - first:
+      213: -2740814290989077428
+    second: platforms (cut up)_196
+  - first:
+      213: 3108452419908184923
+    second: platforms (cut up)_197
+  - first:
+      213: 5973066798035216305
+    second: platforms (cut up)_198
+  - first:
+      213: 5000170203066741703
+    second: platforms (cut up)_199
+  - first:
+      213: 7850116499878370613
+    second: platforms (cut up)_200
+  - first:
+      213: 9194735826730933995
+    second: platforms (cut up)_201
+  - first:
+      213: 1640940404928175172
+    second: platforms (cut up)_202
+  - first:
+      213: 5183674487516434770
+    second: platforms (cut up)_203
+  - first:
+      213: -8933184911100215500
+    second: platforms (cut up)_204
+  - first:
+      213: -1519894528583348751
+    second: platforms (cut up)_205
+  - first:
+      213: 9172176807677967189
+    second: platforms (cut up)_206
+  - first:
+      213: -9038375413764648213
+    second: platforms (cut up)_207
+  - first:
+      213: -7994359574569472634
+    second: platforms (cut up)_208
+  - first:
+      213: 7923566199268549984
+    second: platforms (cut up)_209
+  - first:
+      213: 2343988936478213422
+    second: platforms (cut up)_210
+  - first:
+      213: -5237710133334581139
+    second: platforms (cut up)_211
+  - first:
+      213: -5852596236088537147
+    second: platforms (cut up)_212
+  - first:
+      213: 418306249773894824
+    second: platforms (cut up)_213
+  - first:
+      213: -1758655908841646886
+    second: platforms (cut up)_214
+  - first:
+      213: 6939001374041692300
+    second: platforms (cut up)_215
+  - first:
+      213: -3453889494468792293
+    second: platforms (cut up)_216
+  - first:
+      213: -2771321407545576801
+    second: platforms (cut up)_217
+  - first:
+      213: -7568232924757806969
+    second: platforms (cut up)_218
+  - first:
+      213: -1952763943974463230
+    second: platforms (cut up)_219
+  - first:
+      213: -4742789782840509608
+    second: platforms (cut up)_220
+  - first:
+      213: -5859760453459887027
+    second: platforms (cut up)_221
+  - first:
+      213: 8429247722532731902
+    second: platforms (cut up)_222
+  - first:
+      213: -7783483570756053906
+    second: platforms (cut up)_223
+  - first:
+      213: 812465891913347187
+    second: platforms (cut up)_224
+  - first:
+      213: -8481245472369608212
+    second: platforms (cut up)_225
+  - first:
+      213: 129979483243787192
+    second: platforms (cut up)_226
+  - first:
+      213: -3299556872384051364
+    second: platforms (cut up)_227
+  - first:
+      213: 5652290590314675180
+    second: platforms (cut up)_228
+  - first:
+      213: -3689469670159949297
+    second: platforms (cut up)_229
+  - first:
+      213: -4783991740738161030
+    second: platforms (cut up)_230
+  - first:
+      213: 5319360548953186832
+    second: platforms (cut up)_231
+  - first:
+      213: -6324278209326987782
+    second: platforms (cut up)_232
+  - first:
+      213: 1436965610813209409
+    second: platforms (cut up)_233
+  - first:
+      213: -4389258882921607335
+    second: platforms (cut up)_234
+  - first:
+      213: 997940658055061908
+    second: platforms (cut up)_235
+  - first:
+      213: -3408237242814360898
+    second: platforms (cut up)_236
+  - first:
+      213: 3693341002842213734
+    second: platforms (cut up)_237
+  - first:
+      213: -8196439477809783376
+    second: platforms (cut up)_238
+  - first:
+      213: -4436173659887955051
+    second: platforms (cut up)_239
+  - first:
+      213: 4531957411887903817
+    second: platforms (cut up)_240
+  - first:
+      213: 1777056937106835640
+    second: platforms (cut up)_241
+  - first:
+      213: 8476206437914857221
+    second: platforms (cut up)_242
+  - first:
+      213: 501670544686143559
+    second: platforms (cut up)_243
+  - first:
+      213: -5166889179953279591
+    second: platforms (cut up)_244
+  - first:
+      213: 7414088123546393143
+    second: platforms (cut up)_245
+  - first:
+      213: 6834365886468877288
+    second: platforms (cut up)_246
+  - first:
+      213: -8718898737261603800
+    second: platforms (cut up)_247
+  - first:
+      213: 5423227864491095263
+    second: platforms (cut up)_248
+  - first:
+      213: -3619014191365556692
+    second: platforms (cut up)_249
+  - first:
+      213: 430504305136385698
+    second: platforms (cut up)_250
+  - first:
+      213: -393286725179019020
+    second: platforms (cut up)_251
+  - first:
+      213: -9032705506257678129
+    second: platforms (cut up)_252
+  - first:
+      213: 3830929000705644237
+    second: platforms (cut up)_253
+  - first:
+      213: -2046907333756768889
+    second: platforms (cut up)_254
+  - first:
+      213: -7605319554028585147
+    second: platforms (cut up)_255
+  - first:
+      213: -995347292411749818
+    second: platforms (cut up)_256
+  - first:
+      213: 3472206425596688332
+    second: platforms (cut up)_257
+  - first:
+      213: -1559153558281510073
+    second: platforms (cut up)_258
+  - first:
+      213: 512018468883235953
+    second: platforms (cut up)_259
+  - first:
+      213: 1900458376259868070
+    second: platforms (cut up)_260
+  - first:
+      213: -12278475143634517
+    second: platforms (cut up)_261
+  - first:
+      213: 3165455087798563820
+    second: platforms (cut up)_262
+  - first:
+      213: -1678836103645995778
+    second: platforms (cut up)_263
+  - first:
+      213: -7558839788647224848
+    second: platforms (cut up)_264
+  - first:
+      213: -8714630733593410829
+    second: platforms (cut up)_265
+  - first:
+      213: 3793036465618380061
+    second: platforms (cut up)_266
+  - first:
+      213: -1353760879206146536
+    second: platforms (cut up)_267
+  - first:
+      213: 5979667854206446717
+    second: platforms (cut up)_268
+  - first:
+      213: 607407382033787461
+    second: platforms (cut up)_269
+  - first:
+      213: 8729076564140816133
+    second: platforms (cut up)_270
+  - first:
+      213: 3107396701845476479
+    second: platforms (cut up)_271
+  - first:
+      213: -7585530824714606029
+    second: platforms (cut up)_272
+  - first:
+      213: 1331460653001489704
+    second: platforms (cut up)_273
+  - first:
+      213: 2913314675571695376
+    second: platforms (cut up)_274
+  - first:
+      213: -5063338016759814280
+    second: platforms (cut up)_275
+  - first:
+      213: 7760660371131983503
+    second: platforms (cut up)_276
+  - first:
+      213: -3316755723016686687
+    second: platforms (cut up)_277
+  - first:
+      213: -8138983991015143901
+    second: platforms (cut up)_278
+  - first:
+      213: 2890790435689615764
+    second: platforms (cut up)_279
+  - first:
+      213: -8884830971958022719
+    second: platforms (cut up)_280
+  - first:
+      213: -3888830913514006223
+    second: platforms (cut up)_281
+  - first:
+      213: -3365452752007387050
+    second: platforms (cut up)_282
+  - first:
+      213: 4443274738504855838
+    second: platforms (cut up)_283
+  - first:
+      213: -7800749529509750533
+    second: platforms (cut up)_284
+  - first:
+      213: 8925743397687291320
+    second: platforms (cut up)_285
+  - first:
+      213: 7999417467238594442
+    second: platforms (cut up)_286
+  - first:
+      213: 5437978627434073830
+    second: platforms (cut up)_287
+  - first:
+      213: 6514502703719379932
+    second: platforms (cut up)_288
+  - first:
+      213: -4585166861190983481
+    second: platforms (cut up)_289
+  - first:
+      213: -6129813388477485757
+    second: platforms (cut up)_290
+  - first:
+      213: -3990928147823821711
+    second: platforms (cut up)_291
+  - first:
+      213: 7537514966840317036
+    second: platforms (cut up)_292
+  - first:
+      213: -3843906384779808388
+    second: platforms (cut up)_293
+  - first:
+      213: 5356574571596693656
+    second: platforms (cut up)_294
+  - first:
+      213: -4593761860477373872
+    second: platforms (cut up)_295
+  - first:
+      213: 8310258164064931557
+    second: platforms (cut up)_296
+  - first:
+      213: -8107531182611799615
+    second: platforms (cut up)_297
+  - first:
+      213: -5487922054936184555
+    second: platforms (cut up)_298
+  - first:
+      213: -475922017361039956
+    second: platforms (cut up)_299
+  - first:
+      213: 4344264608192950487
+    second: platforms (cut up)_300
+  - first:
+      213: -4559500064176442659
+    second: platforms (cut up)_301
+  - first:
+      213: 6279733443921138648
+    second: platforms (cut up)_302
+  - first:
+      213: 5901556281047247471
+    second: platforms (cut up)_303
+  - first:
+      213: 6538507718986665053
+    second: platforms (cut up)_304
+  - first:
+      213: 4163377199694664620
+    second: platforms (cut up)_305
+  - first:
+      213: 4260780040231424158
+    second: platforms (cut up)_306
+  - first:
+      213: 3715704134899896143
+    second: platforms (cut up)_307
+  - first:
+      213: -3937229188429195707
+    second: platforms (cut up)_308
+  - first:
+      213: 5372643352240403717
+    second: platforms (cut up)_309
+  - first:
+      213: 3266288941657912466
+    second: platforms (cut up)_310
+  - first:
+      213: -1921151905047124394
+    second: platforms (cut up)_311
+  - first:
+      213: -1332232053388940652
+    second: platforms (cut up)_312
+  - first:
+      213: -6951483197908959268
+    second: platforms (cut up)_313
+  - first:
+      213: 3382015651414316157
+    second: platforms (cut up)_314
+  - first:
+      213: -8686872809708939084
+    second: platforms (cut up)_315
+  - first:
+      213: -8219216718962864327
+    second: platforms (cut up)_316
+  - first:
+      213: -5270547280483142467
+    second: platforms (cut up)_317
+  - first:
+      213: 8926955701821289162
+    second: platforms (cut up)_318
+  - first:
+      213: -1680661850514331490
+    second: platforms (cut up)_319
+  - first:
+      213: 3132030056701688923
+    second: platforms (cut up)_320
+  - first:
+      213: -4688031782401741969
+    second: platforms (cut up)_321
+  - first:
+      213: 4600175966615786146
+    second: platforms (cut up)_322
+  - first:
+      213: 6198763044593766301
+    second: platforms (cut up)_323
+  - first:
+      213: 3197826094801034148
+    second: platforms (cut up)_324
+  - first:
+      213: -3771011997724690014
+    second: platforms (cut up)_325
+  - first:
+      213: 5865245607488472279
+    second: platforms (cut up)_326
+  - first:
+      213: 8994276239068077667
+    second: platforms (cut up)_327
+  - first:
+      213: 6138516817112526496
+    second: platforms (cut up)_328
+  - first:
+      213: 7539106772603210743
+    second: platforms (cut up)_329
+  - first:
+      213: 6960804822929474887
+    second: platforms (cut up)_330
+  - first:
+      213: -4862849937151084618
+    second: platforms (cut up)_331
+  - first:
+      213: -8122957485574763587
+    second: platforms (cut up)_332
+  - first:
+      213: -6035176646542144320
+    second: platforms (cut up)_333
+  - first:
+      213: 7451206432262533669
+    second: platforms (cut up)_334
+  - first:
+      213: -7055310474563631671
+    second: platforms (cut up)_335
+  - first:
+      213: 4111607117209144137
+    second: platforms (cut up)_336
+  - first:
+      213: 791681675511884824
+    second: platforms (cut up)_337
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: platforms (cut up)_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 325
+        width: 150
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 651235debdeec2560800000000000000
+      internalID: 7290464525152887126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_1
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 326
+        width: 146
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c07f9b20f8d927a0800000000000000
+      internalID: -6401346869294829372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_2
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 326
+        width: 145
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601d74c9e214a2480800000000000000
+      internalID: -8923248043234963194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_3
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 325
+        width: 147
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab7d8b3c213d5780800000000000000
+      internalID: -8692737639707739231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_4
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 323
+        width: 148
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef572c27b4fc12ac0800000000000000
+      internalID: -3881593480861813250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_5
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 323
+        width: 150
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70942bc079bd0b560800000000000000
+      internalID: 7327598035531352327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_6
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 170
+        width: 149
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb9625d2ef64b6f0800000000000000
+      internalID: -669787424541991966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms (cut up)_7
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 170
+        width: 149
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be14e40aa1877c3c0800000000000000
+      internalID: -4339367660194217493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      platforms (cut up)_2: -8923248043234963194
+      platforms (cut up)_1: -6401346869294829372
+      platforms (cut up)_4: -3881593480861813250
+      platforms (cut up)_0: 7290464525152887126
+      platforms (cut up)_7: -4339367660194217493
+      platforms (cut up)_6: -669787424541991966
+      platforms (cut up)_3: -8692737639707739231
+      platforms (cut up)_5: 7327598035531352327
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

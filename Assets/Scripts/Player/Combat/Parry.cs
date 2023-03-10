@@ -10,6 +10,7 @@ public class Parry : MonoBehaviour
 
     public float parryDuration;
     public bool isParrying = false;
+    public bool isGuarding = false; 
 
     private void Awake()
     {
@@ -28,13 +29,31 @@ public class Parry : MonoBehaviour
         playerControls.Disable(); 
     }
     
-    //Parry Function. When you press "R" you will parry
+
+    //Parry Function. When you press "R" and let go at the right time, you will parry
     public void ParryAttack(InputAction.CallbackContext context)
     {
-        if (context.performed && !isParrying)
+        if (context.performed && !isParrying && !isGuarding)
         {
-            anim.Play("HeroKnight_Block");
+            isGuarding = true;
+            GetComponent<PlayerStats>().isGuarding = true;
+
+            if ( isGuarding )
+            {
+                anim.SetBool("HeroKnight_Block", true);
+            }
+            
             StartCoroutine("ParryCoroutine");
+        }
+    }
+
+    //If you release "R", then you will not be guarding anymore
+    public void GuardRelease(InputAction.CallbackContext context)
+    {
+        if (context.canceled && isGuarding)
+        {
+            isGuarding = false;
+            anim.SetBool("HeroKnight_Block", false);
         }
     }
 

@@ -12,11 +12,11 @@ public class EnemyAttack : MonoBehaviour
     public Direction direction; 
     private Animator anim;
 
-    public GameObject hitBox;               //test GameObject hitBox
+    public GameObject weapon;               //test GameObject weapon (trigger collider animation)
 
     void Start()
     {
-        anim = hitBox.GetComponent<Animator>(); 
+        anim = weapon.GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
@@ -30,14 +30,13 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius);
             foreach (Collider2D hit in Hits)
             {
-                //Debug.Log(hit.gameObject);
                 if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
                 {
                     player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
                 }
                 Vector3 position = new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z);
                 anim.Play("DummyAttack");
-                var temp = Instantiate(hitBox, position, transform.rotation);
+                var temp = Instantiate(weapon, position, transform.rotation);
                 Destroy(temp, 1f);
             }
     }
