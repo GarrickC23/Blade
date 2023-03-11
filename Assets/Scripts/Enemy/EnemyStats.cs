@@ -6,13 +6,20 @@ public class EnemyStats : MonoBehaviour
 {
     public float maxHealth;
     float Health;
+    bool isParrying = true;
 
     private void Start() 
     {
         Health = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void EnemyAttacked(float damage){
+        if (isParrying){
+
+        }
+        else TakeDamage(damage);
+    }
+    private void TakeDamage(float damage)
     {
         Health -= damage;
         if (Health <= 0)
