@@ -143,6 +143,6 @@ MonoBehaviour:
   damage: 1
   angle: 45
   knockbackPower: 25
-  stunDuration: 1.5
+  stunDuration: 0.2
   direction: 1
-  hitBox: {fileID: 0}
+  weapon: {fileID: 0}

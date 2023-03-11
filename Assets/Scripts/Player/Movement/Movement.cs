@@ -79,6 +79,8 @@ public class Movement : MonoBehaviour
     private void Update() 
     {
         Move();
+
+        getAnimState(playerState);                                                  //Get animation state enem
         
         //Brief time for players to have extra time to jump or any other action. (Timer)
         if (coyoteTimer < coyoteTime) 
@@ -95,6 +97,9 @@ public class Movement : MonoBehaviour
 
     private void Move() 
     {
+        //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
+        Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
+
         if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
 
         //Moves character left and right.
@@ -102,27 +107,18 @@ public class Movement : MonoBehaviour
         {
             // moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            anim.SetBool("Run", true);
-            anim.SetBool("Idle", false);
-            anim.SetBool("HeroKnight_Jump", false);
+            playerState = PlayerStates.Walk; 
         }
         else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
             // moveSpeed += acceleration * Time.deltaTime; 
             gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-            anim.SetBool("Run", true);
-            anim.SetBool("Idle", false);
-            anim.SetBool("HeroKnight_Jump", false);
+            playerState = PlayerStates.Walk;
         }
-        else if (moveSpeed > maxSpeed)
-        {
-            anim.SetBool("Run", true);
-            anim.SetBool("Idle", false);
-            anim.SetBool("HeroKnight_Jump", false);
-        }
-
-        //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
-        Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
+        // else if (moveSpeed > maxSpeed)
+        // {
+        //     playerState = PlayerStates.Walk;
+        // }
         
         //Acceleration and Deceleration for player. 
         //SmoothDamp(current position, target position, current velocity, time to reach to target)
@@ -131,12 +127,10 @@ public class Movement : MonoBehaviour
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
         
         //Check to see if player is not moving to play idle animation
-        if (move.x == 0 && moveSpeed > minSpeed)
+        if (move.x == 0)
         {
             // moveSpeed -= decceleration * Time.deltaTime; 
-            anim.SetBool("Idle", true);
-            anim.SetBool("Run", false);
-            anim.SetBool("HeroKnight_Jump", false);
+            playerState = PlayerStates.Idle;
         }
     }
 
@@ -152,16 +146,12 @@ public class Movement : MonoBehaviour
             //If player is within jump window, jump. Else if player is attatched to wall, wall jump. 
             if (coyoteTimer < coyoteTime) 
             {
-                anim.SetBool("HeroKnight_Jump", true);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Run", false);
+                playerState = PlayerStates.Jump;
                 StartCoroutine(Jump());
             }
             else if (canWallJump && wallJumpCheck.attachedWall != lastTouchedWall) 
             {
-                anim.SetBool("HeroKnight_Jump", true);
-                anim.SetBool("Idle", false);
-                anim.SetBool("Run", false);
+                playerState = PlayerStates.Jump;
                 StartCoroutine(WallJump());
             }
         }
@@ -255,9 +245,7 @@ public class Movement : MonoBehaviour
         canFastFall = false;
         lastTouchedWall = null;
 
-        anim.SetBool("Idle", true);
-        anim.SetBool("Run", false);
-        anim.SetBool("HeroKnight_Jump", false);
+        playerState = PlayerStates.Idle;
     }
 
     /// <summary>
@@ -280,30 +268,30 @@ public class Movement : MonoBehaviour
         freezeTimer = frozenTime;
     }
 
-    // /// <summary>
-    // /// Animation State Machine
-    // /// </summary>
-    // public void getAnimState(enum PlayerStates)
-    // {
-    //     switch (playerState)
-    //     {
-    //         case PlayerStates.Idle:
-    //             anim.SetBool("Idle", true);
-    //             anim.SetBool("Run", false);
-    //             anim.SetBool("HeroKnight_Jump", false);
-    //             break;
-    //         case PlayerStates.Walk:
-    //             anim.SetBool("Run", true);
-    //             anim.SetBool("Idle", false);
-    //             anim.SetBool("HeroKnight_Jump", false);
-    //             break;
-    //         case PlayerStates.Jump:
-    //             anim.SetBool("HeroKnight_Jump", true);
-    //             anim.SetBool("Idle", false);
-    //             anim.SetBool("Run", false);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+    /// <summary>
+    /// Animation State Machine
+    /// </summary>
+    public void getAnimState(PlayerStates playerState)
+    {
+        switch (playerState)
+        {
+            case PlayerStates.Idle:
+                anim.SetBool("Idle", true);
+                anim.SetBool("Run", false);
+                anim.SetBool("HeroKnight_Jump", false);
+                break;
+            case PlayerStates.Walk:
+                anim.SetBool("Run", true);
+                anim.SetBool("Idle", false);
+                anim.SetBool("HeroKnight_Jump", false);
+                break;
+            case PlayerStates.Jump:
+                anim.SetBool("HeroKnight_Jump", true);
+                anim.SetBool("Idle", false);
+                anim.SetBool("Run", false);
+                break;
+            default:
+                break;
+        }
+    }
 }

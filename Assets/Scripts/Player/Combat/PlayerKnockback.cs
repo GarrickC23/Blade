@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerKnockback : MonoBehaviour
 {
+    private Animator anim;
     public enum Direction {TOWARDS, AWAY};
+
+    void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
+
     public void PlayerKnockbackFunction(float strength, float angle, Direction direction, Transform XReferencePoint, float stunDuration){
         
         StartCoroutine(StunCoroutine(strength, angle, direction, XReferencePoint, stunDuration));
@@ -26,6 +33,7 @@ public class PlayerKnockback : MonoBehaviour
         else 
         Xdifference = 1;
         GetComponent<PlayerStats>().isStunned = true;
+        anim.Play("HeroKnight_Hurt");
         yield return new WaitForSeconds(stunDuration);
         GetComponent<PlayerStats>().isStunned = false;
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(dir*Xdifference*strength*Mathf.Cos(Mathf.Deg2Rad*angle),strength*Mathf.Sin(Mathf.Deg2Rad*angle)), ForceMode2D.Impulse);
