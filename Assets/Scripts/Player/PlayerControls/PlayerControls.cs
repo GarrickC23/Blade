@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8aee10dc-de27-473c-980d-4dcf2a886335"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ebdb6c9-6475-40dd-a987-c8694964fc92"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +293,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground_Attack = m_Ground.FindAction("Attack", throwIfNotFound: true);
         m_Ground_FastFall = m_Ground.FindAction("FastFall", throwIfNotFound: true);
         m_Ground_Heal = m_Ground.FindAction("Heal", throwIfNotFound: true);
+        m_Ground_Interact = m_Ground.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,6 +359,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Attack;
     private readonly InputAction m_Ground_FastFall;
     private readonly InputAction m_Ground_Heal;
+    private readonly InputAction m_Ground_Interact;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Ground_Attack;
         public InputAction @FastFall => m_Wrapper.m_Ground_FastFall;
         public InputAction @Heal => m_Wrapper.m_Ground_Heal;
+        public InputAction @Interact => m_Wrapper.m_Ground_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +398,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
+                @Interact.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -397,6 +423,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -418,5 +447,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnFastFall(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

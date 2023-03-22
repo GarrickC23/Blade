@@ -12,13 +12,6 @@ public class EnemyAttack : MonoBehaviour
     public Direction direction; 
     private Animator anim;
 
-    public GameObject weapon;               //test GameObject weapon (trigger collider animation)
-
-    void Start()
-    {
-        anim = weapon.GetComponent<Animator>(); 
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,10 +27,6 @@ public class EnemyAttack : MonoBehaviour
                 {
                     player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
                 }
-                Vector3 position = new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z);
-                anim.Play("DummyAttack");
-                var temp = Instantiate(weapon, position, transform.rotation);
-                Destroy(temp, 1f);
             }
     }
 
