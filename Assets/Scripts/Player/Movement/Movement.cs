@@ -97,10 +97,10 @@ public class Movement : MonoBehaviour
 
     private void Move() 
     {
+        if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
+
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
-
-        if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
 
         //Moves character left and right.
         if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
@@ -184,10 +184,16 @@ public class Movement : MonoBehaviour
     {
         lastTouchedWall = wallJumpCheck.attachedWall;
         int direction = -GetDirection();    // Move the player away from the wall
+        if (direction == -1) {
+            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else {
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
 
         rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(0, rb.velocity.y));
         rb.AddForce(new Vector2(direction * horizontalWallJumpForce, jumpForce), ForceMode2D.Impulse);
-        rb.velocity = new Vector2(direction * horizontalWallJumpForce, rb.velocity.y);
+        // rb.velocity = new Vector2(direction * horizontalWallJumpForce, rb.velocity.y);
 
         FreezeMovement(wallJumpFrozenTime);
         yield return new WaitForSeconds(jumpTime);
