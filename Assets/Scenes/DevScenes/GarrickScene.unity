@@ -139,7 +139,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 404671937, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
   m_PrefabInstance: {fileID: 1608401931}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1859230708}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 567a6e8a0ec749e4abb94c45b5803469, type: 3}
@@ -325,8 +325,11 @@ GameObject:
   - component: {fileID: 564090901}
   - component: {fileID: 564090900}
   - component: {fileID: 564090899}
-  m_Layer: 0
-  m_Name: Fox
+  - component: {fileID: 564090904}
+  - component: {fileID: 564090903}
+  - component: {fileID: 564090902}
+  m_Layer: 3
+  m_Name: Vyx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,13 +415,77 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564090898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.86, y: -7.08, z: 0}
+  m_LocalPosition: {x: 8.35, y: -7.83, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &564090902
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564090898}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.08535528, y: 0}
+  m_Size: {x: 5.390815, y: 10}
+  m_Direction: 0
+--- !u!50 &564090903
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564090898}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &564090904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564090898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a406248d075ddae4c8ad07b0e2bdecc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1859230708}
+  attackPosition: {fileID: 564090901}
+  attackRadius: 2
+  damage: 1
+  angle: 45
+  knockbackPower: 25
+  stunDuration: 0.35
+  direction: 1
+  health: 10
+  walkSpeed: 500
+  detectWhat:
+    serializedVersion: 2
+    m_Bits: 1
+  sightTop: {fileID: 564090901}
+  sightBot: {fileID: 1859230719}
 --- !u!1 &641255946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 303620086197657982, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
@@ -999,11 +1066,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303620086197657980, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.3
+      value: 34.17
       objectReference: {fileID: 0}
     - target: {fileID: 303620086197657980, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.4
+      value: -5.21
       objectReference: {fileID: 0}
     - target: {fileID: 303620086197657980, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1071,6 +1138,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 342146277}
   m_SourcePrefab: {fileID: 100100000, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
+--- !u!1 &1859230708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+  m_PrefabInstance: {fileID: 1608401931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1859230719 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1219213532512769587, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+  m_PrefabInstance: {fileID: 1608401931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1909129351 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4432827828730700195, guid: 1cfe99c340bae73429afe859cbed1452, type: 3}
