@@ -7,6 +7,7 @@ public class Vyx : Enemy
 {
     private Animator anim;
     public GameObject player;
+    public Transform playerPos;
 
     [Header("Attack")] 
     private bool isAttacking = false;
@@ -19,15 +20,21 @@ public class Vyx : Enemy
     [SerializeField] private float health = 10f; 
 
     [Header("Movement")]
-    [SerializeField] private float walkSpeed = 3f;
+    [SerializeField] private float walkSpeed;
     [SerializeField] private LayerMask detectWhat = 0;
     [SerializeField] private Transform sightTop = null;
     [SerializeField] private Transform sightBot = null;
     private float dir = -1; 
 
+    void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
+
     void Update()
     {
         EnemyWalk();
+        if (!isAttacking) StartCoroutine("AttackCoroutine");
     }
 
     public override void TakeDamage(float damage)
@@ -41,6 +48,7 @@ public class Vyx : Enemy
     
     protected override void EnemyWalk()
     {
+        anim.SetBool("FoxWalk", true);
         if (Physics2D.Linecast(sightTop.position, sightBot.position, detectWhat))
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 3f * Time.deltaTime);
@@ -54,11 +62,16 @@ public class Vyx : Enemy
     protected override void EnemyAttack()
     {
         Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius);
-        foreach (Collider2D hit in Hits)
+        //Debug.Log(isFront());
+        if ( isFront() )
         {
-            if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
+            anim.Play("FoxAttack1");
+            foreach (Collider2D hit in Hits)
             {
-                player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
+                if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
+                {
+                    player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
+                }
             }
         }
     }
@@ -79,6 +92,19 @@ public class Vyx : Enemy
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRadius);
+    }
+
+    bool isFront()
+    {
+        Vector3 directionOfPlayer = transform.position - playerPos.position; 
+        float angle = Vector3.Angle(directionOfPlayer, transform.forward);
+        if (Mathf.Abs(angle) == 90 && directionOfPlayer.x < 3)
+        {
+            Debug.DrawLine(transform.position, playerPos.position, Color.red);
+            return true;
+        }
+        
+        return false;
     }
 
     // protected override void Think()
