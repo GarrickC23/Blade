@@ -21,13 +21,13 @@ public class EnemyAttack : MonoBehaviour
     private void Attack()
     {
         Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius);
-            foreach (Collider2D hit in Hits)
+        foreach (Collider2D hit in Hits)
+        {
+            if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
             {
-                if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
-                {
-                    player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
-                }
+                player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
             }
+        }
     }
 
     private IEnumerator AttackCoroutine()
