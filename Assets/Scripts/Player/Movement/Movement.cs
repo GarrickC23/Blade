@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     public float coyoteTime;                            // Time window player is allowed to execute an action
     private float coyoteTimer;                          // Base timer set to 0.
     private bool canFastFall;
+    public bool isGrounded;
 
     [Header("WallJump")]
     [SerializeField]
@@ -65,6 +66,7 @@ public class Movement : MonoBehaviour
     {
         canFastFall = false;
         canWallJump = false;
+        isGrounded = false;
 
         initialVelocity = (2 * jumpHeight) / jumpTime;                              //Initial velocity formula  
         float gravityStrength = -(2 * jumpHeight) / (jumpTime * jumpTime);          //Gravity formula
@@ -83,7 +85,7 @@ public class Movement : MonoBehaviour
         getAnimState(playerState);                                                  //Get animation state enem
         
         //Brief time for players to have extra time to jump or any other action. (Timer)
-        if (coyoteTimer < coyoteTime) 
+        if (coyoteTimer < coyoteTime && !isGrounded) 
         {
             coyoteTimer += Time.deltaTime;
         }
@@ -97,40 +99,53 @@ public class Movement : MonoBehaviour
 
     private void Move() 
     {
+        Debug.Log(playerState);
+        Debug.Log(coyoteTimer);
         if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
 
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
         Vector2 move = playerControls.Ground.Movement.ReadValue<Vector2>();
 
         //Moves character left and right.
-        if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
+        // Set animations and rotation
+        if (!isGrounded)
         {
-            // moveSpeed += acceleration * Time.deltaTime; 
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            playerState = PlayerStates.Walk; 
+            playerState = PlayerStates.Jump;
+
+            if (rb.velocity.y < 0) {
+                anim.Play("HeroKnight_Fall");            
+            }
         }
-        else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
+        else if (Mathf.Abs(rb.velocity.x) > velocityTolerance)
         {
-            // moveSpeed += acceleration * Time.deltaTime; 
-            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             playerState = PlayerStates.Walk;
         }
-        // else if (moveSpeed > maxSpeed)
-        // {
-        //     playerState = PlayerStates.Walk;
-        // }
+        //Check to see if player is not moving to play idle animation
+        else
+        {
+            // moveSpeed -= decceleration * Time.deltaTime; 
+            playerState = PlayerStates.Idle;
+        }
         
         //Acceleration and Deceleration for player. 
         //SmoothDamp(current position, target position, current velocity, time to reach to target)
         Vector2 targetVelocity = new Vector2(move.x * moveSpeed, rb.velocity.y);
         Vector2 m_Velocity2 = new Vector2(0, rb.velocity.y);
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
-        
-        //Check to see if player is not moving to play idle animation
-        if (move.x == 0)
+
+        // If the player is in the air and isn't pressing any keys, keep momentum
+        if (isGrounded || targetVelocity.x != 0) {
+            rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
+        }
+
+        if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
         {
-            // moveSpeed -= decceleration * Time.deltaTime; 
-            playerState = PlayerStates.Idle;
+            // moveSpeed += acceleration * Time.deltaTime; 
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
+        {
+            // moveSpeed += acceleration * Time.deltaTime; 
+            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
@@ -172,7 +187,7 @@ public class Movement : MonoBehaviour
         
         canFastFall = true;
         rb.AddForce(new Vector2(0, -downwardsForce));
-        anim.Play("HeroKnight_Fall");
+        // anim.Play("HeroKnight_Fall");
     }
 
     /// <summary>
@@ -211,6 +226,7 @@ public class Movement : MonoBehaviour
             if (rb.velocity.y > 0) 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
+                anim.Play("HeroKnight_Fall");
             }
         }
     }
@@ -250,8 +266,9 @@ public class Movement : MonoBehaviour
         coyoteTimer = 0;
         canFastFall = false;
         lastTouchedWall = null;
+        isGrounded = true;
 
-        playerState = PlayerStates.Idle;
+        // playerState = PlayerStates.Idle;
     }
 
     /// <summary>
@@ -263,6 +280,7 @@ public class Movement : MonoBehaviour
         {
             coyoteTimer = coyoteTime;
         }
+        isGrounded = false;
     }
 
     /// <summary>
