@@ -39,7 +39,6 @@ public class NPCInteractable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("trigger");
         if (collider.gameObject.tag == "Player")
         {
             interactable = true;
@@ -52,7 +51,7 @@ public class NPCInteractable : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed && interactable == true)
+        if (context.performed )
         {
             Debug.Log("interact");
             StartConversation(); 
