@@ -65,7 +65,7 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log(hit.gameObject);
         if(hit.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy))
         {
-            enemy.TakeDamage(swingAttackDamage);
+            enemy.EnemyAttacked(swingAttackDamage);
         }
     }
 

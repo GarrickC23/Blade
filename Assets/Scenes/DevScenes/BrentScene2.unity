@@ -1136,6 +1136,14 @@ PrefabInstance:
       propertyPath: hitBox
       value: 
       objectReference: {fileID: 1209161245}
+    - target: {fileID: 5974116244201847649, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
+      propertyPath: maxStagger
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5974116244201847649, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
+      propertyPath: parryResetTimer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 01c611908acf9fd43b404cd2201042bb, type: 3}
