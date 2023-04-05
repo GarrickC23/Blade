@@ -26,7 +26,7 @@ public class Vyx : Enemy
     [SerializeField] private Transform sightBot = null;
     private float dir = -1; 
 
-    void Start()
+    void Awake()
     {
         anim = gameObject.GetComponent<Animator>();
     }

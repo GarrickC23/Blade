@@ -5,7 +5,7 @@ using static PlayerKnockback;
 
 public abstract class Enemy : MonoBehaviour
 {   
-    protected Rigidbody2D rb = null;
+    protected Rigidbody2D rb;
 
     protected virtual void Start()
     {

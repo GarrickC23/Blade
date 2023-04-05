@@ -40,6 +40,8 @@ public class Movement : MonoBehaviour
     [Header("Dashing")]
     private bool canDash = true;
     private bool isDashing;
+    private float dashingDir; 
+    public float dashingFrozenTime; 
     [SerializeField] private float dashingPower = 24f; 
     [SerializeField] private float dashingTime = 0.2f;
     [SerializeField] private float dashingCooldown = 1f; 
@@ -91,7 +93,7 @@ public class Movement : MonoBehaviour
     {
         Move();
 
-        getAnimState(playerState);                                                  //Get animation state enem
+        getAnimState(playerState);                  //Get animation state enum
         
         //Brief time for players to have extra time to jump or any other action. (Timer)
         if (coyoteTimer < coyoteTime && !isGrounded) 
@@ -103,6 +105,11 @@ public class Movement : MonoBehaviour
         if (freezeTimer > 0) 
         {
             freezeTimer -= Time.deltaTime;
+        }
+
+        if (isDashing)
+        {
+            return;
         }
     }
 
@@ -259,15 +266,28 @@ public class Movement : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
-    
+
     private IEnumerator Dash()
     {
+        int direction = GetDirection();
+
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f; 
-        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        rb.velocity = Vector3.zero;
+
+        if (direction == 1)
+        {
+            rb.AddForce(Vector3.right * dashingPower, ForceMode2D.Impulse); 
+        }
+        else if (direction == -1)
+        {
+            rb.AddForce(Vector3.right * -dashingPower, ForceMode2D.Impulse);
+        }
+
         tr.emitting = true;
+        FreezeMovement(dashingFrozenTime);
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
