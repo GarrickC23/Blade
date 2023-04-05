@@ -5,26 +5,43 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public float maxHealth;
-    float Health;
+    float health;
+    public float stagger = 0, maxStagger, parryResetTimer;
     bool isParrying = true;
 
     private void Start() 
     {
-        Health = maxHealth;
+        health = maxHealth;
     }
 
     public void EnemyAttacked(float damage){
         if (isParrying){
-
+            IncreaseStagger(damage);
         }
         else TakeDamage(damage);
     }
     private void TakeDamage(float damage)
     {
-        Health -= damage;
-        if (Health <= 0)
+        health -= damage;
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
     }
+
+    private void IncreaseStagger(float staggerIncrease){
+        stagger += staggerIncrease;
+        if (stagger >= maxStagger){
+            stagger = 0;
+            isParrying = false;
+            Invoke("resetParry", parryResetTimer);
+
+        }
+    }
+
+    private void resetParry(){
+        isParrying = true;
+    }
+
+
 }
