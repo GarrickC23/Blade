@@ -80,6 +80,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8aee10dc-de27-473c-980d-4dcf2a886335"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e4011d8-c5b1-426a-a23d-2ce381523375"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,7 +225,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""331427c6-abf9-412d-a92e-b978f7bfcc44"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Desktop"",
@@ -218,7 +236,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d10b094e-22e3-4b02-956d-e109ff142c0a"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Desktop"",
@@ -240,11 +258,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""44fe0998-fea1-41ad-b8f5-ae387ee37538"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Desktop"",
                     ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ebdb6c9-6475-40dd-a987-c8694964fc92"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44cc8d0a-54e7-4de1-900e-603346a4c009"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -273,6 +313,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground_Attack = m_Ground.FindAction("Attack", throwIfNotFound: true);
         m_Ground_FastFall = m_Ground.FindAction("FastFall", throwIfNotFound: true);
         m_Ground_Heal = m_Ground.FindAction("Heal", throwIfNotFound: true);
+        m_Ground_Interact = m_Ground.FindAction("Interact", throwIfNotFound: true);
+        m_Ground_Dash = m_Ground.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,6 +380,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Attack;
     private readonly InputAction m_Ground_FastFall;
     private readonly InputAction m_Ground_Heal;
+    private readonly InputAction m_Ground_Interact;
+    private readonly InputAction m_Ground_Dash;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -348,6 +392,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Ground_Attack;
         public InputAction @FastFall => m_Wrapper.m_Ground_FastFall;
         public InputAction @Heal => m_Wrapper.m_Ground_Heal;
+        public InputAction @Interact => m_Wrapper.m_Ground_Interact;
+        public InputAction @Dash => m_Wrapper.m_Ground_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +421,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnHeal;
+                @Interact.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnInteract;
+                @Dash.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -397,6 +449,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -418,5 +476,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnFastFall(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

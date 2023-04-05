@@ -53,6 +53,7 @@ public class Parry : MonoBehaviour
         if (context.canceled && isGuarding)
         {
             isGuarding = false;
+            GetComponent<PlayerStats>().isGuarding = false;
             anim.SetBool("HeroKnight_Block", false);
         }
     }
