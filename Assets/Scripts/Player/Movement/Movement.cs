@@ -92,6 +92,8 @@ public class Movement : MonoBehaviour
     private void Update() 
     {
         Move();
+        Flip();
+        Debug.Log("direction" + GetDirection());
 
         getAnimState(playerState);                  //Get animation state enum
         
@@ -151,17 +153,6 @@ public class Movement : MonoBehaviour
         // If the player is in the air and isn't pressing any keys, keep momentum
         if (isGrounded || targetVelocity.x != 0) {
             rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref m_Velocity2, smoothTime);
-        }
-
-        if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
-        {
-            // moveSpeed += acceleration * Time.deltaTime; 
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
-        {
-            // moveSpeed += acceleration * Time.deltaTime; 
-            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
@@ -269,14 +260,24 @@ public class Movement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        int direction = GetDirection();
+        int direction;// = GetDirection();
 
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f; 
-        rb.velocity = Vector3.zero;
 
+        if (rb.velocity.x < 0) 
+        {
+            direction = -1;
+        }
+        else 
+        {
+            direction = 1;
+        }
+
+        rb.velocity = Vector3.zero;
+        
         if (direction == 1)
         {
             rb.AddForce(Vector3.right * dashingPower, ForceMode2D.Impulse); 
@@ -303,11 +304,27 @@ public class Movement : MonoBehaviour
     /// <returns></returns>
     private int GetDirection()
     {
-        if (this.transform.rotation.y < 0) {
+        if (this.transform.rotation.y < 0) 
+        {
             return -1;
         }
-        else {
+        else 
+        {
             return 1;
+        }
+    }
+
+    private void Flip()
+    {
+        if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
+        {
+            // moveSpeed += acceleration * Time.deltaTime; 
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
+        {
+            // moveSpeed += acceleration * Time.deltaTime; 
+            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
