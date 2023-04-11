@@ -46,6 +46,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private float dashingTime = 0.2f;
     [SerializeField] private float dashingCooldown = 1f; 
 
+    [Header("Grapples")]
+    public List<GameObject> grapplePoints;
+    public float grappleSpeed;
+
     private PlayerControls playerControls;              //Input System variable
     private float freezeTimer;                          //Freeze movement
     [SerializeField] private TrailRenderer tr; 
@@ -56,6 +60,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         anim = gameObject.GetComponent<Animator>(); 
+        grapplePoints = new List<GameObject>();
         playerControls = new PlayerControls();
         playerControls.Ground.Jump.performed += Jump; 
         playerControls.Ground.Jump.canceled += JumpRelease;
@@ -117,8 +122,6 @@ public class Movement : MonoBehaviour
 
     private void Move() 
     {
-        Debug.Log(playerState);
-        Debug.Log(coyoteTimer);
         if (GetComponent<PlayerStats>().isStunned || GetComponent<PlayerStats>().isKnockedBack || freezeTimer > 0) return; // //hotfix so that move does not interfere with stun.
 
         //Gets the WASD/Arrow Keys from Input System as a Vector2 (x, y)
@@ -220,6 +223,30 @@ public class Movement : MonoBehaviour
         FreezeMovement(wallJumpFrozenTime);
         yield return new WaitForSeconds(jumpTime);
         canFastFall = true;
+    }
+
+    private void Grapple(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (grapplePoints.Count > 0)
+            {
+                // Get closest grapple point
+                GameObject closestPoint = grapplePoints[0];
+                float minDist = Vector3.Distance(this.gameObject.transform.position, closestPoint.transform.position);
+                for (int i=1; i < grapplePoints.Count; i++)
+                {
+                    float nextDist = Vector3.Distance(this.gameObject.transform.position, grapplePoints[i].transform.position);
+                    if (nextDist < minDist)
+                    {
+                        closestPoint = grapplePoints[i];
+                        minDist = nextDist;
+                    }
+                }
+
+                // Grapple towards closest point
+            }
+        }
     }
 
     /// <summary>
