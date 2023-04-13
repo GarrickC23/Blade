@@ -12,6 +12,8 @@ public class EnemyAttack : MonoBehaviour
     public Direction direction; 
     private Animator anim;
 
+    public GameObject sparks;
+
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +28,9 @@ public class EnemyAttack : MonoBehaviour
             if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
             {
                 player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
+
+                GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
+                spark.GetComponent<ParticleSystem>().Play(); 
             }
         }
     }
