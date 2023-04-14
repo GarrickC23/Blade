@@ -66,6 +66,7 @@ public class Movement : MonoBehaviour
         playerControls.Ground.Jump.canceled += JumpRelease;
         playerControls.Ground.FastFall.performed += FastFall;
         playerControls.Ground.Dash.performed += Dash; 
+        playerControls.Ground.Grapple.performed += Grapple;
     }
 
     private void OnEnable()
@@ -229,7 +230,8 @@ public class Movement : MonoBehaviour
     {
         if (context.performed)
         {
-            if (grapplePoints.Count > 0)
+            Debug.Log("Grappling");
+            if (grapplePoints.Count > 0 && freezeTimer <= 0)
             {
                 // Get closest grapple point
                 GameObject closestPoint = grapplePoints[0];
@@ -245,8 +247,20 @@ public class Movement : MonoBehaviour
                 }
 
                 // Grapple towards closest point
+                StartCoroutine(GrappleTowardsObject(closestPoint, minDist));
             }
         }
+    }
+
+    private IEnumerator GrappleTowardsObject(GameObject ob, float minDist) {
+        FreezeMovement(minDist/grappleSpeed/2);
+        Vector3 direction = ob.transform.position - this.gameObject.transform.position;
+        direction = Vector3.Normalize(direction);
+        rb.velocity = direction * grappleSpeed;
+        float oldGrav = rb.gravityScale;
+        rb.gravityScale = 0;
+        yield return new WaitForSeconds(minDist/grappleSpeed/2);
+        rb.gravityScale = oldGrav;
     }
 
     /// <summary>

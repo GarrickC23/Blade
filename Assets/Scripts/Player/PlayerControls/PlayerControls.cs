@@ -98,6 +98,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grapple"",
+                    ""type"": ""Button"",
+                    ""id"": ""6869373e-5453-4e7c-bc0d-e5fffe92c181"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,6 +296,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""187c44be-2c6f-460b-9ada-6ada15cd9076"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -315,6 +335,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground_Heal = m_Ground.FindAction("Heal", throwIfNotFound: true);
         m_Ground_Interact = m_Ground.FindAction("Interact", throwIfNotFound: true);
         m_Ground_Dash = m_Ground.FindAction("Dash", throwIfNotFound: true);
+        m_Ground_Grapple = m_Ground.FindAction("Grapple", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -382,6 +403,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Heal;
     private readonly InputAction m_Ground_Interact;
     private readonly InputAction m_Ground_Dash;
+    private readonly InputAction m_Ground_Grapple;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -394,6 +416,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Heal => m_Wrapper.m_Ground_Heal;
         public InputAction @Interact => m_Wrapper.m_Ground_Interact;
         public InputAction @Dash => m_Wrapper.m_Ground_Dash;
+        public InputAction @Grapple => m_Wrapper.m_Ground_Grapple;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -427,6 +450,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnDash;
+                @Grapple.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnGrapple;
+                @Grapple.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnGrapple;
+                @Grapple.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnGrapple;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -455,6 +481,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Grapple.started += instance.OnGrapple;
+                @Grapple.performed += instance.OnGrapple;
+                @Grapple.canceled += instance.OnGrapple;
             }
         }
     }
@@ -478,5 +507,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnHeal(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnGrapple(InputAction.CallbackContext context);
     }
 }
