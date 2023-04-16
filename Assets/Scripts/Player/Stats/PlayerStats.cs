@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
 
    [HideInInspector]
    public bool isKnockedBack = false;
+
+   public float stagger = 0, maxStagger, staggerTime;
    
 
    public Image[] hearts; 
@@ -74,4 +76,17 @@ public class PlayerStats : MonoBehaviour
          }
       }
    }
+
+   public void IncreasePlayerStagger(float staggerIncrease){
+      stagger += staggerIncrease;
+      if (stagger >= maxStagger){
+            stagger = 0;
+            isStunned = true;
+            Invoke("resetParry", staggerTime);
+        }
+   }
+
+   private void resetParry(){
+        isStunned = false;
+    }
 }

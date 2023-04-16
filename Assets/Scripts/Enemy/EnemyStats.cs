@@ -8,6 +8,7 @@ public class EnemyStats : MonoBehaviour
     float health;
     public float stagger = 0, maxStagger, parryResetTimer;
     bool isParrying = true;
+    public float PlayerStaggerIncrease;
 
     private void Start() 
     {
@@ -17,6 +18,7 @@ public class EnemyStats : MonoBehaviour
     public void EnemyAttacked(float damage){
         if (isParrying){
             IncreaseStagger(damage);
+            GameObject.Find("Player2D (1)").GetComponent<PlayerStats>().IncreasePlayerStagger(PlayerStaggerIncrease);
         }
         else TakeDamage(damage);
     }
@@ -35,7 +37,6 @@ public class EnemyStats : MonoBehaviour
             stagger = 0;
             isParrying = false;
             Invoke("resetParry", parryResetTimer);
-
         }
     }
 
