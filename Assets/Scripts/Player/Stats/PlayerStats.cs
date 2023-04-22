@@ -20,7 +20,14 @@ public class PlayerStats : MonoBehaviour
    [HideInInspector]
    public bool isKnockedBack = false;
 
-   public float stagger = 0, maxStagger, staggerTime;
+   [Header("Stagger UI")]
+   public Slider staggerBarSlider;
+   public Image staggerBarSliderFillColor;
+   public Image staggerBarSliderBackgroundColor;
+
+   [Header("Stagger Variables")]
+   public float stagger = 0;
+   public float maxStagger, staggerTime, staggerDecayRate, staggerDecayAmount, staggerDecayDelay;
    
 
    public Image[] hearts; 
@@ -32,6 +39,30 @@ public class PlayerStats : MonoBehaviour
    {
       health = maxHealth;
       anim = gameObject.GetComponent<Animator>();
+   }
+
+   private void LateUpdate() {
+      //scuffed way of rotating the slider
+      if(gameObject.transform.rotation.y == 180){
+         staggerBarSlider.transform.parent.rotation = Quaternion.Euler(0,180,0);
+      }
+      else{
+         staggerBarSlider.transform.parent.rotation = Quaternion.Euler(0,0,0);
+      }
+   }
+   private void Update() {
+      //update slider to match stagger value
+      //if stagger is 0 hide the stagger bar
+      staggerBarSlider.value = stagger/maxStagger;
+      if (stagger == 0){
+         staggerBarSliderFillColor.color = new Color(255,0,0,0);
+         staggerBarSliderBackgroundColor.color = new Color(255,255,255,0);
+      }
+      else{
+         staggerBarSliderFillColor.color = new Color(255,0,0,1);
+         staggerBarSliderBackgroundColor.color = new Color(255,255,255,1);
+      }
+
    }
 
    public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction)
@@ -78,15 +109,26 @@ public class PlayerStats : MonoBehaviour
    }
 
    public void IncreasePlayerStagger(float staggerIncrease){
+      CancelInvoke("decayStagger");
       stagger += staggerIncrease;
       if (stagger >= maxStagger){
-            stagger = 0;
             isStunned = true;
-            Invoke("resetParry", staggerTime);
+            Invoke("resetStagger", staggerTime);
         }
+        InvokeRepeating("decayStagger", staggerDecayDelay, staggerDecayRate);
    }
 
-   private void resetParry(){
+   private void resetStagger(){
+        stagger = 0;
         isStunned = false;
-    }
+   }
+   
+   private void decayStagger(){
+      if (stagger > 0){
+         stagger -= staggerDecayAmount;
+      }
+      if (stagger < 0){
+         stagger = 0;
+      }
+   }
 }
