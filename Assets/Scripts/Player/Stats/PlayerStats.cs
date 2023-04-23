@@ -78,7 +78,8 @@ public class PlayerStats : MonoBehaviour
       }
       else if (isParrying)
       {
-         anim.Play("BlockFlash");
+         // anim.Play("BlockFlash");
+         Debug.Log("Parried");
       }
    }
 

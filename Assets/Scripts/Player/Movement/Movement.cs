@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour
     {
         Move();
         Flip();
-        Debug.Log("direction" + GetDirection());
+        // Debug.Log("direction" + GetDirection());
 
         getAnimState(playerState);                  //Get animation state enum
         

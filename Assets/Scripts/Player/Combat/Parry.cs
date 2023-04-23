@@ -30,7 +30,7 @@ public class Parry : MonoBehaviour
     }
     
 
-    //Parry Function. When you press "R" and let go at the right time, you will parry
+    //Parry Function. When you press "Q" and let go at the right time, you will parry
     public void ParryAttack(InputAction.CallbackContext context)
     {
         if (context.performed && !isParrying && !isGuarding)
@@ -47,7 +47,7 @@ public class Parry : MonoBehaviour
         }
     }
 
-    //If you release "R", then you will not be guarding anymore
+    //If you release "Q", then you will not be guarding anymore
     public void GuardRelease(InputAction.CallbackContext context)
     {
         if (context.canceled && isGuarding)
