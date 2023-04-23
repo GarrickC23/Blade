@@ -5,19 +5,35 @@ using static PlayerKnockback;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private bool isAttacking = false;
+    public bool isAttacking = false;
     public Transform attackPosition;
     public float attackRadius;
     public float damage, angle, knockbackPower, stunDuration;
     public Direction direction; 
+    public float attackRange;
     private Animator anim;
 
     public GameObject sparks;
+    public string attackName;
+
+    private GameObject player;
+
+    void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");
+        anim = gameObject.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isAttacking) StartCoroutine("AttackCoroutine");
+        // if (!isAttacking) StartCoroutine("AttackCoroutine");
+        // if (isAttacking) Attack();
+        if (!isAttacking && InRange()) {
+            anim.Play(attackName);
+        }
+        if (isAttacking) {
+            Attack();
+        }
     }
 
     private void Attack()
@@ -25,6 +41,7 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius);
         foreach (Collider2D hit in Hits)
         {
+            Debug.Log("Collider hit " + hit.gameObject);
             if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
             {
                 player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
@@ -45,6 +62,18 @@ public class EnemyAttack : MonoBehaviour
         Attack();
         yield return new WaitForSeconds(1f);
         isAttacking = false;
+    }
+
+    private bool InRange() {
+        Vector2 currPos = this.gameObject.transform.position;
+        Vector2 direction = (Vector2)(player.transform.position) - currPos;
+        RaycastHit2D ray = Physics2D.Raycast(currPos, direction, attackRange, 3);
+        if (ray && ray.collider.gameObject == player) {
+            return true;
+        }
+
+        Debug.Log(ray.distance);
+        return false;
     }
 
     private void OnDrawGizmosSelected() 

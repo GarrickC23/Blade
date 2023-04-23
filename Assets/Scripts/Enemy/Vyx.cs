@@ -96,9 +96,9 @@ public class Vyx : Enemy
 
     bool isFront()
     {
-        Vector3 directionOfPlayer = transform.position - playerPos.position; 
-        float angle = Vector3.Angle(directionOfPlayer, transform.forward);
-        if (Mathf.Abs(angle) == 90 && directionOfPlayer.x < 3)
+        Vector3 directionFromPlayerToEnemy = transform.position - playerPos.position; 
+        float angle = Vector3.Angle(directionFromPlayerToEnemy, transform.forward);
+        if (Mathf.Abs(angle) == 90 && directionFromPlayerToEnemy.x < 3)
         {
             Debug.DrawLine(transform.position, playerPos.position, Color.red);
             return true;
