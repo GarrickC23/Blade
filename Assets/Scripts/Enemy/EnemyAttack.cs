@@ -11,9 +11,9 @@ public class EnemyAttack : MonoBehaviour
     public float damage, angle, knockbackPower, stunDuration;
     public Direction direction; 
     public float attackRange;
-    private Animator anim;
-
     public GameObject sparks;
+    public float attackCooldown;
+    private Animator anim;
     public string attackName;
 
     private GameObject player;
@@ -29,6 +29,7 @@ public class EnemyAttack : MonoBehaviour
         // if (!isAttacking) StartCoroutine("AttackCoroutine");
         // if (isAttacking) Attack();
         if (!isAttacking && InRange()) {
+            isAttacking = true;
             anim.Play(attackName);
         }
         if (isAttacking) {
