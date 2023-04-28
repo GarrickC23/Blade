@@ -35,6 +35,8 @@ public class PlayerStats : MonoBehaviour
    public Sprite emptyHeart; 
    private Animator anim;
 
+   public GameObject sparks;
+
    private void Start() 
    {
       health = maxHealth;
@@ -79,6 +81,9 @@ public class PlayerStats : MonoBehaviour
       else if (isParrying)
       {
          // anim.Play("BlockFlash");
+         GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
+         spark.GetComponent<ParticleSystem>().Play();
+         //Destroy(spark, 2f);
          Debug.Log("Parried");
       }
    }

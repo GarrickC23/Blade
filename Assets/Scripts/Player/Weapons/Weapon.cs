@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public GameObject sparks; 
     [SerializeField] private Parry parry;
 
     void Start() {
@@ -15,6 +16,8 @@ public class Weapon : MonoBehaviour
         if ( parry.isParrying == true )
         {
             Debug.Log("You parried");
+            GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
+            spark.GetComponent<ParticleSystem>().Play(); 
         }
         else
         {

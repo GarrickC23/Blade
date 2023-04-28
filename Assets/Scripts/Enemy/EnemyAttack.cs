@@ -47,8 +47,8 @@ public class EnemyAttack : MonoBehaviour
             {
                 player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
 
-                GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
-                spark.GetComponent<ParticleSystem>().Play(); 
+                // GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
+                // spark.GetComponent<ParticleSystem>().Play(); 
             }
         }
     }
