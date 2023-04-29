@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnemyKnockback;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -10,7 +11,11 @@ public class EnemyStats : MonoBehaviour
     bool isParrying = true;
     public float PlayerStaggerIncrease;
 
+    [HideInInspector]
     public bool isKnockedBack = false;
+
+    [HideInInspector]
+    public bool isStunned = false;
 
     private void Start() 
     {
@@ -22,6 +27,7 @@ public class EnemyStats : MonoBehaviour
         if (isParrying){
             IncreaseStagger(damage);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().IncreasePlayerStagger(PlayerStaggerIncrease);
+            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
         }
         else 
         {

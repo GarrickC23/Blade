@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static EnemyKnockback;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackRadius;
     public Transform attackPosition;
 
-    public float swingAttackDamage;
+    public float swingAttackDamage, angle, knockbackPower, stunDuration;
+
+    public Direction direction; 
 
     public float attackCoolDown;
 
@@ -65,7 +68,7 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log(hit.gameObject);
         if(hit.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy))
         {
-            enemy.EnemyAttacked(swingAttackDamage);
+            enemy.EnemyAttacked(swingAttackDamage, angle, knockbackPower, stunDuration, direction);
         }
     }
 
