@@ -12,7 +12,7 @@ public class EnemyKnockback : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
     }
 
-    public void PlayerKnockbackFunction(float strength, float angle, Direction direction, Transform XReferencePoint, float stunDuration){
+    public void EnemyKnockbackFunction(float strength, float angle, Direction direction, Transform XReferencePoint, float stunDuration){
         
         StartCoroutine(StunCoroutine(strength, angle, direction, XReferencePoint, stunDuration));
     }

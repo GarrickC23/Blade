@@ -10,18 +10,26 @@ public class EnemyStats : MonoBehaviour
     bool isParrying = true;
     public float PlayerStaggerIncrease;
 
+    public bool isKnockedBack = false;
+
     private void Start() 
     {
         health = maxHealth;
     }
 
-    public void EnemyAttacked(float damage){
+    public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction)
+    {
         if (isParrying){
             IncreaseStagger(damage);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().IncreasePlayerStagger(PlayerStaggerIncrease);
         }
-        else TakeDamage(damage);
+        else 
+        {
+            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
+            TakeDamage(damage);
+        }
     }
+
     private void TakeDamage(float damage)
     {
         health -= damage;
