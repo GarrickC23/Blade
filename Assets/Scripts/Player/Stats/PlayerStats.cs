@@ -135,6 +135,7 @@ public class PlayerStats : MonoBehaviour
       }
       if (stagger < 0){
          stagger = 0;
+         CancelInvoke("decayStagger");
       }
    }
 }
