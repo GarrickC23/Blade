@@ -10,6 +10,6 @@ public class FollowPlayer : MonoBehaviour
     void Update()
     {
         Vector3 playerPosition = player.transform.position;
-        this.transform.position = new Vector3(playerPosition.x, playerPosition.y + 10, -10);
+        this.transform.position = new Vector3(playerPosition.x, playerPosition.y + 8, -10);
     }
 }
