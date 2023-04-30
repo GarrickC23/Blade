@@ -73,7 +73,7 @@ public class EnemyAttack : MonoBehaviour
             return true;
         }
 
-        Debug.Log(ray.distance);
+        // Debug.Log(ray.distance);
         return false;
     }
 

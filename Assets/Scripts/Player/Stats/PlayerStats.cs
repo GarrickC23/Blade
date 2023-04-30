@@ -99,7 +99,8 @@ public class PlayerStats : MonoBehaviour
          // Destroy(gameObject);
          health = maxHealth;
          HeartUpdate();
-         this.transform.position = respawnPoint.position;
+         Vector3 oldPos = this.transform.position;
+         this.transform.position = new Vector3(respawnPoint.position.x, respawnPoint.position.y, oldPos.z);
       }
    }
 
