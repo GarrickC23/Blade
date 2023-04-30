@@ -36,6 +36,7 @@ public class PlayerStats : MonoBehaviour
    private Animator anim;
 
    public GameObject sparks;
+   private Transform respawnPoint;
 
    private void Start() 
    {
@@ -95,7 +96,10 @@ public class PlayerStats : MonoBehaviour
 
       if (health <= 0)
       {
-         Destroy(gameObject);
+         // Destroy(gameObject);
+         health = maxHealth;
+         HeartUpdate();
+         this.transform.position = respawnPoint.position;
       }
    }
 
@@ -122,6 +126,11 @@ public class PlayerStats : MonoBehaviour
             Invoke("resetStagger", staggerTime);
         }
         InvokeRepeating("decayStagger", staggerDecayDelay, staggerDecayRate);
+   }
+
+   public void SetRespawnPoint(Transform newRespawnPoint) {
+      Debug.Log("Set respawn point");
+      respawnPoint = newRespawnPoint;
    }
 
    private void resetStagger(){
