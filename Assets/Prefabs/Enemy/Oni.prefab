@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 3833885798410279841}
   - component: {fileID: 3833885798410279840}
   - component: {fileID: 4800846417615905612}
+  - component: {fileID: 3823856114500965570}
   m_Layer: 3
   m_Name: Oni
   m_TagString: Untagged
@@ -723,3 +724,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3823856114500965570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833885798410279847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d036c02f0c864e5eb50d42704bf726b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
