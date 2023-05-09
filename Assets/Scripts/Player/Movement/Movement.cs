@@ -166,6 +166,7 @@ public class Movement : MonoBehaviour
     /// <returns></returns>
     private void Jump(InputAction.CallbackContext context)
     {
+
         //Debug.Log(context);
         if (context.performed && freezeTimer <= 0)
         {

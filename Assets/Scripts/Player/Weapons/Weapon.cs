@@ -5,23 +5,23 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject sparks; 
-    [SerializeField] private Parry parry;
-
-    void Start() {
-        parry = GameObject.FindGameObjectWithTag("Player").GetComponent<Parry>();
-    }
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if ( parry.isParrying == true )
+        if ( GetComponent<PlayerStats>().isParrying)
         {
             Debug.Log("You parried");
             GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
             spark.GetComponent<ParticleSystem>().Play(); 
         }
-        else
+        else if (GetComponent<PlayerStats>().isGuarding)
         {
-            Debug.Log("Unsuccessful parry");
+            Debug.Log("You blocked");
+            GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
+            spark.GetComponent<ParticleSystem>().Play(); 
+        }
+        {
+            Debug.Log("Unsuccessful parry/block");
         }
     }
 }

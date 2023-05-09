@@ -67,7 +67,7 @@ public class PlayerStats : MonoBehaviour
       }
 
    }
-
+   //called by enemy when it wants to attack the player
    public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction)
    {
       if (!isParrying && !isStunned && !isGuarding)
