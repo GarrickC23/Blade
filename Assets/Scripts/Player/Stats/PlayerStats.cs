@@ -67,8 +67,8 @@ public class PlayerStats : MonoBehaviour
       }
 
    }
-
-   public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction)
+   //called by enemy when it wants to attack the player
+   public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction, Transform attackerRefPos)
    {
       if (!isParrying && !isStunned && !isGuarding)
       {
@@ -77,15 +77,16 @@ public class PlayerStats : MonoBehaviour
       }
       else if (isGuarding && !isParrying && !isStunned)
       {
-         Debug.Log("Guard hit");
+         //Debug.Log("Guard hit");
       }
       else if (isParrying)
       {
          // anim.Play("BlockFlash");
          GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
          spark.GetComponent<ParticleSystem>().Play();
+         attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
          //Destroy(spark, 2f);
-         Debug.Log("Parried");
+         //Debug.Log("Parried");
       }
    }
 

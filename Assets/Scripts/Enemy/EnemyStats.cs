@@ -11,6 +11,7 @@ public class EnemyStats : MonoBehaviour
     public float stagger = 0, maxStagger, parryResetTimer, staggerDecayAmount, staggerDecayRate, staggerDecayDelay;
     bool isParrying = true;
     public float PlayerStaggerIncrease;
+    public float EnemyStaggerIncreaseOnPlayerParry;
 
     [HideInInspector]
     public bool isKnockedBack = false;
@@ -22,6 +23,12 @@ public class EnemyStats : MonoBehaviour
    public Slider staggerBarSlider;
    public Image staggerBarSliderFillColor;
    public Image staggerBarSliderBackgroundColor;
+
+   [Header("Enemy Resistance Stats")]
+    public float knockbackPowerMultiplier; //multiplies knockback received recieved by enemy knockback resistance
+    public float stunDurationMultiplier; //multiplies stun duration recieved by enemy stun resistance
+    public float damageTakenMultiplier; //multiples damagereceived by enemy damage resistance
+
 
     private void Start() 
     {
@@ -50,17 +57,18 @@ public class EnemyStats : MonoBehaviour
       }
    }
 
-    public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction)
+    public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction, Transform attackerRefPos)
     {
         if (isParrying){
             IncreaseStagger(damage);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().IncreasePlayerStagger(PlayerStaggerIncrease);
-            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
+            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * knockbackPowerMultiplier, angle, direction, attackerRefPos, stunDuration * stunDurationMultiplier);
         }
         else 
         {
-            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
-            TakeDamage(damage);
+            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * knockbackPowerMultiplier, angle, direction, attackerRefPos, stunDuration * stunDurationMultiplier);
+
+            TakeDamage(damage * damageTakenMultiplier);
         }
     }
 
@@ -73,12 +81,12 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void IncreaseStagger(float staggerIncrease){
+    public void IncreaseStagger(float staggerIncrease){
         CancelInvoke("decayStagger");
         stagger += staggerIncrease;
         if (stagger >= maxStagger){
-            stagger = 0;
             isParrying = false;
+            isStunned = true;
             Invoke("resetParry", parryResetTimer);
         }
         InvokeRepeating("decayStagger", staggerDecayDelay, staggerDecayRate);
@@ -86,6 +94,8 @@ public class EnemyStats : MonoBehaviour
 
     private void resetParry(){
         isParrying = true;
+        stagger = 0;
+        isStunned = false;
     }
 
     private void decayStagger(){

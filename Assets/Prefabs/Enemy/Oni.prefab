@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 3833885798410279841}
   - component: {fileID: 3833885798410279840}
   - component: {fileID: 4800846417615905612}
-  - component: {fileID: 3823856114500965570}
+  - component: {fileID: 1872188548}
   m_Layer: 3
   m_Name: Oni
   m_TagString: Untagged
@@ -564,7 +564,7 @@ Transform:
   - {fileID: 3833885798110397640}
   - {fileID: 1173234709}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &3833885798410279845
 SpriteRenderer:
@@ -674,11 +674,15 @@ MonoBehaviour:
   staggerDecayRate: 5
   staggerDecayDelay: 10
   PlayerStaggerIncrease: 15
+  EnemyStaggerIncreaseOnPlayerParry: 35
   isKnockedBack: 0
   isStunned: 0
   staggerBarSlider: {fileID: 1425760654}
   staggerBarSliderFillColor: {fileID: 2050414226}
   staggerBarSliderBackgroundColor: {fileID: 401052655}
+  knockbackPowerMultiplier: 1
+  stunDurationMultiplier: 1
+  damageTakenMultiplier: 1
 --- !u!114 &3833885798410279840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,7 +690,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3833885798410279847}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 958ef8bdaf0eac54baabf1363dd61b31, type: 3}
   m_Name: 
@@ -695,13 +699,13 @@ MonoBehaviour:
   attackPosition: {fileID: 3833885798110397640}
   attackRadius: 2
   damage: 1
-  angle: 35
-  knockbackPower: 10
-  stunDuration: 0.2
+  angle: 45
+  knockbackPower: 15
+  stunDuration: 0.5
   direction: 1
   attackRange: 5
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
-  attackCooldown: 0
+  attackCooldown: 2
   attackName: OniAttack
 --- !u!50 &4800846417615905612
 Rigidbody2D:
@@ -715,7 +719,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -724,7 +728,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3823856114500965570
+--- !u!114 &1872188548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

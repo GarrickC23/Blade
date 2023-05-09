@@ -9,8 +9,9 @@ public class Parry : MonoBehaviour
     private Animator anim;
 
     public float parryDuration;
-    public bool isParrying = false;
-    public bool isGuarding = false; 
+    public float delayBetweenBlocks;
+
+    bool canBlock = true;
 
     private void Awake()
     {
@@ -30,43 +31,39 @@ public class Parry : MonoBehaviour
     }
     
 
-    //Parry Function. When you press "Q" and let go at the right time, you will parry
+    //Parry Function. When you press "Q" at the right time before the attack hits you, you will parry the attack
     public void ParryAttack(InputAction.CallbackContext context)
     {
-        if (context.performed && !isParrying && !isGuarding)
+        if (context.performed && !GetComponent<PlayerStats>().isGuarding && !GetComponent<PlayerStats>().isParrying && canBlock)
         {
-            isGuarding = true;
+            canBlock = false;
             GetComponent<PlayerStats>().isGuarding = true;
-
-            if ( isGuarding )
-            {
-                anim.SetBool("HeroKnight_Block", true);
-            }
-            
             StartCoroutine("ParryCoroutine");
+            anim.SetBool("HeroKnight_Block", true); 
         }
     }
 
     //If you release "Q", then you will not be guarding anymore
     public void GuardRelease(InputAction.CallbackContext context)
     {
-        if (context.canceled && isGuarding)
+        if (context.canceled && GetComponent<PlayerStats>().isGuarding)
         {
-            isGuarding = false;
             GetComponent<PlayerStats>().isGuarding = false;
             anim.SetBool("HeroKnight_Block", false);
+            StopCoroutine("ParryCoroutine");
+            GetComponent<PlayerStats>().isParrying = false;
+            Invoke("RefreshBlock", delayBetweenBlocks);
         }
     }
 
     private IEnumerator ParryCoroutine()
     {
-        isParrying = true;
         GetComponent<PlayerStats>().isParrying = true;
         yield return new WaitForSeconds(parryDuration);
         GetComponent<PlayerStats>().isParrying = false;
-        
-        //If you want to add a delay between each parry add another wait for seconds here
+    }
 
-        isParrying = false;
+    void RefreshBlock(){
+        canBlock = true;
     }
 }

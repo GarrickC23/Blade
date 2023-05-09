@@ -70,7 +70,7 @@ public class Vyx : Enemy
             {
                 if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
                 {
-                    player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
+                    player.Attacked(damage, angle, knockbackPower, stunDuration, direction, transform);
                 }
             }
         }
