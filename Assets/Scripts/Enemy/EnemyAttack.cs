@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static PlayerKnockback;
+using System;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class EnemyAttack : MonoBehaviour
 
     private GameObject player;
 
+    private List<Collider2D> PrevHits = new List<Collider2D>();
+
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
@@ -31,6 +34,7 @@ public class EnemyAttack : MonoBehaviour
         if (!isAttacking && InRange() && !GetComponent<EnemyStats>().isStunned) {
             isAttacking = true;
             anim.Play(attackName);
+            PrevHits.Clear();
         }
         if (isAttacking) {
             Attack();
@@ -42,6 +46,10 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] Hits = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius);
         foreach (Collider2D hit in Hits)
         {
+            if (PrevHits.Contains(hit)){
+                continue;
+            }
+            PrevHits.Add(hit);
             Debug.Log("Collider hit " + hit.gameObject);
             if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
             {
