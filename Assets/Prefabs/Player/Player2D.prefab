@@ -715,7 +715,7 @@ Transform:
   - {fileID: 224124465}
   - {fileID: 1610073958}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1219213532512769586
 SpriteRenderer:
@@ -926,6 +926,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8fb130e3-f7fa-4515-a7ca-cc982f03f4aa
     m_ActionName: Ground/Heal[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8aee10dc-de27-473c-980d-4dcf2a886335
+    m_ActionName: Ground/Interact[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e4011d8-c5b1-426a-a23d-2ce381523375
+    m_ActionName: Ground/Dash[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6869373e-5453-4e7c-bc0d-e5fffe92c181
+    m_ActionName: Ground/Grapple[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Desktop
   m_DefaultActionMap: Ground
@@ -946,10 +958,10 @@ MonoBehaviour:
   attackRadius: 0.7
   attackPosition: {fileID: 1030885288}
   swingAttackDamage: 25
-  angle: 0
-  knockbackPower: 100
+  angle: 35
+  knockbackPower: 50000
   stunDuration: 0.1
-  direction: 0
+  direction: 1
   attackCoolDown: 0.5
 --- !u!114 &404671937
 MonoBehaviour:
@@ -964,8 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parryDuration: 0.3
-  isParrying: 0
-  isGuarding: 0
+  delayBetweenBlocks: 0.5
 --- !u!114 &404671938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,7 +1012,7 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 432e48af0c833ad4587d222b812b844f, type: 3}
   emptyHeart: {fileID: 21300050, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
-  sparks: {fileID: 0}
+  sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
 --- !u!95 &706357238
 Animator:
   serializedVersion: 4
