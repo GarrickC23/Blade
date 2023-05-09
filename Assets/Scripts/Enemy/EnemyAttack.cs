@@ -28,7 +28,7 @@ public class EnemyAttack : MonoBehaviour
     {
         // if (!isAttacking) StartCoroutine("AttackCoroutine");
         // if (isAttacking) Attack();
-        if (!isAttacking && InRange()) {
+        if (!isAttacking && InRange() && !GetComponent<EnemyStats>().isStunned) {
             isAttacking = true;
             anim.Play(attackName);
         }
@@ -45,7 +45,7 @@ public class EnemyAttack : MonoBehaviour
             Debug.Log("Collider hit " + hit.gameObject);
             if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
             {
-                player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
+                player.Attacked(damage, angle, knockbackPower, stunDuration, direction, transform);
 
                 // GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
                 // spark.GetComponent<ParticleSystem>().Play(); 

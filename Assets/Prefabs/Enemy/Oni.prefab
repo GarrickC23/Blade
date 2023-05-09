@@ -674,6 +674,7 @@ MonoBehaviour:
   staggerDecayRate: 5
   staggerDecayDelay: 10
   PlayerStaggerIncrease: 15
+  EnemyStaggerIncreaseOnPlayerParry: 35
   isKnockedBack: 0
   isStunned: 0
   staggerBarSlider: {fileID: 1425760654}

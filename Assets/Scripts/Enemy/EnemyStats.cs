@@ -11,6 +11,7 @@ public class EnemyStats : MonoBehaviour
     public float stagger = 0, maxStagger, parryResetTimer, staggerDecayAmount, staggerDecayRate, staggerDecayDelay;
     bool isParrying = true;
     public float PlayerStaggerIncrease;
+    public float EnemyStaggerIncreaseOnPlayerParry;
 
     [HideInInspector]
     public bool isKnockedBack = false;
@@ -80,11 +81,12 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void IncreaseStagger(float staggerIncrease){
+    public void IncreaseStagger(float staggerIncrease){
         CancelInvoke("decayStagger");
         stagger += staggerIncrease;
         if (stagger >= maxStagger){
             isParrying = false;
+            isStunned = true;
             Invoke("resetParry", parryResetTimer);
         }
         InvokeRepeating("decayStagger", staggerDecayDelay, staggerDecayRate);
@@ -93,6 +95,7 @@ public class EnemyStats : MonoBehaviour
     private void resetParry(){
         isParrying = true;
         stagger = 0;
+        isStunned = false;
     }
 
     private void decayStagger(){
