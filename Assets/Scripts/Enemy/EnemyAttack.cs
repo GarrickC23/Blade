@@ -50,9 +50,9 @@ public class EnemyAttack : MonoBehaviour
                 continue;
             }
             PrevHits.Add(hit);
-            Debug.Log("Collider hit " + hit.gameObject);
+            //Debug.Log("Collider hit " + hit.gameObject);
             if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
-            {
+            {   
                 player.Attacked(damage, angle, knockbackPower, stunDuration, direction, transform);
 
                 // GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
@@ -77,7 +77,7 @@ public class EnemyAttack : MonoBehaviour
         Vector2 currPos = this.gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, attackRange, 3);
-        if (ray && ray.collider.gameObject == player) {
+        if (ray && (ray.collider.gameObject == player || ray.collider.transform.parent.gameObject == player)) {
             return true;
         }
 

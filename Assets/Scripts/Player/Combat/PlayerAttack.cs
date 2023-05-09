@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (context.performed && canAttack && !GetComponent<PlayerStats>().isKnockedBack && !GetComponent<PlayerStats>().isStunned)
         {
-            Debug.Log("Attack");
+            //Debug.Log("Attack");
             anim.Play("HeroKnight_Attack2");
             attackTimer = 0;
             canAttack = false;

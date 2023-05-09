@@ -77,7 +77,7 @@ public class PlayerStats : MonoBehaviour
       }
       else if (isGuarding && !isParrying && !isStunned)
       {
-         Debug.Log("Guard hit");
+         //Debug.Log("Guard hit");
       }
       else if (isParrying)
       {
@@ -86,7 +86,7 @@ public class PlayerStats : MonoBehaviour
          spark.GetComponent<ParticleSystem>().Play();
          attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
          //Destroy(spark, 2f);
-         Debug.Log("Parried");
+         //Debug.Log("Parried");
       }
    }
 
