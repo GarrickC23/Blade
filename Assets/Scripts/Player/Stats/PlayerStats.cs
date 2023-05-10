@@ -91,7 +91,7 @@ public class PlayerStats : MonoBehaviour
       }
    }
 
-   private void TakeDamage(float damage)
+   public void TakeDamage(float damage)
    {
       health -= damage;
       HeartUpdate();
@@ -101,6 +101,7 @@ public class PlayerStats : MonoBehaviour
          // Destroy(gameObject);
          health = maxHealth;
          HeartUpdate();
+         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
          Vector3 oldPos = this.transform.position;
          this.transform.position = new Vector3(respawnPoint.position.x, respawnPoint.position.y, oldPos.z);
       }
@@ -132,8 +133,17 @@ public class PlayerStats : MonoBehaviour
    }
 
    public void SetRespawnPoint(Transform newRespawnPoint) {
-      Debug.Log("Set respawn point");
       respawnPoint = newRespawnPoint;
+   }
+
+   public void SetCheckpoint(Transform newCheckpoint) {
+      lastCheckpoint = newCheckpoint;
+   }
+
+   public void RespawnAtCheckPoint() {
+      this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+      Vector3 oldPos = this.transform.position;
+      this.transform.position = new Vector3(lastCheckpoint.position.x, lastCheckpoint.position.y, oldPos.z);
    }
 
    private void resetStagger(){
