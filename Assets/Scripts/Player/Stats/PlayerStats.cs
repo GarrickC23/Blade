@@ -68,6 +68,8 @@ public class PlayerStats : MonoBehaviour
       }
 
    }
+
+   
    //called by enemy when it wants to attack the player
    public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction, Transform attackerRefPos)
    {
@@ -75,22 +77,36 @@ public class PlayerStats : MonoBehaviour
       {
          TakeDamage(damage);
          GetComponent<PlayerKnockback>().PlayerKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
+         if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
+            Destroy(attackerRefPos.gameObject);
+         }
       }
       else if (isGuarding && !isParrying && !isStunned)
       {
-         //Debug.Log("Guard hit");
+         Debug.Log("Guard hit");
+         if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
+            Destroy(attackerRefPos.gameObject);
+         }
       }
       else if (isParrying)
       {
          // anim.Play("BlockFlash");
+         Debug.Log("Parried");
          GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
          spark.GetComponent<ParticleSystem>().Play();
-         attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
+         if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
+            if (tempProj.isReflectable) {
+               tempProj.Bounce();
+            }
+         }
+         else {
+            attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
+         }
          //Destroy(spark, 2f);
-         //Debug.Log("Parried");
       }
    }
 
+   
    public void TakeDamage(float damage)
    {
       health -= damage;
