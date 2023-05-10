@@ -36,7 +36,8 @@ public class PlayerStats : MonoBehaviour
    private Animator anim;
 
    public GameObject sparks;
-   private Transform respawnPoint;
+   private Transform respawnPoint;     // Where the player spawns after dying
+   private Transform lastCheckpoint;   // Where the player spawns after falling off map
 
    private void Start() 
    {
