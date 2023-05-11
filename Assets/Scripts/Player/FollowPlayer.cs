@@ -52,6 +52,11 @@ public class FollowPlayer : MonoBehaviour
         isFrozen = false;
     }
 
+    /// <summary>
+    /// Shakes the screen horizontally based around the player
+    /// </summary>
+    /// <param name="shakeTime">How long the shaking lasts</param>
+    /// <param name="intensity">How far horizontally the screen goes</param>
     public void CallShakeScreen(float shakeTime, float intensity) {
         currDuration = shakeTime;
         currIntensity = intensity;

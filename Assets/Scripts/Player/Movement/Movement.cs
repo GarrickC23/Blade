@@ -53,6 +53,7 @@ public class Movement : MonoBehaviour
     private PlayerControls playerControls;              //Input System variable
     private float freezeTimer;                          //Freeze movement
     [SerializeField] private TrailRenderer tr; 
+    [SerializeField] private LockOn lockOn;
 
     public enum PlayerStates { Idle, Walk, Jump };
     public PlayerStates playerState; 
@@ -358,15 +359,20 @@ public class Movement : MonoBehaviour
 
     private void Flip()
     {
-        if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
-        {
-            // moveSpeed += acceleration * Time.deltaTime; 
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (!lockOn.IsLocked()) {
+            if (rb.velocity.x > velocityTolerance /*&& moveSpeed < maxSpeed */)
+            {
+                // moveSpeed += acceleration * Time.deltaTime; 
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
+            {
+                // moveSpeed += acceleration * Time.deltaTime; 
+                gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
-        else if (rb.velocity.x < -velocityTolerance /*&& moveSpeed < maxSpeed */)
-        {
-            // moveSpeed += acceleration * Time.deltaTime; 
-            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+        else {
+            lockOn.TurnTowardsEnemy();
         }
     }
 

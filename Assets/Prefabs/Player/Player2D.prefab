@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 251192673}
   - component: {fileID: 3626993748286956113}
   - component: {fileID: 1041383892832483046}
+  - component: {fileID: 2464412384023594283}
   m_Layer: 0
   m_Name: Player2D
   m_TagString: Player
@@ -840,6 +841,7 @@ MonoBehaviour:
   grapplePoints: []
   grappleSpeed: 0
   tr: {fileID: 1610073959}
+  lockOn: {fileID: 2464412384023594283}
   playerState: 0
 --- !u!114 &1219213532512769590
 MonoBehaviour:
@@ -1071,6 +1073,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRadius: 4
+--- !u!114 &2464412384023594283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219213532512769593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32e139193251ba48b187b79c596ee67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  lockRadius: 25
 --- !u!1 &1795207756291318399
 GameObject:
   m_ObjectHideFlags: 0

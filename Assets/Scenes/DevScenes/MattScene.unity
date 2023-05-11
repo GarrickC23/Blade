@@ -861,6 +861,11 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 968303238370071956, guid: 3fb424af9d2fe8b40830c04c4d77f5da, type: 3}
   m_PrefabInstance: {fileID: 1972030893}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &842457677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3833885798410279847, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
+  m_PrefabInstance: {fileID: 1620658227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990292479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,11 +1661,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1117460187, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2050414224, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3833885798410279840, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_Enabled
@@ -1716,7 +1721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833885798410279847, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2152,10 +2157,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 404671938, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-      propertyPath: sparks
-      value: 
-      objectReference: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
-    - target: {fileID: 404671938, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 2115839684}
@@ -2263,6 +2264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2D
       objectReference: {fileID: 0}
+    - target: {fileID: 2464412384023594283, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 842457677}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
