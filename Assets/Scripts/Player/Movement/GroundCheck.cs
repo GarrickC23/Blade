@@ -10,7 +10,6 @@ public class GroundCheck : MonoBehaviour
     private void OnTriggerStay2D(Collider2D coll) {
         if (coll.gameObject.tag == "Ground") {
             movementScript.TouchGround();
-            transform.parent.GetComponent<PlayerStats>().isKnockedBack = false;
         }
     }
 

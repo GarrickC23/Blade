@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerKnockback;
 using System;
 
 public class EnemyAttack : MonoBehaviour
@@ -9,8 +8,7 @@ public class EnemyAttack : MonoBehaviour
     public bool isAttacking = false;
     public Transform attackPosition;
     public float attackRadius;
-    public float damage, angle, knockbackPower, stunDuration;
-    public Direction direction; 
+    public float damage, angle, knockbackPower, stunDuration, knockbackDuration, playerParryIncrease;
     public float attackRange;
     public GameObject sparks;
     public float attackCooldown;
@@ -53,7 +51,7 @@ public class EnemyAttack : MonoBehaviour
             //Debug.Log("Collider hit " + hit.gameObject);
             if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
             {   
-                player.Attacked(damage, angle, knockbackPower, stunDuration, direction, transform);
+                player.Attacked(damage, angle, knockbackPower, stunDuration, playerParryIncrease, transform, knockbackDuration);
 
                 // GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
                 // spark.GetComponent<ParticleSystem>().Play(); 
