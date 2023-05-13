@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -923,11 +923,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &657050856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-  m_PrefabInstance: {fileID: 497162830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &707683249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,6 +2267,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 968303238370071956, guid: 3fb424af9d2fe8b40830c04c4d77f5da, type: 3}
+      propertyPath: field of view
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 968303238370071959, guid: 3fb424af9d2fe8b40830c04c4d77f5da, type: 3}
       propertyPath: m_Name
       value: Camera (1)
@@ -2296,7 +2295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82c03000a4634a61a61fe95cf5fc9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 657050856}
 --- !u!1 &1124956616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4432827829612398045, guid: 1cfe99c340bae73429afe859cbed1452, type: 3}

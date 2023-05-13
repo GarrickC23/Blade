@@ -703,6 +703,7 @@ MonoBehaviour:
   angle: 45
   knockbackPower: 15
   stunDuration: 0.5
+  knockbackDuration: 0.5
   direction: 1
   attackRange: 5
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}

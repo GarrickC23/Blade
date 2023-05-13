@@ -72,7 +72,6 @@ public class EnemyMovement : Enemy
         return true;
     }
     private void Patrol(){
-        print(movingRight);
         if (movingRight) {
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(walkSpeed, transform.GetComponent<Rigidbody2D>().velocity.y);
         }

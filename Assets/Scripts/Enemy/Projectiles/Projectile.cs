@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     public float damage;
     public float knockbackPower;
     public float stunDuration;
+    public float knockbackDuration;
+    public float playerParryIncrease;
     public float speed;
     private Rigidbody2D rb;
 
@@ -26,7 +28,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D coll) {
         if (coll.gameObject.tag == "Player") {
             if (coll.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player)) {
-                player.Attacked(damage, 0f, knockbackPower, stunDuration, PlayerKnockback.Direction.AWAY, this.transform);
+                player.Attacked(damage, 0f, knockbackPower, stunDuration, playerParryIncrease, this.transform, knockbackDuration);
             }
         }
     }

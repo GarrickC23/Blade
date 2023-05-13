@@ -71,12 +71,12 @@ public class PlayerStats : MonoBehaviour
 
    
    //called by enemy when it wants to attack the player
-   public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction, Transform attackerRefPos)
+   public void Attacked(float damage, float angle, float knockbackPower, float stunDuration, float playerParryIncrease, Transform attackerRefPos, float knockbackDuration)
    {
       if (!isParrying && !isStunned && !isGuarding)
       {
          TakeDamage(damage);
-         GetComponent<PlayerKnockback>().PlayerKnockbackFunction(knockbackPower, angle, direction, this.transform, stunDuration);
+         GetComponent<PlayerKnockback>().PlayerKnockbackFunction(knockbackPower, angle, this.transform, stunDuration, knockbackDuration);
          if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
             Destroy(attackerRefPos.gameObject);
          }
@@ -84,6 +84,7 @@ public class PlayerStats : MonoBehaviour
       else if (isGuarding && !isParrying && !isStunned)
       {
          Debug.Log("Guard hit");
+         IncreasePlayerStagger(playerParryIncrease);
          if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
             Destroy(attackerRefPos.gameObject);
          }
@@ -94,13 +95,12 @@ public class PlayerStats : MonoBehaviour
          Debug.Log("Parried");
          GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
          spark.GetComponent<ParticleSystem>().Play();
+         //Enemy stagger increases when player successfully parries the enemy's attack
+            attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
          if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
             if (tempProj.isReflectable) {
                tempProj.Bounce();
             }
-         }
-         else {
-            attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
          }
          //Destroy(spark, 2f);
       }
