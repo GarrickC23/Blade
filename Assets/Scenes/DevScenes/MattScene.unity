@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,6 +477,8 @@ MonoBehaviour:
   damage: 1
   knockbackPower: 0
   stunDuration: 0
+  knockbackDuration: 0
+  playerParryIncrease: 0
   speed: 50
 --- !u!61 &421103429
 BoxCollider2D:
@@ -1180,7 +1182,8 @@ MonoBehaviour:
   angle: 35
   knockbackPower: 10
   stunDuration: 0.2
-  direction: 1
+  knockbackDuration: 0
+  playerParryIncrease: 0
   attackRange: 5
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
   attackCooldown: 0

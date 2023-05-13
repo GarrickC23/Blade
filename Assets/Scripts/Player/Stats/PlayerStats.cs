@@ -96,7 +96,10 @@ public class PlayerStats : MonoBehaviour
          GameObject spark = Instantiate(sparks, transform.position, Quaternion.identity);
          spark.GetComponent<ParticleSystem>().Play();
          //Enemy stagger increases when player successfully parries the enemy's attack
-            attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
+         //attackerRefPos.gameObject.GetComponent<EnemyStats>().IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
+         if (attackerRefPos.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy)) {
+            enemy.IncreaseStagger(attackerRefPos.gameObject.GetComponent<EnemyStats>().EnemyStaggerIncreaseOnPlayerParry);
+         }
          if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
             if (tempProj.isReflectable) {
                tempProj.Bounce();

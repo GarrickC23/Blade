@@ -960,7 +960,7 @@ MonoBehaviour:
   attackRadius: 0.7
   attackPosition: {fileID: 1030885288}
   swingAttackDamage: 25
-  angle: 35
+  angle: 45
   knockbackPower: 50000
   stunDuration: 0.1
   direction: 1
