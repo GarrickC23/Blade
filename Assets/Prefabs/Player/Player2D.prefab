@@ -707,7 +707,7 @@ Transform:
   m_GameObject: {fileID: 1219213532512769593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16485618, y: 2.8031878, z: 0.026077747}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1030885288}
@@ -820,9 +820,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1219213532512769588}
-  moveSpeed: 8
-  jumpHeight: 10
-  jumpTime: 0.7
+  moveSpeed: 4.5
+  jumpHeight: 3
+  jumpTime: 0.5
   downwardsForce: 100
   fastFallForce: 200
   coyoteTime: 0.1
@@ -831,11 +831,11 @@ MonoBehaviour:
   canWallJump: 0
   horizontalWallJumpForce: 10
   wallJumpFrozenTime: 0.5
-  minSpeed: 8
-  maxSpeed: 10
+  minSpeed: 4.5
+  maxSpeed: 8
   smoothTime: 0.01
   dashingFrozenTime: 0.2
-  dashingPower: 34
+  dashingPower: 16
   dashingTime: 0.15
   dashingCooldown: 0.2
   grapplePoints: []
@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
-  health: 0
+  health: 5
   isParrying: 0
   isGuarding: 0
   isStunned: 0
