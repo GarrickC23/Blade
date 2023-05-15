@@ -11,7 +11,6 @@ public class EnemyAttack : MonoBehaviour
     public float damage, angle, knockbackPower, stunDuration, knockbackDuration, playerParryIncrease;
     public float attackRange;
     public GameObject sparks;
-    public float attackCooldown;
     private Animator anim;
     public string attackName;
 
@@ -49,7 +48,7 @@ public class EnemyAttack : MonoBehaviour
             }
             PrevHits.Add(hit);
             //Debug.Log("Collider hit " + hit.gameObject);
-            if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
+            if(hit.gameObject.TryGetComponent<PlayerCombat>(out PlayerCombat player))
             {   
                 player.Attacked(damage, angle, knockbackPower, stunDuration, playerParryIncrease, transform, knockbackDuration);
 

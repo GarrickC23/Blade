@@ -11,7 +11,7 @@ public class Abyss : MonoBehaviour
             if (player.health > damageDealt) {
                 player.RespawnAtCheckPoint();
             }
-            player.TakeDamage(1);
+            player.GetComponent<PlayerCombat>().TakeDamage(1);
         }
     }
 }

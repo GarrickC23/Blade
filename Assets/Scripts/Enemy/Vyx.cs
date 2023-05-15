@@ -66,7 +66,7 @@ public class Vyx : Enemy
             anim.Play("FoxAttack1");
             foreach (Collider2D hit in Hits)
             {
-                if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
+                if(hit.gameObject.TryGetComponent<PlayerCombat>(out PlayerCombat player))
                 {
                     player.Attacked(damage, angle, knockbackPower, stunDuration, playerParryIncrease, transform, knockbackDuration);
                 }

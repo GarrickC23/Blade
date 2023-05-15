@@ -61,7 +61,7 @@ public class EnemyStats : MonoBehaviour
     {
         if (isParrying){
             IncreaseStagger(damage);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().IncreasePlayerStagger(PlayerStaggerIncrease);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>().IncreasePlayerStagger(PlayerStaggerIncrease);
             GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * knockbackPowerMultiplier, angle, direction, attackerRefPos, stunDuration * stunDurationMultiplier);
         }
         else 
