@@ -983,7 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567a6e8a0ec749e4abb94c45b5803469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parryDuration: 0.3
+  parryDuration: 0.1
   delayBetweenBlocks: 0.5
 --- !u!114 &404671938
 MonoBehaviour:
@@ -999,8 +999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   health: 5
-  InvulnerableDuration: 2
-  InvulnerableFlashPeriod: 0.1
+  InvulnerableDuration: 1.5
+  InvulnerableFlashPeriod: 0.2
   isParrying: 0
   isGuarding: 0
   isStunned: 0

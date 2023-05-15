@@ -5651,7 +5651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833885798410279842, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.28
+      value: 2.22
       objectReference: {fileID: 0}
     - target: {fileID: 3833885798410279842, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5930,7 +5930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82c03000a4634a61a61fe95cf5fc9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1216675337}
 --- !u!1001 &691835633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6143,11 +6142,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ae98e879fd3b0468bb6a7668870c3f, type: 3}
---- !u!1 &1216675337 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1219213532512769593, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
-  m_PrefabInstance: {fileID: 2053415113}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2053415113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6232,6 +6226,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2D
       objectReference: {fileID: 0}
+    - target: {fileID: 5455724835242358036, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 393520029}
+    - target: {fileID: 5455724835242358036, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 393520028}
+    - target: {fileID: 5455724835242358036, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: hearts.Array.data[2]
+      value: 
+      objectReference: {fileID: 393520027}
+    - target: {fileID: 5455724835242358036, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: hearts.Array.data[3]
+      value: 
+      objectReference: {fileID: 393520026}
+    - target: {fileID: 5455724835242358036, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
+      propertyPath: hearts.Array.data[4]
+      value: 
+      objectReference: {fileID: 393520025}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ae46668cc6d6a4c99fcd9a305d88a4, type: 3}
