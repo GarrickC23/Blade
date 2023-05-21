@@ -7,6 +7,7 @@ public class LockOn : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemy;
+    public GameObject lockOnIndicator;
     public float lockRadius;                            // How far the player can lock onto an enemy
     private PlayerControls playerControls;              // Input System variable
 
@@ -26,6 +27,14 @@ public class LockOn : MonoBehaviour
         playerControls.Disable(); 
     }
 
+    private void Update() {
+        if (enemy != null) {
+            lockOnIndicator.transform.position = enemy.transform.position;
+        }
+        else {
+            lockOnIndicator.SetActive(false);
+        }
+    }
 
     public bool IsLocked() {
         return enemy != null;
@@ -54,6 +63,7 @@ public class LockOn : MonoBehaviour
             }
             else {
                 enemy = closestEnemy;
+                lockOnIndicator.SetActive(true);
             }
         }
     }
