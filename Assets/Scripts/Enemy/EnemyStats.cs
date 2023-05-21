@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static EnemyKnockback;
 
+//Enemy should get stuff from EnemyStats
 public class EnemyStats : MonoBehaviour
 {
     public float maxHealth;
