@@ -559,7 +559,7 @@ Transform:
   m_GameObject: {fileID: 3833885798410279847}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.18, y: -7.69, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3833885798110397640}
@@ -704,10 +704,9 @@ MonoBehaviour:
   knockbackPower: 15
   stunDuration: 0.5
   knockbackDuration: 0.5
-  direction: 1
+  playerParryIncrease: 0
   attackRange: 5
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
-  attackCooldown: 2
   attackName: OniAttack
 --- !u!50 &4800846417615905612
 Rigidbody2D:

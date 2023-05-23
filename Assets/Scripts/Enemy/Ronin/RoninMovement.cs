@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class RoninMovement : EnemyMovement1
 {
-    public float posXPaceDistance;
-    public float negXPaceDistance;
+    // public float posXPaceDistance;
+    // public float negXPaceDistance;
 
-    public float walkSpeed;
+    // public float walkSpeed;
 
-    public float aggroRange;
+    // public float aggroRange;
 
-    public float tetherRange; // max distance from enemy's starting position, left patrol pos, and right patrol pos
+    // public float tetherRange; // max distance from enemy's starting position, left patrol pos, and right patrol pos
 
-    bool movingRight = true;
-    bool isPatrolling = true;
+    // bool movingRight = true;
+    // bool isPatrolling = true;
     
     GameObject player;
 

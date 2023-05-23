@@ -14,8 +14,8 @@ public abstract class EnemyMovement1 : MonoBehaviour
 
     public float tetherRange; // max distance from enemy's starting position, left patrol pos, and right patrol pos
 
-    bool movingRight = true;
-    bool isPatrolling = true;
+    public bool movingRight = true;
+    public bool isPatrolling = true;
     
     GameObject player;
 
