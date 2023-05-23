@@ -8,9 +8,13 @@ using static EnemyKnockback;
 public class EnemyStats : MonoBehaviour
 {
     public float maxHealth;
-    float health;
+    public float health;
+
+    [HideInInspector]
+    public bool isParrying = true;
+    
+    [Header("Stagger Variables")]
     public float stagger = 0, maxStagger, parryResetTimer, staggerDecayAmount, staggerDecayRate, staggerDecayDelay;
-    bool isParrying = true;
     public float PlayerStaggerIncrease;
     public float EnemyStaggerIncreaseOnPlayerParry;
 
@@ -19,11 +23,9 @@ public class EnemyStats : MonoBehaviour
 
     [HideInInspector]
     public bool isStunned = false;
+    public bool isAttacking = false;
 
-    [Header("Stagger UI")]
-   public Slider staggerBarSlider;
-   public Image staggerBarSliderFillColor;
-   public Image staggerBarSliderBackgroundColor;
+    
 
    [Header("Enemy Resistance Stats")]
     public float knockbackPowerMultiplier; //multiplies knockback received recieved by enemy knockback resistance
@@ -35,81 +37,4 @@ public class EnemyStats : MonoBehaviour
     {
         health = maxHealth;
     }
-
-    private void Update() {
-        staggerBarSlider.value = stagger/maxStagger;
-      if (stagger == 0){
-         staggerBarSliderFillColor.color = new Color(255,0,0,0);
-         staggerBarSliderBackgroundColor.color = new Color(255,255,255,0);
-      }
-      else{
-         staggerBarSliderFillColor.color = new Color(255,0,0,1);
-         staggerBarSliderBackgroundColor.color = new Color(255,255,255,1);
-      }
-    }
-
-    private void LateUpdate() {
-      //scuffed way of rotating the slider
-      if(gameObject.transform.rotation.y == 180){
-         staggerBarSlider.transform.parent.rotation = Quaternion.Euler(0,180,0);
-      }
-      else{
-         staggerBarSlider.transform.parent.rotation = Quaternion.Euler(0,0,0);
-      }
-   }
-
-    public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Direction direction, Transform attackerRefPos)
-    {
-        if (isParrying){
-            IncreaseStagger(damage);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>().IncreasePlayerStagger(PlayerStaggerIncrease);
-            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * knockbackPowerMultiplier, angle, direction, attackerRefPos, stunDuration * stunDurationMultiplier);
-        }
-        else 
-        {
-            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * knockbackPowerMultiplier, angle, direction, attackerRefPos, stunDuration * stunDurationMultiplier);
-
-            TakeDamage(damage * damageTakenMultiplier);
-        }
-    }
-
-    private void TakeDamage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void IncreaseStagger(float staggerIncrease){
-        CancelInvoke("decayStagger");
-        stagger += staggerIncrease;
-        if (stagger >= maxStagger){
-            isParrying = false;
-            isStunned = true;
-            Invoke("resetParry", parryResetTimer);
-        }
-        InvokeRepeating("decayStagger", staggerDecayDelay, staggerDecayRate);
-    }
-
-    private void resetParry(){
-        isParrying = true;
-        stagger = 0;
-        isStunned = false;
-    }
-
-    private void decayStagger(){
-      if (stagger > 0){
-        stagger -= staggerDecayAmount;
-      }
-      if (stagger < 0){
-        stagger = 0;
-        CancelInvoke("decayStagger");
-      }
-   }
-
-
-
-
 }

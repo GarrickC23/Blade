@@ -6,20 +6,13 @@ public class PlayerKnockback : MonoBehaviour
 {
 
     public void PlayerKnockbackFunction(float strength, float angle, Transform XReferencePoint){
-        int dir, Xdifference;
+        int dir;
         
         if (XReferencePoint.position.x - transform.position.x >= 0){
-            dir = 1;
+            dir = -1;
         }
-        else dir = -1;
-
-        if (XReferencePoint.position.x - transform.position.x >= 0)
-        {
-            Xdifference = -1;
-        }
-        else 
-        Xdifference = 1;
+        else dir = 1;
         
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(dir*Xdifference*strength*Mathf.Cos(Mathf.Deg2Rad*angle),strength*Mathf.Sin(Mathf.Deg2Rad*angle)), ForceMode2D.Impulse);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(dir*strength*Mathf.Cos(Mathf.Deg2Rad*angle),strength*Mathf.Sin(Mathf.Deg2Rad*angle)), ForceMode2D.Impulse);
     }
 }

@@ -1053,8 +1053,7 @@ MonoBehaviour:
   swingAttackDamage: 25
   angle: 45
   knockbackPower: 50000
-  stunDuration: 0.1
-  direction: 1
+  stunDuration: 0.5
   attackCoolDown: 0.5
 --- !u!114 &404671937
 MonoBehaviour:

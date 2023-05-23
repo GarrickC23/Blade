@@ -19,6 +19,10 @@ public class EnemyMovement : Enemy
     
     GameObject player;
 
+    EnemyStats enemyStatsRef;
+    private void Awake() {
+        enemyStatsRef = GetComponent<EnemyStats>();
+    }
     protected override void Start() {
         posXPaceDistance = transform.position.x + posXPaceDistance;
         negXPaceDistance = transform.position.x - negXPaceDistance;
@@ -27,11 +31,14 @@ public class EnemyMovement : Enemy
 
     void Update() {
         EnemyWalk();
-        if (GetComponent<EnemyAttack>().isAttacking){
+        if ((enemyStatsRef.isAttacking || enemyStatsRef.isStunned) && !enemyStatsRef.isKnockedBack){
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
     }
     protected override void EnemyWalk(){
+        if (enemyStatsRef.isStunned || enemyStatsRef.isKnockedBack){
+            return;
+        }
         if (InRange() && IsWithinTetherRange()){ //if the player is in range of the enemy and the enemy is within its tether range
             isPatrolling = false;
         }

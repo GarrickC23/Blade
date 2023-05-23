@@ -5,7 +5,6 @@ using System;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public bool isAttacking = false;
     public Transform attackPosition;
     public float attackRadius;
     public float damage, angle, knockbackPower, stunDuration, knockbackDuration, playerParryIncrease;
@@ -18,6 +17,12 @@ public class EnemyAttack : MonoBehaviour
 
     private List<Collider2D> PrevHits = new List<Collider2D>();
 
+    private EnemyStats enemyStatsRef;
+
+    private void Awake() {
+        enemyStatsRef = GetComponent<EnemyStats>();
+    }
+
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = gameObject.GetComponent<Animator>();
@@ -28,12 +33,12 @@ public class EnemyAttack : MonoBehaviour
     {
         // if (!isAttacking) StartCoroutine("AttackCoroutine");
         // if (isAttacking) Attack();
-        if (!isAttacking && InRange() && !GetComponent<EnemyStats>().isStunned) {
-            isAttacking = true;
+        if (!enemyStatsRef.isAttacking && InRange() && !enemyStatsRef.isStunned && !enemyStatsRef.isKnockedBack) {
+            enemyStatsRef.isAttacking = true;
             anim.Play(attackName);
             PrevHits.Clear();
         }
-        if (isAttacking) {
+        if (enemyStatsRef.isAttacking) {
             Attack();
         }
     }
@@ -60,14 +65,14 @@ public class EnemyAttack : MonoBehaviour
 
     private IEnumerator AttackCoroutine()
     {
-        isAttacking = true;
+        enemyStatsRef.isAttacking = true;
         Attack();
         yield return new WaitForSeconds(1f);
         Attack();
         yield return new WaitForSeconds(1f);
         Attack();
         yield return new WaitForSeconds(1f);
-        isAttacking = false;
+        enemyStatsRef.isAttacking = false;
     }
 
     private bool InRange() {
