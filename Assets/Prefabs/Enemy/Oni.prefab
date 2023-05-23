@@ -543,6 +543,9 @@ GameObject:
   - component: {fileID: 4800846417615905612}
   - component: {fileID: 1872188548}
   - component: {fileID: 129552748}
+  - component: {fileID: 1437438828}
+  - component: {fileID: 1437438829}
+  - component: {fileID: 1437438839}
   m_Layer: 3
   m_Name: Oni
   m_TagString: Enemy
@@ -565,7 +568,7 @@ Transform:
   - {fileID: 3833885798110397640}
   - {fileID: 1173234709}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &3833885798410279845
 SpriteRenderer:
@@ -668,6 +671,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
+  isParrying: 1
   stagger: 0
   maxStagger: 100
   parryResetTimer: 2
@@ -678,11 +683,8 @@ MonoBehaviour:
   EnemyStaggerIncreaseOnPlayerParry: 35
   isKnockedBack: 0
   isStunned: 0
-  staggerBarSlider: {fileID: 1425760654}
-  staggerBarSliderFillColor: {fileID: 2050414226}
-  staggerBarSliderBackgroundColor: {fileID: 401052655}
   knockbackPowerMultiplier: 1
-  stunDurationMultiplier: 1
+  stunDurationMultiplier: 5
   damageTakenMultiplier: 1
 --- !u!114 &3833885798410279840
 MonoBehaviour:
@@ -700,14 +702,13 @@ MonoBehaviour:
   attackPosition: {fileID: 3833885798110397640}
   attackRadius: 2
   damage: 1
-  angle: 45
-  knockbackPower: 15
+  angle: 15
+  knockbackPower: 20
   stunDuration: 0.5
   knockbackDuration: 0.5
-  direction: 1
+  playerParryIncrease: 0
   attackRange: 5
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
-  attackCooldown: 2
   attackName: OniAttack
 --- !u!50 &4800846417615905612
 Rigidbody2D:
@@ -759,3 +760,42 @@ MonoBehaviour:
   walkSpeed: 4
   aggroRange: 3
   tetherRange: 3
+--- !u!114 &1437438828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833885798410279847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8dfe100d9165d4b957ad49fd08f3df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1437438829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833885798410279847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604e00173c70caa4995fd8d723da7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1437438839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833885798410279847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9457406441a04479808fed2901ab5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staggerBarSlider: {fileID: 1425760654}
+  staggerBarSliderFillColor: {fileID: 2050414226}
+  staggerBarSliderBackgroundColor: {fileID: 401052655}

@@ -14,8 +14,6 @@ public class PlayerAttack : MonoBehaviour
 
     public float swingAttackDamage, angle, knockbackPower, stunDuration;
 
-    public Direction direction; 
-
     public float attackCoolDown;
 
     float attackTimer = 0f;
@@ -66,9 +64,9 @@ public class PlayerAttack : MonoBehaviour
     private void Swing(Collider2D hit)
     {
         //Debug.Log(hit.gameObject);
-        if(hit.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy))
+        if(hit.gameObject.TryGetComponent<EnemyCombat>(out EnemyCombat enemy))
         {
-            enemy.EnemyAttacked(swingAttackDamage, angle, knockbackPower, stunDuration, direction, transform);
+            enemy.EnemyAttacked(swingAttackDamage, angle, knockbackPower, stunDuration, transform);
         }
     }
 

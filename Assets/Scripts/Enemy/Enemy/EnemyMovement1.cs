@@ -27,7 +27,7 @@ public abstract class EnemyMovement1 : MonoBehaviour
 
     void Update() {
         EnemyWalk();
-        if (GetComponent<EnemyAttack>().isAttacking){
+        if (GetComponent<EnemyStats>().isAttacking){
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
     }
