@@ -755,13 +755,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ed385495703504e9cb44810267f54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posXPaceDistance: 0.5
-  negXPaceDistance: 2
+  maxXPaceDistance: 5
+  minXPaceDistance: 5
   walkSpeed: 4
   aggroMoveSpeedMultiplier: 1.25
   aggroRange: 5
   tetherRange: 3
-  tetherResetTimer: 2
+  tetherResetDuration: 0.5
+  paceEndpointPauseDuration: 1
+  canMovePatrolling: 1
 --- !u!114 &1437438828
 MonoBehaviour:
   m_ObjectHideFlags: 0

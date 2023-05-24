@@ -451,14 +451,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 129552748, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
-      propertyPath: maxXPaceDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 129552748, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
-      propertyPath: minXPaceDistance
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1117460187, guid: f746227b3b9a4409fb7bf40030c3e850, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

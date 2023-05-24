@@ -48,9 +48,11 @@ public class EnemyMovement : Enemy
     }
 
     void Update() {
-        EnemyWalk();
         if ((enemyStatsRef.isAttacking || enemyStatsRef.isStunned || !canMovePatrolling) && !enemyStatsRef.isKnockedBack){
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+        }
+        else{
+            EnemyWalk();
         }
     }
     
@@ -122,14 +124,18 @@ public class EnemyMovement : Enemy
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-walkSpeed, transform.GetComponent<Rigidbody2D>().velocity.y);
         }
         if (transform.position.x >= currMaxXPaceDistance) {
+            if (movingRight){
+                SetCanMovePatrolling();
+            }
             movingRight = false;
             //UpdatePatrolPoints();
-            SetCanMovePatrolling();
         } 
         else if (transform.position.x <= currMinXPaceDistance) {
+            if (!movingRight){
+                SetCanMovePatrolling();
+            }
             movingRight = true;
             UpdatePatrolPoints();
-            SetCanMovePatrolling();
         }
     }
 
@@ -144,6 +150,7 @@ public class EnemyMovement : Enemy
 
     private void SetCanMovePatrolling(){
         canMovePatrolling = false;
+        CancelInvoke("PaceEndpointPauseDurationInvokeHelper");
         Invoke("PaceEndpointPauseDurationInvokeHelper", paceEndpointPauseDuration);
 
     }
