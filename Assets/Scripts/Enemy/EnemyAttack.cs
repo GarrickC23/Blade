@@ -33,7 +33,7 @@ public class EnemyAttack : MonoBehaviour
     {
         // if (!isAttacking) StartCoroutine("AttackCoroutine");
         // if (isAttacking) Attack();
-        if (!enemyStatsRef.isAttacking && InRange() && !enemyStatsRef.isStunned && !enemyStatsRef.isKnockedBack) {
+        if (!enemyStatsRef.isAttacking && InAttackRange() && !enemyStatsRef.isStunned && !enemyStatsRef.isKnockedBack) {
             enemyStatsRef.isAttacking = true;
             anim.Play(attackName);
             PrevHits.Clear();
@@ -75,7 +75,7 @@ public class EnemyAttack : MonoBehaviour
         enemyStatsRef.isAttacking = false;
     }
 
-    private bool InRange() {
+    private bool InAttackRange() {
         Vector2 currPos = this.gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, attackRange, 3);

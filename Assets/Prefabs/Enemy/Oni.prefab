@@ -683,6 +683,7 @@ MonoBehaviour:
   EnemyStaggerIncreaseOnPlayerParry: 35
   isKnockedBack: 0
   isStunned: 0
+  isAttacking: 0
   knockbackPowerMultiplier: 1
   stunDurationMultiplier: 5
   damageTakenMultiplier: 1
@@ -698,7 +699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958ef8bdaf0eac54baabf1363dd61b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttacking: 0
   attackPosition: {fileID: 3833885798110397640}
   attackRadius: 2
   damage: 1
@@ -707,7 +707,7 @@ MonoBehaviour:
   stunDuration: 0.5
   knockbackDuration: 0.5
   playerParryIncrease: 0
-  attackRange: 5
+  attackRange: 2
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}
   attackName: OniAttack
 --- !u!50 &4800846417615905612
@@ -758,8 +758,10 @@ MonoBehaviour:
   posXPaceDistance: 0.5
   negXPaceDistance: 2
   walkSpeed: 4
-  aggroRange: 3
+  aggroMoveSpeedMultiplier: 1.25
+  aggroRange: 5
   tetherRange: 3
+  tetherResetTimer: 2
 --- !u!114 &1437438828
 MonoBehaviour:
   m_ObjectHideFlags: 0
