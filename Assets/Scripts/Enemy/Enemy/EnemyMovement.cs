@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyMovement1 : MonoBehaviour
+public abstract class EnemyMovement : MonoBehaviour
 {
 
     public float posXPaceDistance;
@@ -17,24 +17,15 @@ public abstract class EnemyMovement1 : MonoBehaviour
     public bool movingRight = true;
     public bool isPatrolling = true;
     
-    GameObject player;
+    protected GameObject player;
 
-    protected void Start() {
-        posXPaceDistance = transform.position.x + posXPaceDistance;
-        negXPaceDistance = transform.position.x - negXPaceDistance;
-        player = GameObject.FindWithTag("Player");
-    }
+    protected abstract void Start();
 
-    void Update() {
-        EnemyWalk();
-        if (GetComponent<EnemyStats>().isAttacking){
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-        }
-    }
+    protected abstract void Update();
 
     protected abstract void EnemyWalk();
 
-    protected abstract bool InRange();
+    protected abstract bool InAggroRange();
 
     protected abstract void Chase();
 

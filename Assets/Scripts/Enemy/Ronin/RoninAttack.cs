@@ -1,41 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class RoninAttack : EnemyAttack1
+public class RoninAttack : EnemyAttack
 {
-    public bool isAttacking = false;
-    public Transform attackPosition;
-    public float attackRadius;
-    public float damage, angle, knockbackPower, stunDuration, knockbackDuration, playerParryIncrease;
-    public float attackRange;
-    public GameObject sparks;
-    private Animator anim;
-    public string attackName;
+    private EnemyStats enemyStatsRef;
 
-    private GameObject player;
+    private void Awake() {
+        enemyStatsRef = GetComponent<EnemyStats>();
+    }
 
-    private List<Collider2D> PrevHits = new List<Collider2D>();
+    protected override void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");
+        anim = gameObject.GetComponent<Animator>();
+    }
 
-    // void Start() {
-    //     player = GameObject.FindGameObjectWithTag("Player");
-    //     anim = gameObject.GetComponent<Animator>();
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     // if (!isAttacking) StartCoroutine("AttackCoroutine");
-    //     // if (isAttacking) Attack();
-    //     if (!isAttacking && InRange() && !GetComponent<EnemyStats>().isStunned) {
-    //         isAttacking = true;
-    //         anim.Play(attackName);
-    //         PrevHits.Clear();
-    //     }
-    //     if (isAttacking) {
-    //         Attack();
-    //     }
-    // }
+    protected override void Update()
+    {
+        if (!enemyStatsRef.isAttacking && InAttackRange() && !enemyStatsRef.isStunned && !enemyStatsRef.isKnockedBack) {
+            enemyStatsRef.isAttacking = true;
+            anim.Play(attackName);
+            PrevHits.Clear();
+        }
+        if (enemyStatsRef.isAttacking) {
+            Attack();
+        }
+    }
 
     protected override void Attack()
     {
@@ -46,34 +37,30 @@ public class RoninAttack : EnemyAttack1
                 continue;
             }
             PrevHits.Add(hit);
-            //Debug.Log("Collider hit " + hit.gameObject);
             if(hit.gameObject.TryGetComponent<PlayerCombat>(out PlayerCombat player))
             {   
                 player.Attacked(damage, angle, knockbackPower, stunDuration, playerParryIncrease, transform, knockbackDuration);
-
-                // GameObject spark = Instantiate(sparks, attackPosition.position, Quaternion.identity);
-                // spark.GetComponent<ParticleSystem>().Play(); 
             }
         }
     }
 
     private IEnumerator AttackCoroutine()
     {
-        isAttacking = true;
+        enemyStatsRef.isAttacking = true;
         Attack();
         yield return new WaitForSeconds(1f);
         Attack();
         yield return new WaitForSeconds(1f);
         Attack();
         yield return new WaitForSeconds(1f);
-        isAttacking = false;
+        enemyStatsRef.isAttacking = false;
     }
 
-    protected override bool InRange() {
+    protected override bool InAttackRange() {
         Vector2 currPos = this.gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, attackRange, 3);
-        if (ray && (ray.collider.gameObject == player || ray.collider.transform.parent.gameObject == player)) {
+        if (ray && (ray.collider.gameObject == player || (ray.collider.transform.parent != null && ray.collider.transform.parent.gameObject == player))) {
             return true;
         }
 
