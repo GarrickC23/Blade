@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Mt. Lunala/DemoScenes/Tutorial Scene.unity
+    guid: a7c08bd62c7564c8ca5ba81633efd7df
+  - enabled: 1
+    path: Assets/Scenes/Mt. Lunala/DemoScenes/Bridge.unity
+    guid: f1cd3de1ca4564e40909b96fab9cefb3
+  - enabled: 1
+    path: Assets/Scenes/Mt. Lunala/DemoScenes/Room1.unity
+    guid: 234653634cd9e4f56bac33f915baa46d
   m_configObjects: {}

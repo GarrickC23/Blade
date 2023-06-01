@@ -107,6 +107,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""f67d7e75-4659-4acb-9518-b5865775d5ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -307,6 +316,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Grapple"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cb29236-ddda-4c1f-a735-728224a724fe"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -336,6 +356,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ground_Interact = m_Ground.FindAction("Interact", throwIfNotFound: true);
         m_Ground_Dash = m_Ground.FindAction("Dash", throwIfNotFound: true);
         m_Ground_Grapple = m_Ground.FindAction("Grapple", throwIfNotFound: true);
+        m_Ground_LockOn = m_Ground.FindAction("LockOn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -404,6 +425,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Interact;
     private readonly InputAction m_Ground_Dash;
     private readonly InputAction m_Ground_Grapple;
+    private readonly InputAction m_Ground_LockOn;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -417,6 +439,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Ground_Interact;
         public InputAction @Dash => m_Wrapper.m_Ground_Dash;
         public InputAction @Grapple => m_Wrapper.m_Ground_Grapple;
+        public InputAction @LockOn => m_Wrapper.m_Ground_LockOn;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -453,6 +476,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Grapple.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnGrapple;
                 @Grapple.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnGrapple;
                 @Grapple.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnGrapple;
+                @LockOn.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnLockOn;
+                @LockOn.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnLockOn;
+                @LockOn.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnLockOn;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -484,6 +510,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Grapple.started += instance.OnGrapple;
                 @Grapple.performed += instance.OnGrapple;
                 @Grapple.canceled += instance.OnGrapple;
+                @LockOn.started += instance.OnLockOn;
+                @LockOn.performed += instance.OnLockOn;
+                @LockOn.canceled += instance.OnLockOn;
             }
         }
     }
@@ -508,5 +537,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
     }
 }

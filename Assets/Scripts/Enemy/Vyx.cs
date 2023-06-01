@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerKnockback;
 
 public class Vyx : Enemy
 {
@@ -13,8 +12,7 @@ public class Vyx : Enemy
     private bool isAttacking = false;
     public Transform attackPosition;
     public float attackRadius;
-    public float damage, angle, knockbackPower, stunDuration;
-    public Direction direction; 
+    public float damage, angle, knockbackPower, stunDuration, knockbackDuration, playerParryIncrease;
 
     [Header("Stats")]
     [SerializeField] private float health = 10f; 
@@ -68,9 +66,9 @@ public class Vyx : Enemy
             anim.Play("FoxAttack1");
             foreach (Collider2D hit in Hits)
             {
-                if(hit.gameObject.TryGetComponent<PlayerStats>(out PlayerStats player))
+                if(hit.gameObject.TryGetComponent<PlayerCombat>(out PlayerCombat player))
                 {
-                    player.Attacked(damage, angle, knockbackPower, stunDuration, direction);
+                    player.Attacked(damage, angle, knockbackPower, stunDuration, playerParryIncrease, transform, knockbackDuration);
                 }
             }
         }

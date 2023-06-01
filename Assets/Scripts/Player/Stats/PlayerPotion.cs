@@ -33,7 +33,7 @@ public class PlayerPotion : MonoBehaviour
                 Debug.Log(stats.health);
                 stats.health += 1;
             }
-            stats.HeartUpdate();
+            stats.GetComponent<PlayerUI>().HeartUpdate();
         }
     }
 }
