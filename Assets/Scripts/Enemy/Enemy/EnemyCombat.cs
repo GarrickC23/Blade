@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
 
+    float flashRedTime = 0.5f;
     EnemyStats enemyStatsRef;
     EnemyStagger enemyStaggerRef;
     float knockbackDuration = 0.25f; //fixed knockback duration for enemies
@@ -31,6 +32,7 @@ public class EnemyCombat : MonoBehaviour
     private void TakeDamage(float damage)
     {
         enemyStatsRef.health -= damage;
+        FlashRed();
         if (enemyStatsRef.health <= 0)
         {
             Destroy(gameObject);
@@ -50,4 +52,14 @@ public class EnemyCombat : MonoBehaviour
         yield return new WaitForSeconds(knockbackDuration);
         enemyStatsRef.isKnockedBack = false;
     }
+
+
+    private void FlashRed(){
+        GetComponent<SpriteRenderer>().color = Color.red;
+        Invoke("FlashRedHelperStop", flashRedTime);
+    }
+
+   private void FlashRedHelperStop(){
+        GetComponent<SpriteRenderer>().color = Color.white;
+   }
 }

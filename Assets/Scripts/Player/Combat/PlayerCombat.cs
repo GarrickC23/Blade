@@ -119,7 +119,6 @@ public class PlayerCombat : MonoBehaviour
    private void FlashInvulernable(){
         InvokeRepeating("FlashInverunableHelperInvoke",0, playerStatsRef.InvulnerableFlashPeriod);
         Invoke("FlashInvunerableHelperStop", playerStatsRef.InvulnerableDuration);
-        
    }
    
    private void FlashInverunableHelperInvoke(){
@@ -136,6 +135,6 @@ public class PlayerCombat : MonoBehaviour
    private void FlashInvunerableHelperStop(){
         Color color =GetComponent<SpriteRenderer>().color;
         CancelInvoke("FlashInverunableHelperInvoke");
-        GetComponent<SpriteRenderer>().color = Color.white;
+        color = Color.white;
    }
 }
