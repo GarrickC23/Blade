@@ -8,10 +8,16 @@ public class PlayerCombat : MonoBehaviour
     PlayerStats playerStatsRef;
     PlayerUI playerUIRef;
     private Animator anim;
+
+    SpriteRenderer spriteRendererRef = null;
     private void Awake() {
         playerStatsRef = GetComponent<PlayerStats>();
         playerUIRef = GetComponent<PlayerUI>();
         anim = GetComponent<Animator>();
+        
+        if (TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)){
+         spriteRendererRef = sr;
+        }
     }
     
     //called by enemy when it wants to attack the player
@@ -122,19 +128,19 @@ public class PlayerCombat : MonoBehaviour
    }
    
    private void FlashInverunableHelperInvoke(){
-        Color color = GetComponent<SpriteRenderer>().color;
-        if (color == Color.white){
-            color = Color.clear; //set player sprite visible
+        Color Color = spriteRendererRef.color;
+        if (Color == Color.white){
+            Color = Color.clear; //set player sprite visible
         }
         else{
-            color = Color.white; //set player sprite invisible
+            Color = Color.white; //set player sprite invisible
         }
-        GetComponent<SpriteRenderer>().color = color;
+        spriteRendererRef.color = Color;
    }
 
    private void FlashInvunerableHelperStop(){
-        Color color =GetComponent<SpriteRenderer>().color;
+        
         CancelInvoke("FlashInverunableHelperInvoke");
-        color = Color.white;
+        spriteRendererRef.color = Color.white;
    }
 }

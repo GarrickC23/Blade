@@ -6,12 +6,22 @@ public class EnemyCombat : MonoBehaviour
 {
 
     float flashRedTime = 0.5f;
-    EnemyStats enemyStatsRef;
-    EnemyStagger enemyStaggerRef;
+    EnemyStats enemyStatsRef = null;
+    EnemyStagger enemyStaggerRef = null;
+
+    SpriteRenderer spriteRendererRef = null;
     float knockbackDuration = 0.25f; //fixed knockback duration for enemies
     private void Awake() {
-        enemyStatsRef = GetComponent<EnemyStats>();
-        enemyStaggerRef = GetComponent<EnemyStagger>();
+        if (TryGetComponent<EnemyStats>(out EnemyStats enemystats)){
+            enemyStatsRef = enemystats;
+        }
+        if (TryGetComponent<EnemyStagger>(out EnemyStagger enemystagger)){
+            enemyStaggerRef = enemystagger;
+        }
+        if (TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)){
+            spriteRendererRef = sr;
+        }
+        
     }
     public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Transform attackerRefPos)
     {
@@ -55,11 +65,11 @@ public class EnemyCombat : MonoBehaviour
 
 
     private void FlashRed(){
-        GetComponent<SpriteRenderer>().color = Color.red;
+        spriteRendererRef.color = Color.red;
         Invoke("FlashRedHelperStop", flashRedTime);
     }
 
    private void FlashRedHelperStop(){
-        GetComponent<SpriteRenderer>().color = Color.white;
+        spriteRendererRef.color = Color.white;
    }
 }
