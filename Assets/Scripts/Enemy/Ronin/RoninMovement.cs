@@ -33,6 +33,7 @@ public class RoninMovement : EnemyMovement
     public bool canMovePatrolling = true;
     bool canChase = true; //if the enemy can chase the player. Resets when the enemy is pulled out of tether range
     
+    private Animator anim; 
     //private GameObject player;
 
     EnemyStats enemyStatsRef;
@@ -44,6 +45,8 @@ public class RoninMovement : EnemyMovement
         maxXPaceDistance = transform.position.x + maxXPaceDistance;
         minXPaceDistance = transform.position.x - minXPaceDistance;
         player = GameObject.FindWithTag("Player");
+
+        anim = gameObject.GetComponent<Animator>();
     }
 
     protected override void Update() {
@@ -57,14 +60,15 @@ public class RoninMovement : EnemyMovement
     
     void LateUpdate(){
         if(GetComponent<Rigidbody2D>().velocity.x > 0){ //if the enemy is moving right
-            transform.rotation = Quaternion.Euler(0, 0, 0); //make the enemy face right
+            transform.rotation = Quaternion.Euler(0, 180, 0); //make the enemy face right
         }
         else{
-            transform.rotation = Quaternion.Euler(0, 180, 0); //make the enemy face left
+            transform.rotation = Quaternion.Euler(0, 0, 0); //make the enemy face left
         }
     }
 
     protected override void EnemyWalk(){
+        anim.Play("Walk");
         if (enemyStatsRef.isStunned || enemyStatsRef.isKnockedBack){
             return;
         }
@@ -89,6 +93,7 @@ public class RoninMovement : EnemyMovement
     }
 
     protected override bool InAggroRange() {
+        anim.SetBool("Fight", true);
         Vector2 currPos = gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, aggroRange, 3);
@@ -113,6 +118,7 @@ public class RoninMovement : EnemyMovement
 
     protected override bool IsWithinTetherRange(){
         if (transform.position.x >= currMaxXPaceDistance + tetherRange || transform.position.x <= currMinXPaceDistance - tetherRange) {
+            anim.SetBool("Fight", false);
             return false;
         }
         return true;
