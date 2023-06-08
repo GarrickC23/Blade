@@ -538,11 +538,11 @@ GameObject:
   - component: {fileID: 2744915010433662109}
   - component: {fileID: 2744915010433662108}
   - component: {fileID: 2744915010433662107}
-  - component: {fileID: 2744915010433662105}
   - component: {fileID: 5873642912802276468}
   - component: {fileID: 1379042096357749692}
   - component: {fileID: 1379042095918773332}
   - component: {fileID: 1379042095918773333}
+  - component: {fileID: 2744915010433662105}
   - component: {fileID: 1379042095918773327}
   - component: {fileID: 1379042094781953308}
   - component: {fileID: 1379042094781953307}
@@ -658,35 +658,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.72167826, y: 0.31377292}
   m_Size: {x: 2.155674, y: 5.877729}
   m_Direction: 0
---- !u!114 &2744915010433662105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2744915010433662111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9066b9057c1d9b747ace3a64a856749f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 0
-  isParrying: 1
-  stagger: 0
-  maxStagger: 100
-  parryResetTimer: 2
-  staggerDecayAmount: 2
-  staggerDecayRate: 5
-  staggerDecayDelay: 10
-  PlayerStaggerIncrease: 15
-  EnemyStaggerIncreaseOnPlayerParry: 35
-  isKnockedBack: 0
-  isStunned: 0
-  isAttacking: 0
-  knockbackPowerMultiplier: 1
-  stunDurationMultiplier: 5
-  damageTakenMultiplier: 1
 --- !u!50 &5873642912802276468
 Rigidbody2D:
   serializedVersion: 4
@@ -744,6 +715,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604e00173c70caa4995fd8d723da7866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDuration: 1.5
+--- !u!114 &2744915010433662105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744915010433662111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9066b9057c1d9b747ace3a64a856749f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
+  isParrying: 1
+  stagger: 0
+  maxStagger: 100
+  parryResetTimer: 2
+  staggerDecayAmount: 2
+  staggerDecayRate: 5
+  staggerDecayDelay: 10
+  PlayerStaggerIncrease: 15
+  EnemyStaggerIncreaseOnPlayerParry: 35
+  isKnockedBack: 0
+  isStunned: 0
+  isAttacking: 0
+  knockbackPowerMultiplier: 1
+  stunDurationMultiplier: 5
+  damageTakenMultiplier: 1
 --- !u!114 &1379042095918773327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +800,7 @@ MonoBehaviour:
   negXPaceDistance: 5
   walkSpeed: 4
   aggroRange: 1.25
+  guardRange: 1
   tetherRange: 3
   movingRight: 1
   isPatrolling: 1
