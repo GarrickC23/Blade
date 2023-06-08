@@ -6273,8 +6273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posXPaceDistance: 5
   negXPaceDistance: 5
-  walkSpeed: 4
-  aggroRange: 10
+  walkSpeed: 2
+  aggroRange: 15
+  guardRange: 6
   tetherRange: 5
   movingRight: 1
   isPatrolling: 1

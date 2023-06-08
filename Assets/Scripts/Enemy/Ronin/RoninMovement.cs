@@ -24,6 +24,7 @@ public class RoninMovement : EnemyMovement
     [HideInInspector] public bool canMovePatrolling = true;
     private bool canChase = true; //if the enemy can chase the player. Resets when the enemy is pulled out of tether range
     
+    private Animator anim; 
 
     EnemyStats enemyStats;
     private void Awake() {
@@ -59,6 +60,7 @@ public class RoninMovement : EnemyMovement
     }
 
     protected override void EnemyWalk(){
+        anim.Play("Walk");
         if (enemyStats.isStunned || enemyStats.isKnockedBack){
             return;
         }
@@ -83,7 +85,6 @@ public class RoninMovement : EnemyMovement
     }
 
     protected override bool InAggroRange() {
-        anim.SetBool("Fight", true);
         Vector2 currPos = gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, aggroRange, LayerMask.GetMask("Player"));
@@ -95,6 +96,7 @@ public class RoninMovement : EnemyMovement
 
     protected override bool InGuardRange()
     {
+        anim.SetBool("Fight", true);
         Vector2 currPos = gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, guardRange, LayerMask.GetMask("Player"));
