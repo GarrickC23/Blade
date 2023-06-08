@@ -18,12 +18,10 @@ public class EnemyStats : MonoBehaviour
     public float PlayerStaggerIncrease;
     public float EnemyStaggerIncreaseOnPlayerParry;
 
-    [HideInInspector]
-    public bool isKnockedBack = false;
+    [HideInInspector] public bool isKnockedBack = false;
 
-    [HideInInspector]
-    public bool isStunned = false;
-    public bool isAttacking = false;
+    [HideInInspector] public bool isStunned = false;
+    [HideInInspector] public bool isAttacking = false;
 
     
 

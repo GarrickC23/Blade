@@ -6,70 +6,70 @@ public class EnemyCombat : MonoBehaviour
 {
 
     float flashRedTime = 0.5f;
-    EnemyStats enemyStatsRef = null;
-    EnemyStagger enemyStaggerRef = null;
+    EnemyStats enemyStats = null;
+    EnemyStagger enemyStagger = null;
 
-    SpriteRenderer spriteRendererRef = null;
-    float knockbackDuration = 0.25f; //fixed knockback duration for enemies
+    SpriteRenderer spriteRenderer = null;
+    public float knockbackDuration;
     private void Awake() {
         if (TryGetComponent<EnemyStats>(out EnemyStats enemystats)){
-            enemyStatsRef = enemystats;
+            enemyStats = enemystats;
         }
         if (TryGetComponent<EnemyStagger>(out EnemyStagger enemystagger)){
-            enemyStaggerRef = enemystagger;
+            enemyStagger = enemystagger;
         }
         if (TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)){
-            spriteRendererRef = sr;
+            spriteRenderer = sr;
         }
         
     }
-    public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Transform attackerRefPos)
+    public void EnemyAttacked(float damage, float angle, float knockbackPower, float stunDuration, Transform attackerPos)
     {
-        if (enemyStatsRef.isParrying){
-            enemyStaggerRef.IncreaseStagger(damage);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>().IncreasePlayerStagger(enemyStatsRef.PlayerStaggerIncrease);
+        if (enemyStats.isParrying){
+            enemyStagger.IncreaseStagger(damage);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>().IncreasePlayerStagger(enemyStats.PlayerStaggerIncrease);
             StartCoroutine(KnockbackCoroutine());
-            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * enemyStatsRef.knockbackPowerMultiplier, angle, attackerRefPos);
+            GetComponent<EnemyKnockback>().EnemyKnockbackFunction(knockbackPower * enemyStats.knockbackPowerMultiplier, angle, attackerPos);
         }
         else 
         {
-            StartCoroutine(StunCoroutine(knockbackPower, angle, attackerRefPos, stunDuration));
+            StartCoroutine(StunCoroutine(knockbackPower, angle, attackerPos, stunDuration));
 
-            TakeDamage(damage * enemyStatsRef.damageTakenMultiplier);
+            TakeDamage(damage * enemyStats.damageTakenMultiplier);
         }
     }
 
     private void TakeDamage(float damage)
     {
-        enemyStatsRef.health -= damage;
+        enemyStats.health -= damage;
         FlashRed();
-        if (enemyStatsRef.health <= 0)
+        if (enemyStats.health <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    private IEnumerator StunCoroutine(float knockbackPower, float angle, Transform XReferencePoint, float stunDuration)
+    private IEnumerator StunCoroutine(float knockbackPower, float angle, Transform XerencePoint, float stunDuration)
     {
         
-        enemyStatsRef.isStunned = true;
+        enemyStats.isStunned = true;
         yield return new WaitForSeconds(stunDuration);
-        enemyStatsRef.isStunned = false;
+        enemyStats.isStunned = false;
     }
 
     private IEnumerator KnockbackCoroutine(){
-        enemyStatsRef.isKnockedBack = true;
+        enemyStats.isKnockedBack = true;
         yield return new WaitForSeconds(knockbackDuration);
-        enemyStatsRef.isKnockedBack = false;
+        enemyStats.isKnockedBack = false;
     }
 
 
     private void FlashRed(){
-        spriteRendererRef.color = Color.red;
+        spriteRenderer.color = Color.red;
         Invoke("FlashRedHelperStop", flashRedTime);
     }
 
    private void FlashRedHelperStop(){
-        spriteRendererRef.color = Color.white;
+        spriteRenderer.color = Color.white;
    }
 }

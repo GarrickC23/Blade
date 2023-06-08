@@ -12,33 +12,22 @@ public class RoninMovement : EnemyMovement
     private float currMaxXPaceDistance; //current max distance the enemy can pace to the right (changes to a random value within range when reaching currMaxXPaceDistance)
     private float currMinXPaceDistance; //current max distance the enemy can pace to the left (changes to a random value within range when reaching currMinXPaceDistance)
 
-    [Header("Movement Speed")]
-    //public float walkSpeed;
-
+    
+    [Header("Aggro Movement Speed")]
     public float aggroMoveSpeedMultiplier; //how much faster the enemy moves when chasing the player 1.5 = 50% faster
 
-    [Header("Aggro/Tether Range")]
-
-    //public float aggroRange;
-
-    //public float tetherRange; // max distance from enemy's starting position, left patrol pos, and right patrol pos
 
     [Header("Timers/Durations")]
     public float tetherResetDuration; //how long the enemy has to be in tether range before it can chase the player again
     public float paceEndpointPauseDuration; //how long the enemy has to pause after reaching a patrol endpoint.
-
-    //bool movingRight = true;
-    //bool isPatrolling = true;
     
-    public bool canMovePatrolling = true;
-    bool canChase = true; //if the enemy can chase the player. Resets when the enemy is pulled out of tether range
+    [HideInInspector] public bool canMovePatrolling = true;
+    private bool canChase = true; //if the enemy can chase the player. Resets when the enemy is pulled out of tether range
     
-    private Animator anim; 
-    //private GameObject player;
 
-    EnemyStats enemyStatsRef;
+    EnemyStats enemyStats;
     private void Awake() {
-        enemyStatsRef = GetComponent<EnemyStats>();
+        enemyStats = GetComponent<EnemyStats>();
     }
 
     protected override void Start() {
@@ -50,7 +39,7 @@ public class RoninMovement : EnemyMovement
     }
 
     protected override void Update() {
-        if ((enemyStatsRef.isAttacking || enemyStatsRef.isStunned || !canMovePatrolling) && !enemyStatsRef.isKnockedBack){
+        if ((enemyStats.isAttacking || enemyStats.isStunned || !canMovePatrolling || InGuardRange()) && !enemyStats.isKnockedBack){
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
         else{
@@ -59,6 +48,8 @@ public class RoninMovement : EnemyMovement
     }
     
     void LateUpdate(){
+        if (enemyStats.isStunned || enemyStats.isKnockedBack) return; //do not adjust rotation/direction if the enemy is stunned or knockedBack
+
         if(GetComponent<Rigidbody2D>().velocity.x > 0){ //if the enemy is moving right
             transform.rotation = Quaternion.Euler(0, 180, 0); //make the enemy face right
         }
@@ -68,8 +59,7 @@ public class RoninMovement : EnemyMovement
     }
 
     protected override void EnemyWalk(){
-        anim.Play("Walk");
-        if (enemyStatsRef.isStunned || enemyStatsRef.isKnockedBack){
+        if (enemyStats.isStunned || enemyStats.isKnockedBack){
             return;
         }
         if (InAggroRange() && IsWithinTetherRange()){ //if the player is in aggro range of the enemy and the enemy is within its tether range
@@ -96,11 +86,27 @@ public class RoninMovement : EnemyMovement
         anim.SetBool("Fight", true);
         Vector2 currPos = gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
-        RaycastHit2D ray = Physics2D.Raycast(currPos, direction, aggroRange, 3);
-        if (ray && (ray.collider.gameObject == player || (ray.collider.transform.parent != null && ray.collider.transform.parent.gameObject == player))) {
+        RaycastHit2D ray = Physics2D.Raycast(currPos, direction, aggroRange, LayerMask.GetMask("Player"));
+        if (ray && ray.collider.gameObject == player) {
             return true;
         }
         return false;
+    }
+
+    protected override bool InGuardRange()
+    {
+        Vector2 currPos = gameObject.transform.position;
+        Vector2 direction = (Vector2)(player.transform.position) - currPos;
+        RaycastHit2D ray = Physics2D.Raycast(currPos, direction, guardRange, LayerMask.GetMask("Player"));
+        if (ray && ray.collider.gameObject == player){ //player is within range and is detected
+            enemyStats.isParrying = true;
+            return true;
+        }
+        else{ //player is not within range and/or is not detected
+            enemyStats.isParrying = false;
+            return false;
+        }
+        
     }
 
     protected override void Chase(){
