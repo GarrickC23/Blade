@@ -18,6 +18,7 @@ public class RoninAttack : EnemyAttack
 
     protected override void Update()
     {
+        /*
         if (!enemyStatsRef.isAttacking && InAttackRange() && !enemyStatsRef.isStunned && !enemyStatsRef.isKnockedBack) {
             enemyStatsRef.isAttacking = true;
             anim.Play(attackName);
@@ -26,6 +27,7 @@ public class RoninAttack : EnemyAttack
         if (enemyStatsRef.isAttacking) {
             Attack();
         }
+        */
     }
 
     protected override void Attack()
