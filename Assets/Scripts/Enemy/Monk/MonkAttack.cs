@@ -50,8 +50,7 @@ public class MonkAttack : EnemyAttack
         Vector2 currPos = this.gameObject.transform.position;
         Vector2 direction = (Vector2)(player.transform.position) - currPos;
         RaycastHit2D ray = Physics2D.Raycast(currPos, direction, attackRange, 3);
-        // if (ray && (ray.collider.gameObject == player || (ray.collider.transform.parent != null && ray.collider.transform.parent.gameObject == player))) {
-        if (ray) {
+        if (ray && (ray.collider.gameObject == player || (ray.collider.transform.parent != null && ray.collider.transform.parent.gameObject == player))) {
             return true;
         }
 
@@ -63,6 +62,6 @@ public class MonkAttack : EnemyAttack
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, attackRange);
-        Gizmos.DrawLine(this.transform.position, player.transform.position);
+        Gizmos.DrawRay(this.transform.position, player.transform.position - this.gameObject.transform.position);
     }
 }

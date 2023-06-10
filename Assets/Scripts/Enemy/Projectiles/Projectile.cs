@@ -31,8 +31,13 @@ public class Projectile : MonoBehaviour
         this.transform.rotation = Quaternion.Euler(rot);  
     }
 
+    public void DestroyProjectile() {
+        Destroy(this.gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D coll) {
         if (coll.gameObject.tag == "Player") {
+            Debug.Log(coll.gameObject);
             if (coll.gameObject.TryGetComponent<PlayerCombat>(out PlayerCombat player)) {
                 player.Attacked(damage, 0f, knockbackPower, stunDuration, playerParryIncrease, this.transform, knockbackDuration);
             }
