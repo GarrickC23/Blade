@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 2350715695169804732}
   - component: {fileID: 7982060870122836601}
   m_Layer: 0
-  m_Name: Boblos2
+  m_Name: LockOnIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -803,7 +803,7 @@ Transform:
   - {fileID: 1610073958}
   - {fileID: 2350715695169804732}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1219213532512769586
 SpriteRenderer:
@@ -926,7 +926,7 @@ MonoBehaviour:
   dashingTime: 0.15
   dashingCooldown: 0.2
   grapplePoints: []
-  grappleSpeed: 0
+  grappleSpeed: 10
   tr: {fileID: 1610073959}
   lockOn: {fileID: 2464412384023594283}
   playerState: 0

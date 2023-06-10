@@ -62,6 +62,8 @@ public class MonkAttack : EnemyAttack
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, attackRange);
-        Gizmos.DrawRay(this.transform.position, player.transform.position - this.gameObject.transform.position);
+        if (player != null) {
+            Gizmos.DrawRay(this.transform.position, player.transform.position - this.gameObject.transform.position);
+        }
     }
 }
