@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1292,9 +1292,10 @@ TextureImporter:
       Spirit Grass Tileset (1)_11: -105487937
       Spirit Grass Tileset (1)_7: 314937122
       Spirit Grass Tileset (1)_19: 472212242
-      Spirit Grass Tileset (1)_38: -140922654
+      Spirit Grass Tileset (1)_47: -2070077365
       Spirit Grass Tileset (1)_43: -688703225
       Spirit Grass Tileset (1)_18: 1121919243
+      Spirit Grass Tileset (1)_38: -140922654
       Spirit Grass Tileset (1)_27: -588052882
       Spirit Grass Tileset (1)_25: -969272148
       Spirit Grass Tileset (1)_41: -2004082027
@@ -1308,7 +1309,6 @@ TextureImporter:
       Spirit Grass Tileset (1)_30: -1931170887
       Spirit Grass Tileset (1)_6: 1403973268
       Spirit Grass Tileset (1)_42: -406165300
-      Spirit Grass Tileset (1)_47: -2070077365
       Spirit Grass Tileset (1)_10: 461480623
       Spirit Grass Tileset (1)_2: 1304733564
       Spirit Grass Tileset (1)_31: -458129986

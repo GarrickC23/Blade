@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerKnockback : MonoBehaviour
 {
 
-    public void PlayerKnockbackFunction(float strength, float angle, Transform XReferencePoint){
+    public void PlayerKnockbackFunction(float strength, float angle, Vector2 XReferencePoint){
         int dir;
         
-        if (XReferencePoint.position.x - transform.position.x >= 0){
+        if (XReferencePoint.x - transform.position.x >= 0){
             dir = -1;
         }
         else dir = 1;

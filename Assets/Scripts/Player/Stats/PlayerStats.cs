@@ -55,6 +55,8 @@ public class PlayerStats : MonoBehaviour
    public void RespawnAtCheckPoint() {
       this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
       Vector3 oldPos = this.transform.position;
-      this.transform.position = new Vector3(lastCheckpoint.position.x, lastCheckpoint.position.y, oldPos.z);
+      if (lastCheckpoint != null) {
+         this.transform.position = new Vector3(lastCheckpoint.position.x, lastCheckpoint.position.y, oldPos.z);
+      }
    }
 }

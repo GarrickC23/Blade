@@ -28,7 +28,7 @@ public class PlayerCombat : MonoBehaviour
          TakeDamage(damage);
          StartCoroutine(StunKnockbackInvulnerableCoroutine(angle, knockbackPower, attackerRefPos, stunDuration, knockbackDuration));
          if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
-            Destroy(attackerRefPos.gameObject);
+            tempProj.DestroyProjectile();
          }
       }
       else if (playerStatsRef.isGuarding && !playerStatsRef.isParrying && !playerStatsRef.isStunned && !playerStatsRef.isInvulnerable) //check to see if the player is guarding
@@ -36,7 +36,7 @@ public class PlayerCombat : MonoBehaviour
          Debug.Log("Guard hit");
          IncreasePlayerStagger(playerParryIncrease);
          if (attackerRefPos.gameObject.TryGetComponent<Projectile>(out Projectile tempProj)) {
-            Destroy(attackerRefPos.gameObject);
+            tempProj.DestroyProjectile();
          }
       }
       else if (playerStatsRef.isParrying) //check to see if the player is parrying
@@ -71,7 +71,10 @@ public class PlayerCombat : MonoBehaviour
          playerUIRef.HeartUpdate();
          this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
          Vector3 oldPos = this.transform.position;
-         this.transform.position = new Vector3(playerStatsRef.respawnPoint.position.x, playerStatsRef.respawnPoint.position.y, oldPos.z);
+         Vector2 respawnPoint = playerStatsRef.respawnPoint.position;
+         if (respawnPoint != null) {
+            this.transform.position = new Vector3(playerStatsRef.respawnPoint.position.x, playerStatsRef.respawnPoint.position.y, oldPos.z);
+         }
       }
    }
 
@@ -108,7 +111,7 @@ public class PlayerCombat : MonoBehaviour
         SetInvulernable(); //gives the player i-frames after stun ends
         FlashInvulernable(); //flash the player to show invulnerability
         Invoke("SetVulnerable", playerStatsRef.InvulnerableDuration); //waits until i-frame duration before setting playing vulnerable again
-        GetComponent<PlayerKnockback>().PlayerKnockbackFunction(knockbackPower, angle, attackerRefPos);
+        GetComponent<PlayerKnockback>().PlayerKnockbackFunction(knockbackPower, angle, attackerRefPos.position);
         playerStatsRef.isKnockedBack = true;
         yield return new WaitForSeconds(knockbackDuration);
         playerStatsRef.isKnockedBack = false;
