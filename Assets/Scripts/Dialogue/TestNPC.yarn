@@ -1,7 +1,20 @@
 ﻿title: Start
 tags:
 ---
-Brent: Hello, I have never seen you before!
-Brent: I'm playing some games right now!
-Brent: NOOOOOOOOOOOOOOOOOOOOOOOO!
+Hokusai: Oh, hello there traveler, how are you? It is nice to see a face that is new.
+Hokusai: Stunned with silence, I see. I too, would tend to agree. My paintings and I aim to capture beauty. Be it mountains with rock, or thick forests with tree.
+-> Lua: Why are you talking like that? (To continue the dialogue)
+    Hokusai: I often come up with riddles and rhymes. Is such a thing so bad a crime? Here, how about, one riddle, to go. Off the top of my head, this one will flow.
+    Hokusai: Avoided by all, yet not feared by the brave. But without me, there's no one to save. Evil doers have plenty to give, and yet without me you'd struggle to live. What am I?
+    -> Lua: Jealousy
+        Hokusai: Unfortunately no, that’s not the answer I seek. It appears your insight is quite weak.
+    -> Lua: Anger
+        Hokusai: Unfortunately no, that’s not the answer I seek. It appears your insight is quite weak.
+    -> Lua: Pleasure
+        Hokusai: Unfortunately no, that’s not the answer I seek. It appears your insight is quite weak.
+    -> Lua: Pain
+        Hokusai: That is the answer, pain is the correct. Hopefully this riddle will have quite an effect.
+        Thank you for playing, my strange little game. It was fun for a bit, I hope you proclaim. Take this gift for your long travels. It shall help prevent your life from starting to unravel.
+
+-> Lua: I don’t have time for this… (To end the conversation)
 ===
