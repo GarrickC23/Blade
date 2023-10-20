@@ -23,7 +23,7 @@ public class FollowPlayer : MonoBehaviour
     {
         if (!isFrozen) {
             Vector3 playerPosition = player.transform.position;
-            this.transform.position = new Vector3(playerPosition.x, playerPosition.y + 4, -10);
+            this.transform.position = new Vector3(playerPosition.x, playerPosition.y + 1, -10);
         }
         if (isShaking) {
             if (shakeTimer < currDuration) {
