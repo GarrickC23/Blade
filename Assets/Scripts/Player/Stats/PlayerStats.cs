@@ -29,6 +29,9 @@ public class PlayerStats : MonoBehaviour
    [Header("Stagger Variables")]
    public float stagger = 0;
    public float maxStagger, staggerTime, staggerDecayRate, staggerDecayAmount, staggerDecayDelay;
+
+
+   public int coinCount = 0;
    
 
    

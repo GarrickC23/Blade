@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 1379042095918773327}
   - component: {fileID: 1379042094781953308}
   - component: {fileID: 1379042094781953307}
+  - component: {fileID: -4533391201599554167}
   m_Layer: 3
   m_Name: Ronin
   m_TagString: Enemy
@@ -810,3 +811,18 @@ MonoBehaviour:
   tetherResetDuration: 0.5
   paceEndpointPauseDuration: 1
   canMovePatrolling: 1
+--- !u!114 &-4533391201599554167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744915010433662111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f07acc5d8e0a24419f2b8c353df9906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 8392534850259824348, guid: 8830302fcd8f0ab44bd5956b4064ca9b, type: 3}
+  dropLowerBound: 1
+  dropUpperBound: 3

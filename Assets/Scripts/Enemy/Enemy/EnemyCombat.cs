@@ -45,8 +45,16 @@ public class EnemyCombat : MonoBehaviour
         FlashRed();
         if (enemyStats.health <= 0)
         {
-            Destroy(gameObject);
+            DestoryEnemy();
         }
+    }
+
+    private void DestoryEnemy(){
+        Destroy(gameObject);
+        if (TryGetComponent<EnemyDrops>(out EnemyDrops dropComponent)){
+            dropComponent.dropItem();
+        }
+
     }
 
     private IEnumerator StunCoroutine(float knockbackPower, float angle, Transform XerencePoint, float stunDuration)
