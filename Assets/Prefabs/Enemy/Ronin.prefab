@@ -777,10 +777,10 @@ MonoBehaviour:
   attackPosition: {fileID: 2744915010137940976}
   attackRadius: 2
   damage: 1
-  angle: 15
+  angle: 0
   knockbackPower: 10
-  stunDuration: 0.5
-  knockbackDuration: 0.5
+  stunDuration: 0.1
+  knockbackDuration: 0.1
   playerParryIncrease: 0
   attackRange: 2
   sparks: {fileID: 786535378891386285, guid: a61b5d68844b64002a1db2a65bb83163, type: 3}

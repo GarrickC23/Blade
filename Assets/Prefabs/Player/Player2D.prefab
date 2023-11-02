@@ -803,7 +803,7 @@ Transform:
   - {fileID: 1610073958}
   - {fileID: 2350715695169804732}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1219213532512769586
 SpriteRenderer:
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   attackRadius: 0.7
   attackPosition: {fileID: 1030885288}
   swingAttackDamage: 25
-  angle: 45
+  angle: 0
   knockbackPower: 50000
   stunDuration: 0.5
   attackCoolDown: 0.5
@@ -1096,6 +1096,7 @@ MonoBehaviour:
   staggerDecayRate: 0.05
   staggerDecayAmount: 2
   staggerDecayDelay: 2
+  coinCount: 0
   respawnPoint: {fileID: 0}
   lastCheckpoint: {fileID: 0}
 --- !u!95 &706357238

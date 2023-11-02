@@ -11,7 +11,7 @@ public class EnemyDrops : MonoBehaviour
     public void dropItem(){
         int dropCount = Random.Range(dropLowerBound, dropUpperBound + 1); //1 - 3
         for (int i = 0; i < dropCount; i++){
-            Instantiate(drop, transform.position, transform.rotation);
+            GameObject newCoin = Instantiate(drop, transform.position, transform.rotation);
         }
     }
 }
