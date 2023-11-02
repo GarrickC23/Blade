@@ -1,5 +1,43 @@
 ﻿title: Oya
 tags:
 ---
+<<declare $numTimesTalkedToKoko = 0>>
+<<if $numTimesTalkedToKoko < 3>>
+    Oya: Hoy traveler! I have a request for you. It’s about my daughter…
+    -> Lua: What happened to her? (To continue the dialogue)
+        Oya: Well, you see… I lost my daughter… She won’t come back to me…
+        Oya: If you can somehow bring her back, I’d be forever in your debt. She always loved hide and seek, so I assume she’s playing somewhere closer to heaven… Her name is Koko.
+        Lua: Of course. I’ll be looking out for her on my way up the mountain.
+        Oya: Really? Thank you so much. Blessings be on your travels.
+    -> Lua: I’m too busy, sorry.(To end the conversation)
+<<else>>
+    Oya: Were you able to find her?
+    Lua: Yes, and no.
+    Oya: Huh?
+    Ko: Hello!
+    Lua: I take it that this little girl isn’t actually your daughter, is she?
+    Oya: Unfortunately not… It was a long shot to ask you to bring her to me anyways. 
+    Lua: Why?
+    Oya: My daughter’s been dead for a long time now… I was hoping that the Lua of legend might have gained the ability to bring the dead back to life, but it appears that it was an impossible task. I’m sorry I bothered you. *He begins to turn away*
+    Lua: …
+    Ko: Wait, you’re Lua?! The same Lua I heard the ronin talking about?
+    Lua: … Yes.
+    Ko: Weren’t you raised by the big dragon that lives at the top of the temple?
+    Lua: More or less.
+    Ko: The dragon guy trained lots of different people, right? So Mr. Oya could train another person to replace the one that he lost. Right?
+    Lua: If he was ready for it, sure, I guess he could.
+    *Koko runs over to Oya*
+    Ko: Excuse me, Mr. Oya. Can you train me to become the hide and seek champion?
+    Oya: What?
+    Ko: I love hide and seek, and you love the name Koko, so I think we have a lot in common. So, that means you should train me! I need a new sensei, since my last one disappeared without a trace.
+    *Lua follows behind*
+    Lua: She named herself after your daughter. She said she liked it.
+    Oya: …
+    *Oya hesitates for a moment*
+    *Oya reaches down and hugs the child*
 
+    Oya: Thank you Lua. You really are a thing of legend. I’ll raise the girl, as if she were my very own.
+    Lua: I’m just happy to help.
+    Oya: Here take this, you’ll probably need it more then we would.
+<<endif>>
 ===

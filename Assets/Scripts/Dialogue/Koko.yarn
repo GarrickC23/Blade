@@ -1,0 +1,30 @@
+﻿title: Koko
+tags:
+---
+<<if $numTimesTalkedToKoko == 0>>
+    Lua: Are you Koko?
+    Ko: Oh! You found me! But, next time won’t be so easy!
+    *She poofs away*
+    <<set $numTimesTalkedToKoko to 1>>
+
+<<elseif $numTimesTalkedToKoko == 1>>
+    Ko: You again! You’re almost as good as my dad! He’s the hide and seek champion!
+    Lua: We should probably start heading back. It’s dangerous this far up the mountain.
+    Ko: You just wanna stop playing because you know I’ll beat you! I’ll never let you beat me!
+    *She poofs away*
+    <<set $numTimesTalkedToKoko to 2>>
+
+<<elseif $numTimesTalkedToKoko == 2>>
+    Ko: Ok I quit… I’ll never be the hide and seek champion…
+    Lua: I’m sure you’ll be the hide and seek champion someday. We just need to go back home and find your dad, ok?
+    Ko: Bu- But… I don’t have a dad!
+    Lua: What?!
+    Ko: He’s been playing hide and seek since the moment I was born!
+    Lua: So you don’t know a man by the name of Oya?
+    Ko: Nope. I just heard you say the name Koko, and I liked it. So I decided that’s my name now.
+    Lua: Let’s head back down the mountain.
+    Ko: Ok!
+    <<set $numTimesTalkedToKoko to 3>>
+
+<<endif>>
+===

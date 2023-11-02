@@ -6,8 +6,8 @@ using Yarn.Unity;
 
 public class NPCInteractable : MonoBehaviour
 {
-    public bool interactable; 
     public string conversationStartNode;
+    private bool isInInteractRange = false; 
     private DialogueRunner dialogueRunner; 
     private PlayerControls playerControls;
 
@@ -41,17 +41,21 @@ public class NPCInteractable : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            interactable = true;
+            isInInteractRange = true;
         }
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
         {
-            interactable = false; 
+            isInInteractRange = false;
         }
     }
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed )
+        if (context.performed && isInInteractRange)
         {
             Debug.Log("interact");
             StartConversation(); 

@@ -11,9 +11,18 @@ ScriptedImporter:
   sourceScripts:
   - {fileID: 6391573757903218779, guid: 6a0b85d8c6037f24d89083b99733f17b, type: 3}
   - {fileID: 6391573757903218779, guid: ca650cc9c4c18449f922748ef20efa74, type: 3}
+  - {fileID: 6391573757903218779, guid: 785d917d49496d14597d804645e27867, type: 3}
   - {fileID: 6391573757903218779, guid: 86c8cac5b5ee1409d87c2f624ec96f1a, type: 3}
   compileErrors: []
-  serializedDeclarations: []
+  serializedDeclarations:
+  - name: $talkedToKoko
+    typeName: Bool
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: ca650cc9c4c18449f922748ef20efa74, type: 3}
   defaultLanguage: en-US
   languagesToSourceAssets: []
   useAddressableAssets: 0
